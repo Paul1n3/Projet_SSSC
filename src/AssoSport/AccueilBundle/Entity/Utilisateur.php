@@ -95,6 +95,12 @@ class Utilisateur
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      */
     private $sports;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $profilActuel;
 
 
 
@@ -387,5 +393,29 @@ class Utilisateur
     public function getSports()
     {
         return $this->sports;
+    }
+
+    /**
+     * Set profilActuel
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Profil $profilActuel
+     *
+     * @return Utilisateur
+     */
+    public function setProfilActuel(\AssoSport\AccueilBundle\Entity\Profil $profilActuel)
+    {
+        $this->profilActuel = $profilActuel;
+
+        return $this;
+    }
+
+    /**
+     * Get profilActuel
+     *
+     * @return \AssoSport\AccueilBundle\Entity\Profil
+     */
+    public function getProfilActuel()
+    {
+        return $this->profilActuel;
     }
 }

@@ -74,6 +74,12 @@ class Activite
     * @ORM\JoinColumn(nullable=false)
     */
     private $sport;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Projet")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $projet;
 
 
     /**
@@ -252,5 +258,29 @@ class Activite
     public function getUtilisateur()
     {
         return $this->utilisateur;
+    }
+
+    /**
+     * Set sport
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Sport $sport
+     *
+     * @return Activite
+     */
+    public function setSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \AssoSport\AccueilBundle\Entity\Sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
     }
 }

@@ -95,6 +95,12 @@ class Utilisateur
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      */
     private $sports;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $profilActuel;
 
 
 
