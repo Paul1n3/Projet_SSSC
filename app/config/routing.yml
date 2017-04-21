@@ -1,0 +1,17 @@
+asso_sport_projet:
+    resource: "@AssoSportProjetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+asso_sport_admin:
+    resource: "@AssoSportAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+asso_sport_adherent:
+    resource: "@AssoSportAdherentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+asso_sport_accueil:
+    resource: "@AssoSportAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

@@ -1,0 +1,4 @@
+services:
+#    asso_sport_admin.example:
+#        class: AssoSport\AdminBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

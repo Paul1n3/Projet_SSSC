@@ -1,0 +1,3 @@
+asso_sport_adherent_homepage:
+    path:     /
+    defaults: { _controller: AssoSportAdherentBundle:Default:index }
