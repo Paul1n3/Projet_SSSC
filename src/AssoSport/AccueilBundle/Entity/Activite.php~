@@ -253,28 +253,4 @@ class Activite
     {
         return $this->utilisateur;
     }
-
-    /**
-     * Set sport
-     *
-     * @param \AssoSport\AccueilBundle\Entity\Sport $sport
-     *
-     * @return Activite
-     */
-    public function setSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
-    {
-        $this->sport = $sport;
-
-        return $this;
-    }
-
-    /**
-     * Get sport
-     *
-     * @return \AssoSport\AccueilBundle\Entity\Sport
-     */
-    public function getSport()
-    {
-        return $this->sport;
-    }
 }

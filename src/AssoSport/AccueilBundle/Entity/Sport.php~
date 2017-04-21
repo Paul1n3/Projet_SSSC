@@ -99,28 +99,5 @@ class Sport
     {
         return $this->typeDistance;
     }
-
-    /**
-     * Set typeSport
-     *
-     * @param \AssoSport\AccueilBundle\Entity\TypeSport $typeSport
-     *
-     * @return Sport
-     */
-    public function setTypeSport(\AssoSport\AccueilBundle\Entity\TypeSport $typeSport)
-    {
-        $this->typeSport = $typeSport;
-
-        return $this;
-    }
-
-    /**
-     * Get typeSport
-     *
-     * @return \AssoSport\AccueilBundle\Entity\TypeSport
-     */
-    public function getTypeSport()
-    {
-        return $this->typeSport;
-    }
 }
+
