@@ -101,6 +101,16 @@ class Utilisateur
     * @ORM\JoinColumn(nullable=false)
     */
     private $profilActuel;
+    
+    /**
+   	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
+     */
+    private $profils;
+    
+    /**
+   	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
+     */
+    private $projets;
 
 
 
@@ -393,5 +403,63 @@ class Utilisateur
     public function getSports()
     {
         return $this->sports;
+    }
+
+    /**
+     * Set profilActuel
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Profil $profilActuel
+     *
+     * @return Utilisateur
+     */
+    public function setProfilActuel(\AssoSport\AccueilBundle\Entity\Profil $profilActuel)
+    {
+        $this->profilActuel = $profilActuel;
+
+        return $this;
+    }
+
+    /**
+     * Get profilActuel
+     *
+     * @return \AssoSport\AccueilBundle\Entity\Profil
+     */
+    public function getProfilActuel()
+    {
+        return $this->profilActuel;
+    }
+
+    /**
+     * Add profil
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Profil $profil
+     *
+     * @return Utilisateur
+     */
+    public function addProfil(\AssoSport\AccueilBundle\Entity\Profil $profil)
+    {
+        $this->profils[] = $profil;
+
+        return $this;
+    }
+
+    /**
+     * Remove profil
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Profil $profil
+     */
+    public function removeProfil(\AssoSport\AccueilBundle\Entity\Profil $profil)
+    {
+        $this->profils->removeElement($profil);
+    }
+
+    /**
+     * Get profils
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProfils()
+    {
+        return $this->profils;
     }
 }

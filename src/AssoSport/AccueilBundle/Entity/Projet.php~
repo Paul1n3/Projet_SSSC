@@ -191,45 +191,5 @@ class Projet
     {
         return $this->dateFin;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add sport
-     *
-     * @param \AssoSport\AccueilBundle\Entity\Sport $sport
-     *
-     * @return Projet
-     */
-    public function addSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
-    {
-        $this->sports[] = $sport;
-
-        return $this;
-    }
-
-    /**
-     * Remove sport
-     *
-     * @param \AssoSport\AccueilBundle\Entity\Sport $sport
-     */
-    public function removeSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
-    {
-        $this->sports->removeElement($sport);
-    }
-
-    /**
-     * Get sports
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSports()
-    {
-        return $this->sports;
-    }
 }
+
