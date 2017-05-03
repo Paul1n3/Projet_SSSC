@@ -2,6 +2,8 @@
 
 namespace AssoSport\AccueilBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
  * UtilisateurRepository
  *
@@ -10,4 +12,27 @@ namespace AssoSport\AccueilBundle\Repository;
  */
 class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function myFindAll(){
+  		return $this
+    		->createQueryBuilder('u')
+    		->getQuery()
+    		->getResult()
+  			;
+	}
+
+    public function myFindOne()
+    {
+      $qb = $this->createQueryBuilder('utilisateur');
+
+      $qb
+        ->where('utilisateur.prenom = :pre')
+        ->setParameter('pre', 'Marie')
+      ;
+
+      return $qb
+        ->getQuery()
+        ->getSingleResult()
+      ;
+    }
+
 }

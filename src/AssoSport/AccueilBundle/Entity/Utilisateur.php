@@ -3,6 +3,8 @@
 namespace AssoSport\AccueilBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Utilisateur
@@ -18,6 +20,7 @@ class Utilisateur
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @UniqueEntity(fields="adresseMail", message="Un utilisateur existe déjà avec cet adresse mail.")
      */
     private $id;
 
@@ -25,6 +28,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
+     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
      */
     private $nom;
 
@@ -32,6 +36,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Prenom", type="string", length=255)
+     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
      */
     private $prenom;
 
@@ -39,6 +44,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Taille", type="integer")
+     * @Assert\Range(min=100, max =270)
      */
     private $taille;
 
@@ -46,6 +52,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Age", type="integer")
+     * @Assert\Range(min=3, max=130)
      */
     private $age;
 
@@ -53,6 +60,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Poids", type="integer")
+     * @Assert\Length(min=30, max=130)
      */
     private $poids;
 
@@ -60,6 +68,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Sexe", type="string", length=255)
+     * @Assert\Length(min=1, max=1)
      */
     private $sexe;
 
@@ -67,6 +76,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="AdresseMail", type="string", length=255, unique=true)
+     * @Assert\Email()
      */
     private $adresseMail;
 
@@ -74,6 +84,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="MotDePasse", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $motDePasse;
 
@@ -82,33 +93,38 @@ class Utilisateur
      *
      * @ORM\Column(name="Salt", type="string", length=255)
      */
-    private $salt;
+    private $salt = "adefinir";
 
     /**
      * @var bool
      *
      * @ORM\Column(name="Adherent", type="boolean")
+     * @Assert\Valid()
      */
-    private $adherent;
+    private $adherent = true;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $sports;
     
     /**
-    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil")
+    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $profilActuel;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $profils;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $projets;
 

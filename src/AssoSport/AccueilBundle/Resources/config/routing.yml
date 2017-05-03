@@ -1,3 +1,17 @@
 asso_sport_accueil_homepage:
-    path:     /
-    defaults: { _controller: AssoSportAccueilBundle:Default:index }
+    path:     /accueil
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
+
+asso_sport_accueil_liste:
+    path:     /liste
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:liste }
+
+asso_sport_accueil_recherche:
+    path:     /recherche
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:trouve }
+    #requirements:
+        #id:   \d+
+
+asso_sport_accueil_formulaire:
+    path:     /formulaire
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:formulaire }
