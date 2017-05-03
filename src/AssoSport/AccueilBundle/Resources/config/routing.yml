@@ -1,5 +1,9 @@
 asso_sport_accueil_homepage:
-    path:     /accueil
+    path:     /home
+    defaults: { _controller: AssoSportAccueilBundle:Default:home }
+
+asso_sport_accueil_homepage:
+    path:     /print
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
 
 asso_sport_accueil_liste:

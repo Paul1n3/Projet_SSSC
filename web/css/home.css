@@ -1,0 +1,49 @@
+.image-asso {
+  width:50%;
+  height:50%;
+  border-radius:50%;
+  border: 2px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.button-asso {
+  line-height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 3em;
+  margin-bottom: 10px;
+}
+
+
+.button-project, .button-perso  {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  border: 1px solid black;
+  color: white;
+  font-size: 5em;
+}
+.button-perso {
+  background-color: #00B0AD;
+}
+.button-project {
+  background-color: #F6722F;
+}
+
+
+.button-asso-left, .button-asso-right {
+  border-color: #E3E3E3;
+}
+.button-asso-left {
+  border-right-style: solid;
+}
+.button-asso-right {
+  border-left-style: solid;
+}
+
+h2 {
+  color : #29CFA3;
+  font-size: 4em;
+}

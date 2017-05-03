@@ -2,12 +2,37 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Asso Sport{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     </head>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <img class="logo-asso pull-left" src="{{ asset('images/logo.png') }}" alt="image asso">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Asso Sport</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Accueil</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <a href="/Symfony/web/app_dev.php/formulaire" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
+        <button class="btn btn-primary navbar-btn pull-right">Inscription</button>
+
+      </div>
+    </div>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+      {% block body %}{% endblock %}
     </body>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <p><strong>Copyright ...</strong><br /> LOGOS</p>
+
+      </div>
+    </footer>
 </html>

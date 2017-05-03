@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new AssoSport\AdherentBundle\AssoSportAdherentBundle(),
             new AssoSport\AdminBundle\AssoSportAdminBundle(),
             new AssoSport\ProjetBundle\AssoSportProjetBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

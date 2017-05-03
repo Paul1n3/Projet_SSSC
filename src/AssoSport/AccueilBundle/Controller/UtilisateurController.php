@@ -25,16 +25,16 @@ class UtilisateurController extends Controller
   {
     // Création de l'entité
     $utilisateur = new Utilisateur();
-    $utilisateur->setNom('Durand');
-    $utilisateur->setPrenom('Marie');
-    $utilisateur->setTaille(160);
-    $utilisateur->setAge(75);
-    $utilisateur->setPoids(82);
-    $utilisateur->setSexe('F');
-    $utilisateur->setAdresseMail('marie@ici.fr');
-    $utilisateur->setMotDePasse('marieDurand');
-    $utilisateur->setSalt('marie');
-    $utilisateur->setAdherent('false');
+    $utilisateur->setNom('Canila');
+    $utilisateur->setPrenom('Damien');
+    $utilisateur->setTaille(182);
+    $utilisateur->setAge(61);
+    $utilisateur->setPoids(90);
+    $utilisateur->setSexe('M');
+    $utilisateur->setAdresseMail('damien@ici.fr');
+    $utilisateur->setMotDePasse('damienCanila');
+    $utilisateur->setSalt('damien');
+    $utilisateur->setAdherent('true');
 
     $repository = $this
       ->getDoctrine()
