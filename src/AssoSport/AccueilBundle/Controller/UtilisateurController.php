@@ -3,10 +3,13 @@
 namespace AssoSport\AccueilBundle\Controller;
 
 use AssoSport\AccueilBundle\Entity\Utilisateur;
+use AssoSport\AccueilBundle\Entity\Projet;
+use AssoSport\AccueilBundle\Entity\Sport;
 use AssoSport\AccueilBundle\Entity\Profil;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AssoSport\AccueilBundle\Form\UtilisateurType;
+use AssoSport\AccueilBundle\Form\SportType;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -95,71 +98,12 @@ class UtilisateurController extends Controller
   
   public function formulaireAction(Request $request)
   {
-    /*// Création de l'objet utilisateur
-    $utilisateur = new Utilisateur();
-
-    // Création du FormBuilder (form factory)
-    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $utilisateur);*/
-
-    /*// Ajout des champs pour le formulaire
-    $formBuilder
-      ->add('nom',       TextType::class)
-      ->add('prenom',    TextType::class)
-      ->add('taille',    NumberType::class)
-      ->add('age',       NumberType::class)
-      ->add('poids',     NumberType::class)
-      ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
-      ->add('adresseMail', EmailType::class)
-      ->add('motDePasse',  PasswordType::class)
-      ->add('salt',      TextType::class)
-      ->add('profilActuel', ChoiceType::class, array('choices' => array('Sedentaire: 60 minutes de sport maximum par semaine' => $repository->findOneByNom('Sedentaire'),'Moyennement actif: entre 60 et 90 minutes de sport par semaine' => $repository->findOneByNom('Moyennement Actif'), 'Actif: entre 90 et 120 minutes de sport par  semaine' => $repository->findOneByNom('Actif'), 'Très actif: Plus de 120 minutes de sport par semaine' => $repository->findOneByNom('Tres Actif'))))
-      ->add('adherent',  CheckboxType::class, array('required' => false))
-      ->add('save',      SubmitType::class)
-    ;
-    
-    // Génération du formulaire à partir du formBuilder
-    $form = $formBuilder->getForm();*/
-
-    /*// Génération automatique de la vue
-    return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
-      'form' => $form->createView(),
-    ));*/
-
-    // Si la requête est en POST
-    /*if ($request->isMethod('POST')) {
-      // On fait le lien Requête <-> Formulaire
-      // À partir de maintenant, la variable $utilisation contient les valeurs entrées dans le formulaire par le visiteur
-      $form->handleRequest($request);
-
-      // On vérifie que les valeurs entrées sont correctes
-      // (Nous verrons la validation des objets en détail dans le prochain chapitre)
-      if ($form->isValid()) {
-        // On enregistre notre objet $utilisation dans la base de données, par exemple
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($utilisateur);
-        $em->flush();
-
-        $request->getSession()->getFlashBag()->add('notice', 'Nouvel utilisateur enregistré.');
-
-        // On redirige vers la page de visualisation de l'annonce nouvellement créée
-        return $this->redirectToRoute('asso_sport_accueil_liste');
-      }
-    }
-
-    // À ce stade, le formulaire n'est pas valide car :
-    // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
-    // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
-    return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
-      'form' => $form->createView(),
-    ));*/
-
     $utilisateur = new Utilisateur();
     $form   = $this->get('form.factory')->create(UtilisateurType::class, $utilisateur);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $em->persist($utilisateur);
-      $em->persist($utilisateur->getProfil());
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');

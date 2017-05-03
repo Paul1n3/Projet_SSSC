@@ -60,7 +60,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Poids", type="integer")
-     * @Assert\Length(min=30, max=130)
+     * @Assert\Range(min=30, max=130)
      */
     private $poids;
 
@@ -101,7 +101,7 @@ class Utilisateur
      * @ORM\Column(name="Adherent", type="boolean")
      * @Assert\Valid()
      */
-    private $adherent = true;
+    private $adherent;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})

@@ -44,18 +44,16 @@ class UtilisateurType extends AbstractType
               'choice_label'    =>  'nom',
               'multiple'        =>   false,
             ))
-          /*->add('sports', CollectionType::class, array(
-                'entry_type'   => SportType::class,
-                'allow_add'    => false,
-                'allow_delete' => false
-            ))*/
           ->add('sports', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Sport',
               'choice_label'    =>  'nom',
               'multiple'        =>   true,
             ))
-
-          ->add('projets',        CheckboxType::class, array('required' => false))
+          ->add('projets', EntityType::class, array(
+              'class'           =>  'AssoSportAccueilBundle:Projet',
+              'choice_label'    =>  'nom',
+              'multiple'        =>   true,
+            ))
           ->add('save',      SubmitType::class)
         ;
     }
