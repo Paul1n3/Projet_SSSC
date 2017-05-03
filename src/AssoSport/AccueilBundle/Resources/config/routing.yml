@@ -2,7 +2,7 @@ asso_sport_accueil_homepage:
     path:     /home
     defaults: { _controller: AssoSportAccueilBundle:Default:home }
 
-asso_sport_accueil_homepage:
+asso_sport_accueil_test:
     path:     /print
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
 

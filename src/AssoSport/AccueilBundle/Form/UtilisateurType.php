@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UtilisateurType extends AbstractType
 {
@@ -37,13 +38,23 @@ class UtilisateurType extends AbstractType
           ->add('adresseMail', EmailType::class)
           ->add('motDePasse',  PasswordType::class)
           ->add('adherent',  CheckboxType::class, array('required' => false))
-          ->add('profilActuel', ProfilType::class)
-          ->add('sports', CollectionType::class, array(
+          //->add('profilActuel', ProfilType::class)
+          ->add('profilActuel', EntityType::class, array(
+              'class'           =>  'AssoSportAccueilBundle:Profil',
+              'choice_label'    =>  'nom',
+              'multiple'        =>   false,
+            ))
+          /*->add('sports', CollectionType::class, array(
                 'entry_type'   => SportType::class,
                 'allow_add'    => false,
                 'allow_delete' => false
+            ))*/
+          ->add('sports', EntityType::class, array(
+              'class'           =>  'AssoSportAccueilBundle:Sport',
+              'choice_label'    =>  'nom',
+              'multiple'        =>   true,
             ))
-            //CheckboxType::class, array(aller chercher tous les sports)
+
           ->add('projets',        CheckboxType::class, array('required' => false))
           ->add('save',      SubmitType::class)
         ;

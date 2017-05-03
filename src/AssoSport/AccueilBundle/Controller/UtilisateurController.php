@@ -25,15 +25,15 @@ class UtilisateurController extends Controller
   {
     // Création de l'entité
     $utilisateur = new Utilisateur();
-    $utilisateur->setNom('Canila');
-    $utilisateur->setPrenom('Damien');
-    $utilisateur->setTaille(182);
-    $utilisateur->setAge(61);
-    $utilisateur->setPoids(90);
+    $utilisateur->setNom('Dubois');
+    $utilisateur->setPrenom('Bernard');
+    $utilisateur->setTaille(177);
+    $utilisateur->setAge(88);
+    $utilisateur->setPoids(95);
     $utilisateur->setSexe('M');
-    $utilisateur->setAdresseMail('damien@ici.fr');
-    $utilisateur->setMotDePasse('damienCanila');
-    $utilisateur->setSalt('damien');
+    $utilisateur->setAdresseMail('bernarddubois@ici.fr');
+    $utilisateur->setMotDePasse('bernarddubois');
+    $utilisateur->setSalt('bernard');
     $utilisateur->setAdherent('true');
 
     $repository = $this
@@ -55,13 +55,13 @@ class UtilisateurController extends Controller
     // Étape 2 : On « flush » tout ce qui a été persisté avant
     $em->flush();
 
-    // Reste de la méthode qu'on avait déjà écrit
-    /*if ($request->isMethod('POST')) {
-      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+    
+    if ($request->isMethod('POST')) {
+      $request->getSession()->getFlashBag()->add('notice', 'Inscription bien enregistrée.');
 
-      // Puis on redirige vers la page de visualisation de cettte annonce
-      return $this->redirectToRoute('oc_platform_view', array('id' => $adherent->getId()));
-    }*/
+      // Puis on redirige vers la page de visualisation des adhérents
+      return $this->redirectToRoute('asso_sport_accueil_liste');
+    }
 
     // Si on n'est pas en POST, alors on affiche le formulaire
     return $this->render('AssoSportAccueilBundle:Utilisateur:print.html.twig', array('utilisateur' => $utilisateur));
