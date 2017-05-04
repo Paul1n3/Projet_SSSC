@@ -1,5 +1,5 @@
 asso_sport_accueil_homepage:
-    path:     /home
+    path:     /accueil
     defaults: { _controller: AssoSportAccueilBundle:Default:home }
 
 asso_sport_accueil_test:
