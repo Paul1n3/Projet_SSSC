@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AssoSport\AccueilBundle\Form\UtilisateurType;
 use AssoSport\AccueilBundle\Form\SportType;
+use FOS\UserBundle\Model\UserManager;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 

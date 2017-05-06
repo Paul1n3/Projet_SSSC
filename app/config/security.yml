@@ -1,6 +1,6 @@
 security:
     encoders:
-        AssoSport\UserBundle\Entity\Utilisateur: sha512
+        AssoSport\UserBundle\Entity\Utilisateur: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -8,7 +8,6 @@ security:
 
     providers:
         main:
-            #entity:
             id: fos_user.user_provider.username
                 #class:    AssoSport\UserBundle\Entity\Utilisateur
                 #property: adresseMail
@@ -18,7 +17,7 @@ security:
                     #user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     #admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
-    provider:     in_memory
+    #provider:     in_memory
 
     firewalls:
         dev:
@@ -31,6 +30,8 @@ security:
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
+                #provider: fos_userbundle
+                #csrf_token_generator: security.csrf.token_manager
             logout:
                 path:       fos_user_security_logout
                 target:     /

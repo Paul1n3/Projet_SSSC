@@ -36,7 +36,7 @@ class UtilisateurType extends AbstractType
           ->add('poids',     NumberType::class)
           ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
           ->add('email',    EmailType::class)
-          ->add('password',  PasswordType::class)
+          ->add('plainPassword',  PasswordType::class)
           ->add('adherent',  CheckboxType::class, array('required' => false))
           //->add('profilActuel', ProfilType::class)
           ->add('profilActuel', EntityType::class, array(

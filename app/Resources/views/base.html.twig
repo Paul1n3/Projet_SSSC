@@ -20,8 +20,14 @@
           <li><a href="#">Contact</a></li>
         </ul>
         <a href="/Symfony/web/app_dev.php/formulaire" class="btn btn-default navbar-btn pull-right" role="button">Inscription</a>
-        <a href="/Symfony/web/app_dev.php/login" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
-
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          Connecté en tant que {{ app.user.username }}
+          -
+        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default navbar-btn pull-right" role="button">Déconnexion</a>
+        {% else %}
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
+        {% endif %}
+        
       </div>
     </div>
 
