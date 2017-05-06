@@ -1,15 +1,19 @@
+#Bundle Projet
 asso_sport_projet:
     resource: "@AssoSportProjetBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /projet
 
+#Bundle Admin
 asso_sport_admin:
     resource: "@AssoSportAdminBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin
 
+#Bundle Adherent
 asso_sport_adherent:
     resource: "@AssoSportAdherentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /adherent
 
+#Bundle Accueil
 asso_sport_accueil:
     resource: "@AssoSportAccueilBundle/Resources/config/routing.yml"
     prefix:   /
@@ -18,12 +22,13 @@ login:
     path: /login
     defaults:
         _controller: AssoSportUserBundle:Security:login
+    schemes:  [http]
 
 login_check:
     path: /login_check
 
-#logout:
-    #path: /logout
+logout:
+    path: /logout
 
 
 
