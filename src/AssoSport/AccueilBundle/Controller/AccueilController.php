@@ -11,4 +11,9 @@ class AccueilController extends Controller
         return $this->render('AssoSportAccueilBundle:Home:index.html.twig');
     }
 
+    public function connectAction()
+    {
+        return $this->render('AssoSportAccueilBundle:Home:connect.html.twig');
+    }
+
 }

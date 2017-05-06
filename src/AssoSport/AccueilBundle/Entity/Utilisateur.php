@@ -5,6 +5,8 @@ namespace AssoSport\AccueilBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * Utilisateur
@@ -13,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="AssoSport\AccueilBundle\Repository\UtilisateurRepository")
  * @UniqueEntity(fields="adresseMail", message="Un utilisateur existe déjà avec cet adresse mail.")
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @var int
@@ -86,7 +88,7 @@ class Utilisateur
      * @ORM\Column(name="MotDePasse", type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $motDePasse;
+    private $password;
 
     /**
      * @var string
@@ -127,6 +129,11 @@ class Utilisateur
      * @Assert\Valid()
      */
     private $projets;
+    
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles = array();
 
 
 
@@ -379,6 +386,7 @@ class Utilisateur
     {
         return $this->adherent;
     }
+    
     /**
      * Constructor
      */
@@ -511,5 +519,66 @@ class Utilisateur
     public function getProjets()
     {
         return $this->projets;
+    }
+
+    
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     *
+     * @return Utilisateur
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    
+    
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Utilisateur
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getUserName()
+    {
+        return $this->adresseMail;
     }
 }

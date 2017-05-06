@@ -3,14 +3,19 @@
 namespace AssoSport\AccueilBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AssoSport\AccueilBundle\Repository\UtilisateurRepository")
+ * @UniqueEntity(fields="adresseMail", message="Un utilisateur existe déjà avec cet adresse mail.")
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @var int
@@ -25,6 +30,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
+     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
      */
     private $nom;
 
@@ -32,6 +38,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Prenom", type="string", length=255)
+     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
      */
     private $prenom;
 
@@ -39,6 +46,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Taille", type="integer")
+     * @Assert\Range(min=100, max =270)
      */
     private $taille;
 
@@ -46,6 +54,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Age", type="integer")
+     * @Assert\Range(min=3, max=130)
      */
     private $age;
 
@@ -53,6 +62,7 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="Poids", type="integer")
+     * @Assert\Range(min=30, max=130)
      */
     private $poids;
 
@@ -60,6 +70,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="Sexe", type="string", length=255)
+     * @Assert\Length(min=1, max=1)
      */
     private $sexe;
 
@@ -67,6 +78,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="AdresseMail", type="string", length=255, unique=true)
+     * @Assert\Email()
      */
     private $adresseMail;
 
@@ -74,43 +86,54 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="MotDePasse", type="string", length=255)
+     * @Assert\NotBlank()
      */
-    private $motDePasse;
+    private $password;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Salt", type="string", length=255)
      */
-    private $salt;
+    private $salt = "adefinir";
 
     /**
      * @var bool
      *
      * @ORM\Column(name="Adherent", type="boolean")
+     * @Assert\Valid()
      */
     private $adherent;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $sports;
     
     /**
-    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil")
+    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $profilActuel;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $profils;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $projets;
+    
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles = array();
 
 
 
@@ -363,6 +386,7 @@ class Utilisateur
     {
         return $this->adherent;
     }
+    
     /**
      * Constructor
      */
@@ -461,5 +485,100 @@ class Utilisateur
     public function getProfils()
     {
         return $this->profils;
+    }
+
+    /**
+     * Add projet
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Projet $projet
+     *
+     * @return Utilisateur
+     */
+    public function addProjet(\AssoSport\AccueilBundle\Entity\Projet $projet)
+    {
+        $this->projets[] = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Remove projet
+     *
+     * @param \AssoSport\AccueilBundle\Entity\Projet $projet
+     */
+    public function removeProjet(\AssoSport\AccueilBundle\Entity\Projet $projet)
+    {
+        $this->projets->removeElement($projet);
+    }
+
+    /**
+     * Get projets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjets()
+    {
+        return $this->projets;
+    }
+
+    
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     *
+     * @return Utilisateur
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    
+    
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Utilisateur
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getUserName()
+    {
+        return $this->adresseMail;
     }
 }

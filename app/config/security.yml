@@ -1,17 +1,22 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        AssoSport\AccueilBundle\Entity\Utilisateur: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+            entity:
+                class:    AssoSport\AccueilBundle\Entity\Utilisateur
+                property: adresseMail
+        #in_memory:
+            #memory:
+                #users:
+                    #user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    #admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     provider:     in_memory
 
@@ -22,6 +27,7 @@ security:
         main:
             pattern: ^/
             anonymous: true
+            provider: main
             form_login:
                 login_path: login
                 check_path: login_check
@@ -30,5 +36,5 @@ security:
                 target:     /
 
     access_control:
-        #- { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/formulaire, roles: IS_AUTHENTICATED_REMEMBERED, requires_channel: http }
         

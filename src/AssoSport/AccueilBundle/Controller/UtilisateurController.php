@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use AssoSport\AccueilBundle\Form\UtilisateurType;
 use AssoSport\AccueilBundle\Form\SportType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -95,6 +97,7 @@ class UtilisateurController extends Controller
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:trouve.html.twig', array('utilisateur' => $utilisateur));
   }
+  
   
   public function formulaireAction(Request $request)
   {

@@ -19,3 +19,7 @@ asso_sport_accueil_recherche:
 asso_sport_accueil_formulaire:
     path:     /formulaire
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:formulaire }
+
+asso_sport_accueil_formulaire:
+    path:     /connect
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:connect }
