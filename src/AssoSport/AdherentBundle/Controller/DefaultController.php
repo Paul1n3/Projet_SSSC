@@ -5,7 +5,7 @@ namespace AssoSport\AdherentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AssoSport\AccueilBundle\Entity\Activite;
-use AssoSport\AccueilBundle\Entity\Utilisateur;
+use AssoSport\UserBundle\Entity\Utilisateur;
 use AssoSport\AccueilBundle\Entity\Projet;
 use AssoSport\AccueilBundle\Entity\TypeSport;
 use AssoSport\AccueilBundle\Entity\Profil;

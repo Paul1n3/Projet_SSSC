@@ -64,7 +64,7 @@ class Activite
     private $adherent;
     
 	/**
-    * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Utilisateur")
+    * @ORM\ManyToOne(targetEntity="AssoSport\UserBundle\Entity\Utilisateur")
     * @ORM\JoinColumn(nullable=false)
     */
     private $utilisateur;
@@ -239,11 +239,11 @@ class Activite
     /**
      * Set utilisateur
      *
-     * @param \AssoSport\AccueilBundle\Entity\Utilisateur $utilisateur
+     * @param \AssoSport\UserBundle\Entity\Utilisateur $utilisateur
      *
      * @return Activite
      */
-    public function setUtilisateur(\AssoSport\AccueilBundle\Entity\Utilisateur $utilisateur)
+    public function setUtilisateur(\AssoSport\UserBundle\Entity\Utilisateur $utilisateur)
     {
         $this->utilisateur = $utilisateur;
 
@@ -253,7 +253,7 @@ class Activite
     /**
      * Get utilisateur
      *
-     * @return \AssoSport\AccueilBundle\Entity\Utilisateur
+     * @return \AssoSport\UserBundle\Entity\Utilisateur
      */
     public function getUtilisateur()
     {

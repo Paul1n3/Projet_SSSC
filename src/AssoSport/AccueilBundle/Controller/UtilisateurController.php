@@ -2,7 +2,7 @@
 
 namespace AssoSport\AccueilBundle\Controller;
 
-use AssoSport\AccueilBundle\Entity\Utilisateur;
+use AssoSport\UserBundle\Entity\Utilisateur;
 use AssoSport\AccueilBundle\Entity\Projet;
 use AssoSport\AccueilBundle\Entity\Sport;
 use AssoSport\AccueilBundle\Entity\Profil;
@@ -36,7 +36,7 @@ class UtilisateurController extends Controller
     $utilisateur->setAge(88);
     $utilisateur->setPoids(95);
     $utilisateur->setSexe('M');
-    $utilisateur->setAdresseMail('bernarddubois@ici.fr');
+    $utilisateur->setmail('bernarddubois@ici.fr');
     $utilisateur->setMotDePasse('bernarddubois');
     $utilisateur->setSalt('bernard');
     $utilisateur->setAdherent('true');
@@ -77,7 +77,7 @@ class UtilisateurController extends Controller
     $repository = $this
       ->getDoctrine()
       ->getManager()
-      ->getRepository('AssoSportAccueilBundle:Utilisateur')
+      ->getRepository('AssoSportUserBundle:Utilisateur')
     ;
     
     $listeUtilisateurs = $repository->myFindAll();
@@ -105,11 +105,15 @@ class UtilisateurController extends Controller
     $form   = $this->get('form.factory')->create(UtilisateurType::class, $utilisateur);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+      $utilisateur->setUsername($utilisateur->getEmail());
+      $utilisateur->setEnabled('true');
+
       $em = $this->getDoctrine()->getManager();
       $em->persist($utilisateur);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      $request->getSession()->getFlashBag()->add('notice', 'Utilisateur bien enregistré.');
 
       return $this->redirectToRoute('asso_sport_accueil_liste');
     }

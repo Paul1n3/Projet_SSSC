@@ -24,7 +24,7 @@ class UtilisateurType extends AbstractType
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'AssoSport\AccueilBundle\Entity\Utilisateur'
+      'data_class' => 'AssoSport\UserBundle\Entity\Utilisateur'
     ));
   }
  
