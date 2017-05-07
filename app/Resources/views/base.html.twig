@@ -24,6 +24,7 @@
           Connecté en tant que {{ app.user.username }}
           -
         <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default navbar-btn pull-right" role="button">Déconnexion</a>
+        <a href="{{ path('fos_user_change_password') }}">Change Password</a>
         {% else %}
         <a href="{{ path('fos_user_security_login') }}" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
         {% endif %}
