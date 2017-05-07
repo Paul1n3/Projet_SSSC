@@ -49,12 +49,11 @@ class Utilisateur extends BaseUser
     private $taille;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="Age", type="integer")
-     * @Assert\Range(min=3, max=130)
+     * @ORM\Column(name="DateNaissance", type="date")
      */
-    private $age;
+    private $dateNaissance;
 
     /**
      * @var int
@@ -104,6 +103,13 @@ class Utilisateur extends BaseUser
      * @Assert\Valid()
      */
     private $projets;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="AssoSport\ProjetBundle\Entity\ProfilProjet", cascade={"persist"})
+    * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
+    */
+    private $profilProjet;
 
     /**
      * Constructor
@@ -187,30 +193,7 @@ class Utilisateur extends BaseUser
         return $this->taille;
     }
 
-    /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Utilisateur
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return int
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
+    
     /**
      * Set poids
      *
@@ -407,5 +390,53 @@ class Utilisateur extends BaseUser
     public function getProjets()
     {
         return $this->projets;
+    }
+
+    /**
+     * Set profilProjet
+     *
+     * @param \AssoSport\ProjetBundle\Entity\ProfilProjet $profilProjet
+     *
+     * @return Utilisateur
+     */
+    public function setProfilProjet(\AssoSport\ProjetBundle\Entity\ProfilProjet $profilProjet)
+    {
+        $this->profilProjet = $profilProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get profilProjet
+     *
+     * @return \AssoSport\ProjetBundle\Entity\ProfilProjet
+     */
+    public function getProfilProjet()
+    {
+        return $this->profilProjet;
+    }
+
+    /**
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     *
+     * @return Utilisateur
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
     }
 }

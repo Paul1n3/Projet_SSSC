@@ -24,7 +24,7 @@ class ActiviteType extends AbstractType
 			->add('distanceKm',	IntegerType::class)
 			->add('adherent',	CheckboxType::class)
       ->add('utilisateur', EntityType::class, array(
-              'class'           =>  'AssoSportAccueilBundle:Utilisateur',
+              'class'           =>  'AssoSportUserBundle:Utilisateur',
               'choice_label'    =>  'nom',
               'multiple'        =>   false,
             ))

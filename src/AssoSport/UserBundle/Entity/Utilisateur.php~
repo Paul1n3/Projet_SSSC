@@ -13,7 +13,6 @@ use FOS\UserBundle\Model\User as BaseUser;
  *
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AssoSport\AccueilBundle\Repository\UtilisateurRepository")
- * @UniqueEntity(fields="adresseMail", message="Un utilisateur existe déjà avec cet adresse mail.")
  */
 class Utilisateur extends BaseUser
 {
@@ -29,7 +28,7 @@ class Utilisateur extends BaseUser
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
      */
     private $nom;
 
@@ -37,7 +36,7 @@ class Utilisateur extends BaseUser
      * @var string
      *
      * @ORM\Column(name="Prenom", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="Le prenom doit faire au moins {{ limit }} caractères.")
      */
     private $prenom;
 
@@ -50,12 +49,11 @@ class Utilisateur extends BaseUser
     private $taille;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="Age", type="integer")
-     * @Assert\Range(min=3, max=130)
+     * @ORM\Column(name="DateNaissance", type="date")
      */
-    private $age;
+    private $dateNaissance;
 
     /**
      * @var int
@@ -105,7 +103,24 @@ class Utilisateur extends BaseUser
      * @Assert\Valid()
      */
     private $projets;
-    
+
+    /**
+    * @ORM\ManyToOne(targetEntity="AssoSport\ProjetBundle\Entity\ProfilProjet", cascade={"persist"})
+    * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
+    */
+    private $profilProjet;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set nom
      *
@@ -178,30 +193,7 @@ class Utilisateur extends BaseUser
         return $this->taille;
     }
 
-    /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Utilisateur
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return int
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
+    
     /**
      * Set poids
      *
@@ -274,14 +266,6 @@ class Utilisateur extends BaseUser
         return $this->adherent;
     }
     
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Add sport
      *
@@ -406,5 +390,29 @@ class Utilisateur extends BaseUser
     public function getProjets()
     {
         return $this->projets;
+    }
+
+    /**
+     * Set profilProjet
+     *
+     * @param \AssoSport\ProjetBundle\Entity\ProfilProjet $profilProjet
+     *
+     * @return Utilisateur
+     */
+    public function setProfilProjet(\AssoSport\ProjetBundle\Entity\ProfilProjet $profilProjet)
+    {
+        $this->profilProjet = $profilProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get profilProjet
+     *
+     * @return \AssoSport\ProjetBundle\Entity\ProfilProjet
+     */
+    public function getProfilProjet()
+    {
+        return $this->profilProjet;
     }
 }

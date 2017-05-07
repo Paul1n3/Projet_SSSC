@@ -10,6 +10,7 @@ use AssoSport\AccueilBundle\Entity\Projet;
 use AssoSport\AccueilBundle\Entity\TypeSport;
 use AssoSport\AccueilBundle\Entity\Profil;
 use AssoSport\AdherentBundle\Form\ActiviteType;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {

@@ -32,7 +32,7 @@ class UtilisateurType extends AbstractType
           ->add('nom',       TextType::class)
           ->add('prenom',    TextType::class)
           ->add('taille',    NumberType::class)
-          ->add('age',       NumberType::class)
+          ->add('dateNaissance', DateType::class)
           ->add('poids',     NumberType::class)
           ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
           ->add('email',    EmailType::class)
@@ -53,6 +53,11 @@ class UtilisateurType extends AbstractType
               'class'           =>  'AssoSportAccueilBundle:Projet',
               'choice_label'    =>  'nom',
               'multiple'        =>   true,
+            ))
+          ->add('profilProjet', EntityType::class, array(
+              'class'           =>  'AssoSportProjetBundle:ProfilProjet',
+              'choice_label'    =>  'nomProfilProjet',
+              'multiple'        =>   false,
             ))
           ->add('save',      SubmitType::class)
         ;
