@@ -10,4 +10,18 @@ namespace AssoSport\AccueilBundle\Repository;
  */
 class ActiviteRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAllActivites()
+	{
+		$qb = $this->createQueryBuilder('a');
+		return $qb
+			->getQuery()
+			->getResult()
+		;
+	}
+	
+	public function findTempsTotal()
+	{
+		$qb = $this->createQueryBuilder('t');
+	}
+	
 }

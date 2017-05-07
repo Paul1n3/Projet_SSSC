@@ -402,7 +402,7 @@ class Utilisateur implements UserInterface
      *
      * @return Utilisateur
      */
-    public function addSport(\AssoSport\PlatformBundle\Entity\Sport $sport)
+    public function addSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
     {
         $this->sports[] = $sport;
 
@@ -414,7 +414,7 @@ class Utilisateur implements UserInterface
      *
      * @param \AssoSport\PlatformBundle\Entity\Sport $sport
      */
-    public function removeSport(\AssoSport\PlatformBundle\Entity\Sport $sport)
+    public function removeSport(\AssoSport\AccueilBundle\Entity\Sport $sport)
     {
         $this->sports->removeElement($sport);
     }
