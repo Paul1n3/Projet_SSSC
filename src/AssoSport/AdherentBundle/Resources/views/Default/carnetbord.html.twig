@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <title>Carnet de bord</title>
+  <body>
+	<h1>Carnet de bord</h1>
+	<p>Ici vous trouverez vos statistiques de la semaine, ainsi que les statistiques globales. Vous pourrez également ajouter votre activité de la semaine.</p>
+	<ul>
+		{% for activite in listActivites %}
+			<li>{{ activite.sport.nom }} : {{ activite.temps }} heures</li>
+		{% endfor %}
+	</ul>
+  </body>
+</html>
