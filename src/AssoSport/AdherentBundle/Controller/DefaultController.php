@@ -23,10 +23,25 @@ class DefaultController extends Controller
 				$em->persist($activite);
 				$em->flush();
 			
-				return $this->redirect($this->generateUrl('site_index_stats'));
+				return $this->redirect($this->generateUrl('asso_sport_adherent_carnetbord'));
 			}
 		}
 		
 		return $this->render('AssoSportAdherentBundle:Default:form.html.twig', array('form' => $form->createView()));
     }
+	
+	public function carnetbordAction(Request $request)
+	{
+		// On récupère le repository
+		$repositoryActivites = $this->getDoctrine()
+			->getManager()
+			->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+		;
+		$listActivites = $repositoryActivites->findAllActivites();
+		
+		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbord.html.twig', array(
+			'listActivites' => $listActivites
+		));
+		return new Response($content);
+	}
 }
