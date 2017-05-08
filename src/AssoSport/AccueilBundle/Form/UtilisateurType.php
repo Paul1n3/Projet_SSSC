@@ -32,7 +32,8 @@ class UtilisateurType extends AbstractType
           ->add('nom',       TextType::class)
           ->add('prenom',    TextType::class)
           ->add('taille',    NumberType::class)
-          ->add('dateNaissance', DateType::class)
+          ->add('dateNaissance', DateType::class, array(
+            'years' => range(1920, date('Y'))))
           ->add('poids',     NumberType::class)
           ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
           ->add('email',    EmailType::class)

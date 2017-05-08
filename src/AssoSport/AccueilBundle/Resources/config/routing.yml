@@ -17,9 +17,14 @@ asso_sport_accueil_recherche:
         #id:   \d+
 
 asso_sport_accueil_formulaire:
-    path:     /formulaire
+    path:     /inscription
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:formulaire }
 
 asso_sport_accueil_formulaire:
     path:     /connect
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:connect }
+
+asso_sport_accueil_projet:
+    path:     /inscription/projet
+    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:inscription }
+
