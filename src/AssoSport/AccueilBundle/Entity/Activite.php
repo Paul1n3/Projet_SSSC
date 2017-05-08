@@ -4,6 +4,8 @@ namespace AssoSport\AccueilBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Activite
  *
@@ -25,6 +27,7 @@ class Activite
      * @var \DateTime
      *
      * @ORM\Column(name="Date", type="date")
+     * @Assert\Valid()
      */
     private $date;
 
@@ -32,6 +35,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Temps", type="integer")
+     * @Assert\Range(min=0)
      */
     private $temps;
 
@@ -39,6 +43,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Borg", type="integer")
+     * @Assert\Range(min=6, max=20)
      */
     private $borg;
 
@@ -46,6 +51,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Sensation", type="integer")
+     * @Assert\Range(min=1, max=4)
      */
     private $sensation;
 
@@ -53,6 +59,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="DistanceKm", type="integer")
+     * @Assert\Range(min=0)
      */
     private $distanceKm;
 
@@ -60,24 +67,28 @@ class Activite
      * @var bool
      *
      * @ORM\Column(name="Adherent", type="boolean")
+     * @Assert\Valid()
      */
     private $adherent;
     
 	/**
     * @ORM\ManyToOne(targetEntity="AssoSport\UserBundle\Entity\Utilisateur")
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $utilisateur;
     
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Sport")
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $sport;
     
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Projet")
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $projet;
 

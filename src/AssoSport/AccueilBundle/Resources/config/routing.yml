@@ -3,7 +3,7 @@ asso_sport_accueil_homepage:
     defaults: { _controller: AssoSportAccueilBundle:Accueil:home }
 
 asso_sport_accueil_test:
-    path:     /inscription
+    path:     /manuel
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
 
 asso_sport_accueil_liste:
