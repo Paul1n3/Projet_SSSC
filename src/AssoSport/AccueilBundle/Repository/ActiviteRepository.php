@@ -18,10 +18,52 @@ class ActiviteRepository extends \Doctrine\ORM\EntityRepository
 			->getResult()
 		;
 	}
-	
-	public function findTempsTotal()
+
+	public function findActivitesAdherent($id, $date)
 	{
-		$qb = $this->createQueryBuilder('t');
+		$qb = $this->createQueryBuilder('a');
+
+		$qb
+    		->where('a.utilisateur = :id')
+    		->setParameter('id', $id)
+    		->andWhere('a.date > :date')
+			->setParameter('date', $date)
+  		;
+
+		return $qb
+			->getQuery()
+			->getResult()
+		;
+	}
+
+	public function findAllActivitesAdherent($id)
+	{
+		$qb = $this->createQueryBuilder('a');
+
+		$qb
+    		->where('a.utilisateur = :id')
+    		->setParameter('id', $id)
+  		;
+
+		return $qb
+			->getQuery()
+			->getResult()
+		;
+	}
+	
+	public function findAllActivitesProjet()
+	{
+		$qb = $this->createQueryBuilder('a');
+
+		$qb
+    		->where('a.projet = :id')
+    		->setParameter('id', 1)
+  		;
+
+		return $qb
+			->getQuery()
+			->getResult()
+		;
 	}
 	
 }

@@ -1,3 +1,8 @@
 asso_sport_projet_homepage:
     path:     /
     defaults: { _controller: AssoSportProjetBundle:Projet:home }
+
+asso_sport_projet_ajout:
+    path:     /ajout
+    defaults: { _controller: AssoSportProjetBundle:Projet:ajout }
+
