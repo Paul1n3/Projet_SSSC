@@ -54,10 +54,11 @@ class UtilisateurType extends AbstractType
               'choice_label'    =>  'nom',
               'multiple'        =>   true,
             ))
+          ->add('roles',    ChoiceType::class,array('choices' =>array(ROLE_ADHERENT_COMPLET => 'ADHERENT_COMPLET', ROLE_ADMIN => 'ADMIN')))
           ->add('save',      SubmitType::class)
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

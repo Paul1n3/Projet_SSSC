@@ -78,26 +78,26 @@ class Utilisateur extends BaseUser
      * @Assert\Valid()
      */
     private $adherent;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      * @Assert\Valid()
      */
     private $sports;
-    
+
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
     * @Assert\Valid()
     */
     private $profilActuel;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
      * @Assert\Valid()
      */
     private $profils;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
      * @Assert\Valid()
@@ -193,7 +193,7 @@ class Utilisateur extends BaseUser
         return $this->taille;
     }
 
-    
+
     /**
      * Set poids
      *
@@ -265,7 +265,7 @@ class Utilisateur extends BaseUser
     {
         return $this->adherent;
     }
-    
+
     /**
      * Add sport
      *
