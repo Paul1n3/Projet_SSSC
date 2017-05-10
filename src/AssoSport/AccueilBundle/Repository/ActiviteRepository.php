@@ -82,5 +82,43 @@ class ActiviteRepository extends \Doctrine\ORM\EntityRepository
 			->getResult()
 		;
 	}
+
+    public function findActivitesTempsAdherent($id,$dateDeb,$dateFin)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->where('a.utilisateur = :id')
+            ->setParameter('id', $id)
+            ->andWhere('a.date >= :dateDeb')
+            ->setParameter('dateDeb', $dateDeb)
+            ->andWhere('a.date < :dateFin')
+            ->setParameter('dateFin', $dateFin)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findDistinctActivitesAdherent($id,$date)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->select('DISTINCT a.sport')
+            ->where('a.utilisateur = :id')
+            ->setParameter('id', $id)
+            ->andWhere('a.date > :date')
+            ->setParameter('date', $date)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 	
 }

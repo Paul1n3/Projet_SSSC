@@ -1,6 +1,10 @@
+#Routes AdherentBundle
 asso_sport_adherent_homepage:
     path:     /activite/ajout
     defaults: { _controller: AssoSportAdherentBundle:Default:ajout }
 asso_sport_adherent_carnetbord:
     path:    /carnetbord
     defaults: { _controller: AssoSportAdherentBundle:Default:carnetbord }
+asso_sport_adherent_stats:
+    path:    /stats
+    defaults: { _controller: AssoSportAdherentBundle:Default:stats }
