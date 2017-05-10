@@ -78,6 +78,14 @@ class Utilisateur extends BaseUser
      * @Assert\Valid()
      */
     private $adherent;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="demande", type="boolean")
+     * @Assert\Valid()
+     */
+    private $demande;
     
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
@@ -438,5 +446,29 @@ class Utilisateur extends BaseUser
     public function getDateNaissance()
     {
         return $this->dateNaissance;
+    }
+
+    /**
+     * Set demande
+     *
+     * @param boolean $demande
+     *
+     * @return Utilisateur
+     */
+    public function setDemande($demande)
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Get demande
+     *
+     * @return boolean
+     */
+    public function getDemande()
+    {
+        return $this->demande;
     }
 }

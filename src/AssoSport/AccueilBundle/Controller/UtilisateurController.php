@@ -110,6 +110,7 @@ class UtilisateurController extends Controller
 
       $utilisateur->setUsername($utilisateur->getEmail());
       $utilisateur->setEnabled('true');
+      $utilisateur->setDemande('true');
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($utilisateur);

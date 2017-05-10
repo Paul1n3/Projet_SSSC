@@ -22,7 +22,7 @@ asso_sport_admin_profilprojet:
     path:     /profilprojet
     defaults: { _controller: AssoSportAdminBundle:Admin:profilprojet }
 
-asso_sport_admin_listemembres:
+asso_sport_admin_listemembresasso:
     path:     /membres/asso
     defaults: { _controller: AssoSportAdminBundle:Admin:assoliste }
 

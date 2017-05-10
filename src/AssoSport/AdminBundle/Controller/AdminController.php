@@ -156,7 +156,9 @@ class AdminController extends Controller
       return $this->render('AssoSportAdminBundle:Infos:assoliste.html.twig', array('utilisateurs' => $listeUtilisateurs));
     }
 
-    /*public function projetlisteAction()
+
+    // Liste des participants au projet
+    public function projetlisteAction()
     {
       $repositoryProjet = $this
         ->getDoctrine()
@@ -173,10 +175,11 @@ class AdminController extends Controller
     
       $listeUtilisateurs = $repositoryUtilisateur->findUtilisateurProjet($projet);
 
-      return $this->render('AssoSportAdminBundle:Infos:listeprojet.html.twig', array('liste', $listeUtilisateurs, 'projet' => $projet));
+      return $this->render('AssoSportAdminBundle:Infos:default.html.twig', array('liste', $listeUtilisateurs, 'projet' => $projet));
       
-    }*/
+    }
 
+    // Liste de toutes les activités rentrées sur le site
     public function activitesAction(Request $request)
     {
       $repositoryActivites = $this->getDoctrine()
@@ -252,9 +255,6 @@ class AdminController extends Controller
       ));
       return new Response($content);
     }
-
-
-
 
 
 
