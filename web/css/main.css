@@ -6,11 +6,12 @@ html {
 .navbar-default {
   background-color: #858887;
   border-color: #6E6E6E;
-  color : black;
+  color : #E0E0E0;
 }
 
 .navbar-default .navbar-nav > .active > a {
   background-color: #666666;
+  color:#E0E0E0;
 }
 
 body {

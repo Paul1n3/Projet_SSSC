@@ -20,16 +20,15 @@
           <li><a href="#">Contact</a></li>
         </ul>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          Connecté en tant que {{ app.user.username }}
-          -
+        <p class="navbar-text">Connecté en tant que {{ app.user.username }}</p>
         <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default navbar-btn pull-right" role="button">Déconnexion</a>
-        <a href="/Projet_SSSC/web/app_dev.php/inscription/projet" class="btn btn-default navbar-btn pull-right" role="button">InscriptionProjets</a>
-        <a href="{{ path('fos_user_change_password') }}">Change Password</a>
+        <a href="{{ path('asso_sport_accueil_projet') }}" class="btn btn-default navbar-btn pull-right" role="button">InscriptionProjets</a>
+        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default navbar-btn pull-right" role="button">Change Password</a>
         {% else %}
         <a href="{{ path('fos_user_security_login') }}" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
-        <a href="/Projet_SSSC/web/app_dev.php/inscription" class="btn btn-default navbar-btn pull-right" role="button">Inscription</a>
+        <a href="{{ path('asso_sport_accueil_formulaire') }}" class="btn btn-default navbar-btn pull-right" role="button">Inscription</a>
         {% endif %}
-        
+
       </div>
     </div>
 

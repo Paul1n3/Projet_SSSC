@@ -11,7 +11,7 @@ class AppKernel extends Kernel
     // get rid of Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone
     date_default_timezone_set( 'Europe/Paris' );
 	}
-	
+
     public function registerBundles()
     {
         $bundles = [
@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+	//$bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;
@@ -60,7 +61,7 @@ class AppKernel extends Kernel
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
-    
+
     public function init() {
     date_default_timezone_set( 'Europe/Paris' );
     parent::init();

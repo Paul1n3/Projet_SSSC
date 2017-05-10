@@ -1,43 +1,45 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
 security:
-    encoders:
-        AssoSport\UserBundle\Entity\Utilisateur: bcrypt
-
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
+        ROLE_ADHERENT_COMPLET: [ROLE_ADHERENT_ASSO, ROLE_ADHERENT_PROJET ]
+        ROLE_ADMIN: [ROLE_ADHERENT_COMPLET]
+    encoders:
+        AssoSport\UserBundle\Entity\Utilisateur: sha512
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    access_denied_url: /error_403
     providers:
         main:
             id: fos_user.user_provider.username
-                #class:    AssoSport\UserBundle\Entity\Utilisateur
-                #property: adresseMail
-        #in_memory:
-            #memory:
-                #users:
-                    #user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    #admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-
-    #provider:     in_memory
+        in_memory:
+            memory: ~
+    access_control:
+      - { path: ^/admin, roles: ROLE_ADMIN }
+      - { path: ^/adherent, roles: ROLE_ADHERENT_ASSO }
+      - { path: ^/projet, roles: ROLE_ADHERENT_PROJET }
 
     firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
-            pattern: ^/
-            anonymous: true
-            provider: main
+            pattern:      ^/
+            anonymous:    true
+            provider:     main
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
-                #provider: fos_userbundle
-                #csrf_token_generator: security.csrf.token_manager
             logout:
                 path:       fos_user_security_logout
                 target:     /
             remember_me:
                 secret:     %secret% # %secret% est un paramètre de parameter
+            # activate different ways to authenticate
 
-    access_control:
-        #- { path: ^/formulaire, roles: IS_AUTHENTICATED_REMEMBERED, requires_channel: http }
-        
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+#form_login: ~

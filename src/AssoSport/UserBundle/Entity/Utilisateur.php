@@ -79,6 +79,7 @@ class Utilisateur extends BaseUser
      */
     private $adherent;
 
+
     /**
      * @var bool
      *
@@ -86,26 +87,26 @@ class Utilisateur extends BaseUser
      * @Assert\Valid()
      */
     private $demande;
-    
+   
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      * @Assert\Valid()
      */
     private $sports;
-    
+
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
     * @Assert\Valid()
     */
     private $profilActuel;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
      * @Assert\Valid()
      */
     private $profils;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
      * @Assert\Valid()
@@ -201,7 +202,7 @@ class Utilisateur extends BaseUser
         return $this->taille;
     }
 
-    
+
     /**
      * Set poids
      *
@@ -273,7 +274,7 @@ class Utilisateur extends BaseUser
     {
         return $this->adherent;
     }
-    
+
     /**
      * Add sport
      *
@@ -449,6 +450,7 @@ class Utilisateur extends BaseUser
     }
 
     /**
+<<<<<<< HEAD
      * Set demande
      *
      * @param boolean $demande
@@ -470,5 +472,19 @@ class Utilisateur extends BaseUser
     public function getDemande()
     {
         return $this->demande;
+=======
+    * Overriding Fos User class due to impossible to set default role ROLE_USER
+    * {@inheritdoc}
+    */
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+>>>>>>> d4e632ad8845e8078753b4a30a561be72c2cc8c1
     }
 }

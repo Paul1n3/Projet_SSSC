@@ -1,13 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <title>Carnet de bord</title>
-  <body>
-	<h1>Carnet de bord</h1>
-	<p>Ici vous trouverez vos statistiques de la semaine, ainsi que les statistiques globales. Vous pourrez également ajouter votre activité de la semaine.</p>
-	<ul>
-		{% for activite in listActivites %}
-			<li>{{ activite.sport.nom }} : {{ activite.temps }} heures</li>
-		{% endfor %}
-	</ul>
-  </body>
-</html>
+{% extends "::base.html.twig" %}
+{% block body %}
+
+<div class="container">
+  <div class="col-sm-10">
+    <h1>Carnet de bord</h1>
+  </div>
+  <div class="col-sm-10">
+    <p>Ici vous trouverez vos statistiques de la semaine, ainsi que les statistiques globales. Vous pourrez également ajouter votre activité de la semaine.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-sm-10">
+    <ul>
+      {% for activite in listActivites %}
+        <li>{{ activite.sport.nom }} : {{ activite.temps }} heures. Type :{{ activite.sport.typeSport.nom }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+</div>
+
+<!-- <h1 id="demo"> hello</h1> -->
+
+<script type="text/javascript">
+  var test=[];
+  var ext=[];
+  var eau=[];
+  var salle=[];
+  var temps_ext = 0;
+  var temps_eau = 0;
+  var temps_salle = 0;
+
+  {% for activite in listActivites %}
+     var obj = '{{ activite.sport.typeSport.nom }}';
+     test.push(obj);
+
+     if( '{{ activite.sport.typeSport.nom }}' == 'En salle') {
+       temps_salle += {{ activite.temps  }};
+     } else if( '{{ activite.sport.typeSport.nom }}' == 'Eau') {
+       temps_eau += {{ activite.temps  }};
+     } else {
+       temps_ext += {{ activite.temps  }};
+     }
+  {% endfor %}
+  //document.getElementById("demo").innerHTML = test;
+</script>
+
+<div class="container">
+  {{ include("AssoSportAdherentBundle:Chart:global_chart.html.twig") }}
+</div>
+
+{% endblock %}

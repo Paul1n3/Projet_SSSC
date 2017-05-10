@@ -62,7 +62,7 @@ class UtilisateurController extends Controller
     // Étape 2 : On « flush » tout ce qui a été persisté avant
     $em->flush();
 
-    
+
     if ($request->isMethod('POST')) {
       $request->getSession()->getFlashBag()->add('notice', 'Inscription bien enregistrée.');
 
@@ -81,7 +81,7 @@ class UtilisateurController extends Controller
       ->getManager()
       ->getRepository('AssoSportUserBundle:Utilisateur')
     ;
-    
+
     $listeUtilisateurs = $repository->myFindAll();
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:liste.html.twig', array('utilisateurs' => $listeUtilisateurs));
@@ -94,13 +94,13 @@ class UtilisateurController extends Controller
       ->getManager()
       ->getRepository('AssoSportAccueilBundle:Utilisateur')
     ;
-    
+
     $utilisateur = $repository->myFindOne();
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:trouve.html.twig', array('utilisateur' => $utilisateur));
   }
-  
-  
+
+
   public function formulaireAction(Request $request)
   {
     $utilisateur = new Utilisateur();
@@ -113,6 +113,7 @@ class UtilisateurController extends Controller
       $utilisateur->setDemande('true');
 
       $em = $this->getDoctrine()->getManager();
+      $utilisateur->addRole('ROLE_ADHERENT_PROJET');
       $em->persist($utilisateur);
       $em->flush();
 
@@ -124,7 +125,7 @@ class UtilisateurController extends Controller
     return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
       'form' => $form->createView(),
     ));
-    
+
   }
 
   public function inscriptionAction(Request $request)
@@ -147,6 +148,9 @@ class UtilisateurController extends Controller
       return $this->render('AssoSportAccueilBundle:Utilisateur:profilInscription.html.twig', array(
           'form' => $form->createView(),
       ));
+  }
+  public function accessDeniedAction(Request $request) {
+      return $this->render('AssoSportAccueilBundle:Error:accessDenied.html.twig');
   }
 
 }

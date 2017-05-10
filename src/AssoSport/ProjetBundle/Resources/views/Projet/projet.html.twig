@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Projet Terre-Lune</title>
-  </head>
-  <body>
+{% extends "::base.html.twig" %}
+{% block body %}
+
+  <div class="container">
     <h1>Parcourez ensemble la distance Terre-Lune!</h1>
+  </div>
+
+  <div class="container">
     <p>
     {{ utilisateur.nom }} {{ utilisateur.prenom }} vous êtes inscrit pour contribuer à ce projet! <br />
     Vous devez parcourir {{ monProfilProjet.distance }} km par semaine, soit un total de {{ distanceARealiser }} km pendant la durée totale du projet. <br /> <br />
@@ -14,9 +15,17 @@
 
     Cette semaine vous avez parcouru {{ distanceSemaine }} km. <br /><br />
 
-    En cumulant tous les adhérents, vous avez fait la distance suivante: {{ distanceTotale }} km / 384 400 km
-    
-
+    En cumulant tous les adhérents, vous avez fait la distance suivante: {{ distanceTotale }} km / {{ distanceTerreLune }} km
     </p>
-  </body>
-</html>
+  </div>
+
+  <div class="container">
+    <h2>{{ distanceTotale }} km / {{ distanceTerreLune }} km</h2>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow= {{ distanceTotale }} aria-valuemin="0" aria-valuemax= {{ distanceTerreLune }}  style="width:{{ distancePourcentage }}%">
+        Progression
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
