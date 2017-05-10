@@ -25,4 +25,12 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
         ;
     }
+
+    public function FindAllProjets(){
+        return $this
+            ->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
