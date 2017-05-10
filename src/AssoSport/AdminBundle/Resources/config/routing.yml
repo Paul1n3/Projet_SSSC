@@ -30,7 +30,7 @@ asso_sport_admin_listemembresprojet:
     path:     /membres/projet
     defaults: { _controller: AssoSportAdminBundle:Admin:projetliste }
 
-asso_sport_admin_listemembres:
+asso_sport_admin_listeall:
     path:     /membres
     defaults: { _controller: AssoSportAdminBundle:Admin:liste }
 
@@ -48,4 +48,8 @@ asso_sport_admin_listeactivitespersoprojet:
 
 asso_sport_admin_distanceprojet:
     path:     /projet/distance
-    defaults: { _controller: AssoSportAdminBundle:Admin:distanceprojet }               
+    defaults: { _controller: AssoSportAdminBundle:Admin:distanceprojet } 
+
+asso_sport_admin_demandes:
+    path:     /demandes
+    defaults: { _controller: AssoSportAdminBundle:Admin:demandes }                 

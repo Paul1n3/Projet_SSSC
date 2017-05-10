@@ -69,5 +69,20 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
     ;
   }
 
+  public function findDemandes()
+  {
+    $qb = $this->createQueryBuilder('u');
+
+    $qb
+      ->where('u.demande = :reponse')
+      ->setParameter('reponse', 1)
+    ;
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
+
 
 }

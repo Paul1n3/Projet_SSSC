@@ -256,6 +256,20 @@ class AdminController extends Controller
       return new Response($content);
     }
 
+    public function demandesAction(Request $request){
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $listeUtilisateurs = $repository->findDemandes();
+
+      return $this->render('AssoSportAdminBundle:Infos:demandes.html.twig', array(
+        'demandes' => $listeUtilisateurs
+      ));
+
+    }
 
 
 }

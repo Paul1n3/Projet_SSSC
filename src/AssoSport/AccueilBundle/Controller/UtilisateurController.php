@@ -110,7 +110,7 @@ class UtilisateurController extends Controller
 
       $utilisateur->setUsername($utilisateur->getEmail());
       $utilisateur->setEnabled('true');
-      $utilisateur->setDemande('true');
+      $utilisateur->setDemande(1);
 
       $em = $this->getDoctrine()->getManager();
       //$utilisateur->addRole('ROLE_ADHERENT_PROJET');
