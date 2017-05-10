@@ -1,28 +1,118 @@
-<!DOCTYPE html>
-<html>
-  <title>Formulaire d'inscription</title>
-  <head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends "::base.html.twig" %}
+{% block body %}
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 
-    <!-- TODO: Utiliser les fichiers locaux au lieu de ceux du CDN ?
-    <link rel="stylesheet" href="{{asset('Symfony/node_modules/bootstrap/dist/css/bootstrap.css')}}">
-    <script src="{{ asset('Symfony/node_modules/bootstrap/dist/js/bootstrap.min.js') }}" ></script>
-    -->
-  </head>
-
-  <body>
-
-    <h3>Vous pouvez ici ajoutez de nouveaux profils pour les adhérents de l'association</h3>
-
-    <div class="well">
-        {{ form(form) }}
+    <div class="container">
+      <div class="col-sm-10">
+        <h3>Vous pouvez ici ajoutez de nouveaux profils pour les adhérents de l'association</h3>
+      </div>
     </div>
-    </body>
-</html>
+
+    <div class="container" id="formulaire_inscription">
+      <!-- { % form_theme form ':Form:bootstrap_3_inscription_form_layout.html.twig' %} -->
+      {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+
+      {{ form_start(form) }}
+
+      <div class="form-group">
+        {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.nom, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.nom) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.prenom, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.prenom) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.taille, 'Taille', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.taille, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.taille) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.dateNaissance, 'Date Naissance', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.dateNaissance, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.dateNaissance) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.poids, 'Poids', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.poids, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.poids) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.sexe, 'Sexe', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.sexe, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.sexe) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.email, 'email', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.email, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.email) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(form.plainPassword, 'Mot de Passe', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.plainPassword, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.plainPassword) }}
+      </div>
+      <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">{{ form_widget(form.adherent, {'label_attr': {'for': 'assosport_accueilbundle_utilisateur_adherent'}}) }}
+        </div>
+        {{ form_errors(form.adherent) }}
+      </div>
+
+      <div id="adherentOrNot">
+        <div class="form-group" >
+          {{ form_label(form.profilActuel, 'Profil Actuel', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.profilActuel, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.profilActuel) }}
+        </div>
+        <div class="form-group" >
+          {{ form_label(form.sports, 'Sports Favoris', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.sports, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.sports) }}
+        </div>
+      </div>
+      <div class="form-group" >
+        {{ form_label(form.projets, 'Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.projets, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.projets) }}
+      </div>
+      <div class="form-group" >
+        {{ form_label(form.profilProjet, 'Profil Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.profilProjet, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.profilProjet) }}
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</div>
+      </div>
+
+      {{ form_end(form) }}
+
+    </div>
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script>
+      $(document).ready(function(){
+         $("#assosport_accueilbundle_utilisateur_adherent").click(function(){
+             $("#adherentOrNot").toggle("fast");
+         });
+      });
+
+      $(document).ready(function(){
+         $("#assosport_accueilbundle_utilisateur_save").click(function() {
+            if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
+              alert();
+            }
+         });
+      });
+    </script>
+
+
+{% endblock %}
