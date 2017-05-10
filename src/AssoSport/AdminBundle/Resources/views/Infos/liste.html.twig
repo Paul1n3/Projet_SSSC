@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Liste des membres</title>
-  </head>
-  <body>
-    <h1>Voici la liste des membres du site:</h1>
-    <p>
-    <ul>{% for utilisateur in utilisateurs %}
-    <li>{{ utilisateur.nom }} {{ utilisateur.prenom }}</li>
-        {% endfor %}
-    </ul>
-    </p>
-  </body>
-</html>
+{% extends "::base.html.twig" %}
+{% block body %}
+
+    <div class="container">
+      <div class="col-sm-10">
+        <h1>Voici la liste des membres du site:</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul>{% for utilisateur in utilisateurs %}
+      <li>{{ utilisateur.nom }} {{ utilisateur.prenom }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+
+{% endblock %}
