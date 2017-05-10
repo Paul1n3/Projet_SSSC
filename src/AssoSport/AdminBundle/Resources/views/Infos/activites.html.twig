@@ -12,6 +12,8 @@
     <thead>
       <tr>
         <th>Date</th>
+        <th>Nom</th>
+        <th>Prenom</th>
         <th>Temps</th>
         <th>Borg</th>
         <th>Sensation</th>
@@ -23,6 +25,8 @@
     {% for activite in activites %}
       <tr>
         <td>{{ activite.date|date("m/d/Y") }}</td>
+        <td>{{ activite.utilisateur.nom }}</td>
+        <td>{{ activite.utilisateur.prenom }}</td>
         <td>{{ activite.temps }}</td>
         <td>{{ activite.borg }}</td>
         <td>{{ activite.sensation }}</td>

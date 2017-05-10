@@ -84,5 +84,35 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
     ;
   }
 
+  public function findUtilisateurProjetCategorie($categorie)
+  {
+    $qb = $this->createQueryBuilder('u');
+
+    $qb
+      ->where('u.profilProjet = :profil')
+      ->setParameter('profil', $categorie)
+    ;
+    
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
+
+  public function findDerniersSurSite()
+  {
+    $qb = $this->createQueryBuilder('u');
+
+    $qb->orderBy('u.id', 'DESC');
+
+    $qb->setMaxResults(4);
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
+
 
 }

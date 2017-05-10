@@ -52,4 +52,12 @@ asso_sport_admin_distanceprojet:
 
 asso_sport_admin_demandes:
     path:     /demandes
-    defaults: { _controller: AssoSportAdminBundle:Admin:demandes }                 
+    defaults: { _controller: AssoSportAdminBundle:Admin:demandes } 
+
+asso_sport_admin_statProjetAction:
+    path:     /projet/stat
+    defaults: { _controller: AssoSportAdminBundle:Admin:statProjet }
+
+asso_sport_admin_statAdherent:
+    path:     /adherent/stat
+    defaults: { _controller: AssoSportAdminBundle:Admin:stats }                    

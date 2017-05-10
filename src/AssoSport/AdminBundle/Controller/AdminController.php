@@ -22,7 +22,23 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminController extends Controller
 {
     public function homeAction(Request $request){
-        return $this->render('AssoSportAdminBundle:Default:index.html.twig');
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+      $listeUtilisateurs = $repository->findDerniersSurSite();
+
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportAccueilBundle:Activite')
+      ;
+      $listeActivites = $repository->findDernieresSurSite();
+      
+      return $this->render('AssoSportAdminBundle:Default:index.html.twig',array(
+        'utilisateurs' => $listeUtilisateurs, 'activites' =>$listeActivites
+      ));
     }
 
     public function profilAction(Request $request)
@@ -187,12 +203,47 @@ class AdminController extends Controller
         ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
       ;
       $listActivites = $repositoryActivites->findAllActivites();
+
+      $users = array();
     
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activites.html.twig', array(
-        'activites' => $listActivites
+        'activites' => $listActivites,
       ));
       return new Response($content);
     }
+
+    /*public function activitespersoAction(Request $request)
+    {
+      $defaultData = array('message' => 'Type your message here');
+      $form = $this->createFormBuilder($defaultData)
+        ->add('Nom de l\'adhérent', TextType::class)
+
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+        $nom = $request->request->get('Nom de l\'adhérent');
+
+        $repositoryUser = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('AssoSportUserBundle:Utilisateur')
+        ;
+        $utilisateur = $repositoryUser->findOneBy(array('nom' => $nom));
+
+        $repositoryActivites = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+        ;
+        $listActivites = $repositoryActivites->findAllActivitesAdherent($utilisateur->getId());
+    
+        return $this->render('AssoSportAdminBundle:Infos:activitesperso.html.twig', array(
+        'activites' => $listActivites
+        ));
+      }
+      return $this->render('AssoSportAdminBundle:Default:form.html.twig', array(
+          'form' => $form->createView(),
+      ));
+    }*/
 
     public function activitespersoAction(Request $request)
     {
@@ -270,6 +321,178 @@ class AdminController extends Controller
       ));
 
     }
+
+    public function statProjetAction(Request $request){
+      /*$repositoryProjet = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportAccueilBundle:Projet')
+      ;
+      $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));*/
+
+      //Première catégorie
+      $repositoryCategorieun = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportProjetBundle:ProfilProjet')
+      ;
+      $categorie = $repositoryCategorieun->findOneBy(array('nomProfilProjet' => 'Le 1er quartier'));
+
+      $repositoryuun = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $listeUn = $repositoryuun->findUtilisateurProjetCategorie($categorie);
+
+      $nbUtilisateursun = 0;
+      foreach($listeUn as $utilisateur){
+          $nbUtilisateursun += 1;
+      }
+
+      //Deuxième catégorie
+      $repositoryCategoriede = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportProjetBundle:ProfilProjet')
+      ;
+      $categoriede = $repositoryCategoriede->findOneBy(array('nomProfilProjet' => 'Le croissant'));
+
+      $repositoryde = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $listeUtilisateursde = $repositoryde->findUtilisateurProjetCategorie($categoriede);
+
+      $nbUtilisateursde = 0;
+        foreach($listeUtilisateursde as $utilisateur){
+            $nbUtilisateursde += 1;
+        }
+
+      //Troisième catégorie
+      $repositoryCategorietr = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportProjetBundle:ProfilProjet')
+      ;
+      $categorietr = $repositoryCategorietr->findOneBy(array('nomProfilProjet' => 'La gibeuse'));
+
+      $repositorytr = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $listeUtilisateurstr = $repositorytr->findUtilisateurProjetCategorie($categorietr);
+
+      $nbUtilisateurstr = 0;
+        foreach($listeUtilisateurstr as $utilisateur){
+            $nbUtilisateurstr += 1;
+        }
+
+      //Quatrième catégorie
+      $repositoryCategorieca = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportProjetBundle:ProfilProjet')
+      ;
+      $categorieca = $repositoryCategorieca->findOneBy(array('nomProfilProjet' => 'La pleine lune'));
+
+      $repositoryca = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $listeUtilisateursca = $repositoryca->findUtilisateurProjetCategorie($categorieca);
+
+      $nbUtilisateursca = 0;
+        foreach($listeUtilisateursca as $utilisateur){
+            $nbUtilisateursca += 1;
+        }
+
+      return $this->render('AssoSportAdminBundle:Infos:statsProjet.html.twig', array(
+        'nbUtilisateursUn' => $nbUtilisateursun, 'nbUtilisateursDeux' => $nbUtilisateursde, 'nbUtilisateursTrois' => $nbUtilisateurstr, 'nbUtilisateursQuatre' => $nbUtilisateursca,  
+      ));
+
+    }
+
+    public function statsAction(Request $request)
+    { 
+      // On récupère le repository Activite
+      $repositoryActivites = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+      ;
+      
+      // Liste activité du mois
+      $dateCeMois = date('M');
+      $tempsMois = 0; $sensation = 0; $moyenneSensation = 0;
+      $listActivitesMois = $repositoryActivites->findActivitesTempsAdherent(2,new \DateTime('first day of this month'), new \DateTime('now'));
+      foreach($listActivitesMois as $activite){
+        $tempsMois += $activite->getTemps();
+        $sensation += $activite->getSensation();
+      }
+      if(count($listActivitesMois) != 0){
+        $moyenneSensation = $sensation/count($listActivitesMois);
+      }
+      
+      // Mois -1
+      $dateMois1 = date('M',strtotime('-1 month'));
+      $listActivitesMois1 = $repositoryActivites->findActivitesTempsAdherent(2,new \DateTime('first day of last month'), new \DateTime('first day of this month'));
+      $tempsMois1 = 0; $sensation1 = 0; $moyenneSensation1 = 0;
+      foreach($listActivitesMois1 as $activite){
+        $tempsMois1 += $activite->getTemps();
+        $sensation1 += $activite->getSensation();
+      }
+      if(count($listActivitesMois1) != 0){
+        $moyenneSensation1 = $sensation1/count($listActivitesMois1);
+      }
+      
+      //Mois -2
+      $dateMois2 = date('M',strtotime('-2 month'));
+      $listActivitesMois2 = $repositoryActivites->findActivitesTempsAdherent(2, new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
+      $tempsMois2 = 0; $sensation2 = 0; $moyenneSensation2 = 0;
+      foreach($listActivitesMois2 as $activite){
+        $tempsMois2 += $activite->getTemps();
+        $sensation2 += $activite->getSensation();
+      }
+      if(count($listActivitesMois2) != 0){
+        $moyenneSensation2 = $sensation2/count($listActivitesMois2);
+      }
+      
+      //Mois -3
+      $dateMois3 = date('M',strtotime('-3 month'));
+      $listActivitesMois3 = $repositoryActivites->findActivitesTempsAdherent(2, new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
+      $tempsMois3 = 0; $sensation3 = 0; $moyenneSensation3 = 0;
+      foreach($listActivitesMois3 as $activite){
+        $tempsMois3 += $activite->getTemps();
+        $sensation3 += $activite->getSensation();
+      }
+      if(count($listActivitesMois3) != 0){
+        $moyenneSensation3 = $sensation3/count($listActivitesMois3);
+      }
+      
+      $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:stats.html.twig', array(
+        'dateCeMois' => $dateCeMois,
+        'dateMois1' => $dateMois1,
+        'dateMois2' => $dateMois2,
+        'dateMois3' => $dateMois3,
+        'tempsMois' => $tempsMois,
+        'tempsMois1' => $tempsMois1,
+        'tempsMois2' => $tempsMois2,
+        'tempsMois3' => $tempsMois3,
+        'moyenneSensation' => $moyenneSensation,
+        'moyenneSensation1' => $moyenneSensation1,
+        'moyenneSensation2' => $moyenneSensation2,
+        'moyenneSensation3' => $moyenneSensation3
+      ));
+      return new Response($content);
+  }
+
 
 
 }

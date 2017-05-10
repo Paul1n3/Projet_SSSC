@@ -119,6 +119,20 @@ class ActiviteRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
         ;
     }
+
+    public function findDernieresSurSite()
+  {
+    $qb = $this->createQueryBuilder('a');
+
+    $qb->orderBy('a.id', 'DESC');
+
+    $qb->setMaxResults(4);
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
     
 	
 }

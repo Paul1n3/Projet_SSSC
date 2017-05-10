@@ -24,4 +24,69 @@
 
     </div>
 
+    <table>
+
+    <thead> <!-- En-tête du tableau -->
+       <tr>
+           <th>Nom</th>
+           <th>Prénom</th>
+           <th>Taille</th>
+           <th>Date de naissance</th>
+           <th>Poids</th>
+           <th>Sexe</th>
+           <th>Adresse mail</th>
+       </tr>
+   </thead>
+
+    <tbody>
+    {% for utilisateur in utilisateurs %}
+
+    <tr>
+      <td>{{ utilisateur.nom }}</td>
+      <td>{{ utilisateur.prenom }}</td>
+      <td>{{ utilisateur.taille }}</td>
+      <td>{{ utilisateur.poids }}</td>
+      <td>{{ utilisateur.sexe }}</td>
+      <td>{{ utilisateur.email }}</td>
+    </tr>
+        {% endfor %}
+
+    </tbody>
+
+    </table>
+
+    <table>
+
+    <thead> <!-- En-tête du tableau -->
+       <tr>
+           <th>Date</th>
+           <th>Nom</th>
+           <th>Prénom</th>
+           <th>Temps(min)</th>
+           <th>Sport</th>
+           <th>Borg(de 6 à 20)</th>
+           <th>Sensation(de 1 à 4)</th>
+           <th>Distance km</th>
+       </tr>
+   </thead>
+
+    <tbody>
+    {% for activite in activites %}
+
+    <tr>
+      <td>{{ activite.date|date("m/d/Y") }}</td>
+      <td>{{ activite.utilisateur.nom }}</td>
+      <td>{{ activite.utilisateur.prenom }}</td>
+      <td>{{ activite.temps }}</td>
+      <td>{{ activite.sport.nom }}</td>
+      <td>{{ activite.borg }}</td>
+      <td>{{ activite.sensation }}</td>
+      <td>{{ activite.distanceKm }}</td>
+    </tr>
+        {% endfor %}
+
+    </tbody>
+
+    </table>
+
 {% endblock %}

@@ -47,7 +47,7 @@ class ProjetController extends Controller
         $listActivitesAdherent = $repositoryActivites->findAllActivitesAdherent($utilisateur->getId());
 
         $distanceAdherent = 0;
-        foreach($listActivites as $activiteAdherent){
+        foreach($listActivitesAdherent as $activiteAdherent){
             $distanceAdherent += $activiteAdherent->getDistanceKm();
         }
 
