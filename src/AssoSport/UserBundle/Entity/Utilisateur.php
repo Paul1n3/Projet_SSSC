@@ -439,4 +439,19 @@ class Utilisateur extends BaseUser
     {
         return $this->dateNaissance;
     }
+
+    /**
+    * Overriding Fos User class due to impossible to set default role ROLE_USER
+    * {@inheritdoc}
+    */
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
 }

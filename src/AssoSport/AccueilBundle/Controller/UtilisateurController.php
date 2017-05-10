@@ -62,7 +62,7 @@ class UtilisateurController extends Controller
     // Étape 2 : On « flush » tout ce qui a été persisté avant
     $em->flush();
 
-    
+
     if ($request->isMethod('POST')) {
       $request->getSession()->getFlashBag()->add('notice', 'Inscription bien enregistrée.');
 
@@ -81,7 +81,7 @@ class UtilisateurController extends Controller
       ->getManager()
       ->getRepository('AssoSportUserBundle:Utilisateur')
     ;
-    
+
     $listeUtilisateurs = $repository->myFindAll();
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:liste.html.twig', array('utilisateurs' => $listeUtilisateurs));
@@ -94,13 +94,13 @@ class UtilisateurController extends Controller
       ->getManager()
       ->getRepository('AssoSportAccueilBundle:Utilisateur')
     ;
-    
+
     $utilisateur = $repository->myFindOne();
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:trouve.html.twig', array('utilisateur' => $utilisateur));
   }
-  
-  
+
+
   public function formulaireAction(Request $request)
   {
     $utilisateur = new Utilisateur();
@@ -123,7 +123,7 @@ class UtilisateurController extends Controller
     return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
       'form' => $form->createView(),
     ));
-    
+
   }
 
   public function inscriptionAction(Request $request)
@@ -135,6 +135,19 @@ class UtilisateurController extends Controller
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
           $em = $this->getDoctrine()->getManager();
+
+          $roleArr = Array('ROLE_ADHERENT_PROJET');
+          //$utilisateur->setRoles( array('ROLE_ADHERENT_PROJET'));
+
+          //
+          // $userManager = $this->get('fos_user.user_manager');
+          // $user = $userManager->findUserByEmail('test@example.com');
+          // //$user->setRoles( array('ROLE_ADHERENT_PROJET') );
+          // $utilisateur->addRole( $this->getRole('ROLE_ADHERENT_PROJET'));
+          //$utilisateur->setRoles($roleArr);
+          // $userManager->updateUser($user);
+          $utilisateur->addRole('ROLE_ADHERENT_PROJET');
+
           $em->persist($utilisateur);
           $em->flush();
 

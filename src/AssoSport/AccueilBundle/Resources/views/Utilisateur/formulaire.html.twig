@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="formulaire_inscription">
       <!-- { % form_theme form ':Form:bootstrap_3_inscription_form_layout.html.twig' %} -->
       {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
@@ -61,7 +61,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-2"></div>
-        <div class="col-sm-10">{{ form_widget(form.adherent, {'label_attr': {'id': 'assosport_accueilbundle_utilisateur_adherent', 'for': 'assosport_accueilbundle_utilisateur_adherent'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.adherent, {'label_attr': {'for': 'assosport_accueilbundle_utilisateur_adherent'}}) }}
         </div>
         {{ form_errors(form.adherent) }}
       </div>
@@ -77,27 +77,43 @@
           <div class="col-sm-10">{{ form_widget(form.sports, {'label_attr': {'class': 'form-control'}}) }}</div>
           {{ form_errors(form.sports) }}
         </div>
-        <div class="form-group" >
-          {{ form_label(form.projets, 'Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-          <div class="col-sm-10">{{ form_widget(form.projets, {'label_attr': {'class': 'form-control'}}) }}</div>
-          {{ form_errors(form.projets) }}
-        </div>
-        <div class="form-group" >
-          {{ form_label(form.profilProjet, 'Profil Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-          <div class="col-sm-10">{{ form_widget(form.profilProjet, {'label_attr': {'class': 'form-control'}}) }}</div>
-          {{ form_errors(form.profilProjet) }}
-        </div>
       </div>
+      <div class="form-group" >
+        {{ form_label(form.projets, 'Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.projets, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.projets) }}
+      </div>
+      <div class="form-group" >
+        {{ form_label(form.profilProjet, 'Profil Projet', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+        <div class="col-sm-10">{{ form_widget(form.profilProjet, {'label_attr': {'class': 'form-control'}}) }}</div>
+        {{ form_errors(form.profilProjet) }}
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</div>
+      </div>
+
       {{ form_end(form) }}
 
     </div>
 
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script>
-        document.getElementById("assosport_accueilbundle_utilisateur_adherent").onclick = function() {myFunction()};
+      $(document).ready(function(){
+         $("#assosport_accueilbundle_utilisateur_adherent").click(function(){
+             $("#adherentOrNot").toggle("fast");
+         });
+      });
 
-        function myFunction() {
-          document.getElementById("adherentOrNot").classList.toggle("show");
-        }
+      $(document).ready(function(){
+         $("#assosport_accueilbundle_utilisateur_save").click(function() {
+            if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
+              alert();
+            }
+         });
+      });
     </script>
 
 
