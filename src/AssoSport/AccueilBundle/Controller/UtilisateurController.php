@@ -112,6 +112,7 @@ class UtilisateurController extends Controller
       $utilisateur->setEnabled('true');
 
       $em = $this->getDoctrine()->getManager();
+      $utilisateur->addRole('ROLE_ADHERENT_PROJET');
       $em->persist($utilisateur);
       $em->flush();
 
@@ -135,19 +136,6 @@ class UtilisateurController extends Controller
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
           $em = $this->getDoctrine()->getManager();
-
-          $roleArr = Array('ROLE_ADHERENT_PROJET');
-          //$utilisateur->setRoles( array('ROLE_ADHERENT_PROJET'));
-
-          //
-          // $userManager = $this->get('fos_user.user_manager');
-          // $user = $userManager->findUserByEmail('test@example.com');
-          // //$user->setRoles( array('ROLE_ADHERENT_PROJET') );
-          // $utilisateur->addRole( $this->getRole('ROLE_ADHERENT_PROJET'));
-          //$utilisateur->setRoles($roleArr);
-          // $userManager->updateUser($user);
-          $utilisateur->addRole('ROLE_ADHERENT_PROJET');
-
           $em->persist($utilisateur);
           $em->flush();
 
@@ -159,6 +147,9 @@ class UtilisateurController extends Controller
       return $this->render('AssoSportAccueilBundle:Utilisateur:profilInscription.html.twig', array(
           'form' => $form->createView(),
       ));
+  }
+  public function accessDeniedAction(Request $request) {
+      return $this->render('AssoSportAccueilBundle:Error:accessDenied.html.twig');
   }
 
 }

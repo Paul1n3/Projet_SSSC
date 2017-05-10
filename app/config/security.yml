@@ -7,6 +7,7 @@ security:
     encoders:
         AssoSport\UserBundle\Entity\Utilisateur: sha512
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    access_denied_url: /error_403
     providers:
         main:
             id: fos_user.user_provider.username
