@@ -156,42 +156,105 @@ class AdminController extends Controller
       return $this->render('AssoSportAdminBundle:Infos:assoliste.html.twig', array('utilisateurs' => $listeUtilisateurs));
     }
 
-    /*public function projetlisteAction()
+
+    // Liste des participants au projet
+    public function projetlisteAction()
     {
-      $repository = $this
+      $repositoryProjet = $this
         ->getDoctrine()
         ->getManager()
         ->getRepository('AssoSportAccueilBundle:Projet')
       ;
-      $projet = $repository->findNomProjet('Objectif Lune');
+      $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
 
-      $repository = $this
+      $repositoryUtilisateur = $this
         ->getDoctrine()
         ->getManager()
         ->getRepository('AssoSportUserBundle:Utilisateur')
       ;
     
-      $listeUtilisateurs = $repository->findUtilisateurProjet($projet);
+      $listeUtilisateurs = $repositoryUtilisateur->findUtilisateurProjet($projet);
 
-      return $this->render('AssoSportAdminBundle:Infos:un.html.twig', array('liste', $listeUtilisateurs));
+      return $this->render('AssoSportAdminBundle:Infos:default.html.twig', array('liste', $listeUtilisateurs, 'projet' => $projet));
       
-    }*/
+    }
 
+    // Liste de toutes les activités rentrées sur le site
     public function activitesAction(Request $request)
-  {
-    // On récupère le repository
-    $repositoryActivites = $this->getDoctrine()
-      ->getManager()
-      ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
-    ;
-    $listActivites = $repositoryActivites->findAllActivites();
+    {
+      $repositoryActivites = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+      ;
+      $listActivites = $repositoryActivites->findAllActivites();
     
-    $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activites.html.twig', array(
-      'activites' => $listActivites
-    ));
-    return new Response($content);
-  }
+      $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activites.html.twig', array(
+        'activites' => $listActivites
+      ));
+      return new Response($content);
+    }
 
+    public function activitespersoAction(Request $request)
+    {
+      $repositoryActivites = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+      ;
+      $listActivites = $repositoryActivites->findAllActivitesAdherent(2);
+    
+      $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesperso.html.twig', array(
+        'activites' => $listActivites
+      ));
+      return new Response($content);
+    }
+
+    public function distanceprojetAction(Request $request)
+    {
+      //Calcul de la distance totale effectuée pour le projet
+      $repositoryActivitesAll = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+      ;
+      $listActivitesAll = $repositoryActivitesAll->findAllActivitesProjet();
+
+      //Récupération du projet
+      $repositoryProjet = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportAccueilBundle:Projet')
+      ;
+      $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
+
+      $distanceTotale = 0;
+      foreach($listActivitesAll as $activite){
+        $distanceTotale += $activite->getDistanceKm();
+      }
+      return $this->render('AssoSportAdminBundle:Projet:distancetotale.html.twig', array(
+        'distance' => $distanceTotale, 'projet' => $projet
+      ));
+    }
+
+    public function activitespersoprojetAction(Request $request)
+    {
+      $repositoryActivites = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
+      ;
+
+      $repositoryProjet = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportAccueilBundle:Projet')
+      ;
+      $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
+
+      $listActivites = $repositoryActivites->findActivitesAdherentProjet(2,$projet);
+    
+      $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesprojetperso.html.twig', array(
+        'activites' => $listActivites
+      ));
+      return new Response($content);
+    }
 
 
 

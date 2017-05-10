@@ -79,6 +79,15 @@ class Utilisateur extends BaseUser
      */
     private $adherent;
 
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="demande", type="boolean")
+     * @Assert\Valid()
+     */
+    private $demande;
+   
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      * @Assert\Valid()
@@ -441,6 +450,29 @@ class Utilisateur extends BaseUser
     }
 
     /**
+<<<<<<< HEAD
+     * Set demande
+     *
+     * @param boolean $demande
+     *
+     * @return Utilisateur
+     */
+    public function setDemande($demande)
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Get demande
+     *
+     * @return boolean
+     */
+    public function getDemande()
+    {
+        return $this->demande;
+=======
     * Overriding Fos User class due to impossible to set default role ROLE_USER
     * {@inheritdoc}
     */
@@ -453,5 +485,6 @@ class Utilisateur extends BaseUser
         }
 
         return $this;
+>>>>>>> d4e632ad8845e8078753b4a30a561be72c2cc8c1
     }
 }

@@ -50,5 +50,24 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
     ;
   }
 
+  public function findUtilisateurProjet($projet)
+  {
+    $qb = $this->createQueryBuilder('u');
+
+    $qb
+      //->where(':projet IN(u.projets)')
+      //->setParameter('projet', $projet)
+
+      ->add('where', $qb->expr()->in('u.projets', $projet));
+      //->add('where', ($projet . ' IN', (array) 'u.projets'))
+    ;
+    
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
+
 
 }

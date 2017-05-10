@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liste des adhérent projet</title>
+  </head>
+  <body>
+    <h1>Voici la liste des adhérents au projet {{ projet.nom }}:</h1>
+    <p>
+
+    <table>
+
+    <thead> <!-- En-tête du tableau -->
+       <tr>
+           <th>Nom</th>
+           <th>Prénom</th>
+           <th>Taille</th>
+           <th>Date de naissance</th>
+           <th>Poids</th>
+           <th>Sexe</th>
+           <th>Adresse mail</th>
+       </tr>
+   </thead>
+
+    <tbody>
+    {% for utilisateur in utilisateurs %}
+
+    <tr>
+      <td>{{ utilisateur.nom }}</td>
+      <td>{{ utilisateur.prenom }}</td>
+      <td>{{ utilisateur.taille }}</td>
+      <td>{{ utilisateur.poids }}</td>
+      <td>{{ utilisateur.sexe }}</td>
+      <td>{{ utilisateur.email }}</td>
+    </tr>
+        {% endfor %}
+
+    </tbody>
+
+    </table>
+
+    </p>
+  </body>
+</html>

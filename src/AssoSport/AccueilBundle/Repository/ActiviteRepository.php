@@ -50,6 +50,23 @@ class ActiviteRepository extends \Doctrine\ORM\EntityRepository
 			->getResult()
 		;
 	}
+
+    public function findActivitesAdherentProjet($id, $projet)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->where('a.utilisateur = :id')
+            ->setParameter('id', $id)
+            ->andWhere('a.projet = :projet')
+            ->setParameter('projet', $projet)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 	
 	public function findAllActivitesProjet()
 	{
