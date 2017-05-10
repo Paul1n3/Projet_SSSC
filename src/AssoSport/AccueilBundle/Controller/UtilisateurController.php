@@ -113,7 +113,7 @@ class UtilisateurController extends Controller
       $utilisateur->setDemande('true');
 
       $em = $this->getDoctrine()->getManager();
-      $utilisateur->addRole('ROLE_ADHERENT_PROJET');
+      //$utilisateur->addRole('ROLE_ADHERENT_PROJET');
       $em->persist($utilisateur);
       $em->flush();
 

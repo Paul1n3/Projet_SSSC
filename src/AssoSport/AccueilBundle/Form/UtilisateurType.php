@@ -39,6 +39,7 @@ class UtilisateurType extends AbstractType
           ->add('email',    EmailType::class)
           ->add('plainPassword',  PasswordType::class)
           ->add('adherent',  CheckboxType::class, array('required' => false))
+          ->add('participant',  CheckboxType::class, array('required' => false))
           //->add('profilActuel', ProfilType::class)
           ->add('profilActuel', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Profil',
@@ -49,11 +50,13 @@ class UtilisateurType extends AbstractType
               'class'           =>  'AssoSportAccueilBundle:Sport',
               'choice_label'    =>  'nom',
               'multiple'        =>   true,
+              'required'   => false,
             ))
           ->add('projets', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Projet',
               'choice_label'    =>  'nom',
               'multiple'        =>   true,
+              'required'        => false,
             ))
           ->add('profilProjet', EntityType::class, array(
               'class'           =>  'AssoSportProjetBundle:ProfilProjet',

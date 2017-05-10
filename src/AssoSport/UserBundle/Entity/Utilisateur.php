@@ -79,11 +79,18 @@ class Utilisateur extends BaseUser
      */
     private $adherent;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="Participant", type="boolean")
+     * @Assert\Valid()
+     */
+    private $participant;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="demande", type="boolean")
+     * @ORM\Column(name="Demande", type="boolean")
      * @Assert\Valid()
      */
     private $demande;
@@ -105,13 +112,13 @@ class Utilisateur extends BaseUser
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
      * @Assert\Valid()
      */
-    private $profils;
+    private $profils = null;
 
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
      * @Assert\Valid()
      */
-    private $projets;
+    private $projets = null;
 
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\ProjetBundle\Entity\ProfilProjet", cascade={"persist"})
@@ -450,7 +457,6 @@ class Utilisateur extends BaseUser
     }
 
     /**
-<<<<<<< HEAD
      * Set demande
      *
      * @param boolean $demande
@@ -472,11 +478,10 @@ class Utilisateur extends BaseUser
     public function getDemande()
     {
         return $this->demande;
-=======
-    * Overriding Fos User class due to impossible to set default role ROLE_USER
-    * {@inheritdoc}
-    */
-    public function addRole($role)
+    }
+
+
+    /*public function addRole($role)
     {
         $role = strtoupper($role);
 
@@ -485,6 +490,29 @@ class Utilisateur extends BaseUser
         }
 
         return $this;
->>>>>>> d4e632ad8845e8078753b4a30a561be72c2cc8c1
+    }*/
+
+    /**
+     * Set participant
+     *
+     * @param boolean $participant
+     *
+     * @return Utilisateur
+     */
+    public function setParticipant($participant)
+    {
+        $this->participant = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Get participant
+     *
+     * @return boolean
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
     }
 }

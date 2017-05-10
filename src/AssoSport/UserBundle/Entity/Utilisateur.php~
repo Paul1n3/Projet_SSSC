@@ -82,30 +82,38 @@ class Utilisateur extends BaseUser
     /**
      * @var bool
      *
+     * @ORM\Column(name="Participant", type="boolean")
+     * @Assert\Valid()
+     */
+    private $participant;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="demande", type="boolean")
      * @Assert\Valid()
      */
     private $demande;
-    
+   
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Sport", cascade={"persist"})
      * @Assert\Valid()
      */
     private $sports;
-    
+
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
     * @Assert\Valid()
     */
     private $profilActuel;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Profil", cascade={"persist"})
      * @Assert\Valid()
      */
     private $profils;
-    
+
     /**
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
      * @Assert\Valid()
@@ -201,7 +209,7 @@ class Utilisateur extends BaseUser
         return $this->taille;
     }
 
-    
+
     /**
      * Set poids
      *
@@ -273,7 +281,7 @@ class Utilisateur extends BaseUser
     {
         return $this->adherent;
     }
-    
+
     /**
      * Add sport
      *
@@ -446,5 +454,65 @@ class Utilisateur extends BaseUser
     public function getDateNaissance()
     {
         return $this->dateNaissance;
+    }
+
+    /**
+     * Set demande
+     *
+     * @param boolean $demande
+     *
+     * @return Utilisateur
+     */
+    public function setDemande($demande)
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Get demande
+     *
+     * @return boolean
+     */
+    public function getDemande()
+    {
+        return $this->demande;
+    }
+
+
+    /*public function addRole($role)
+    {
+        $role = strtoupper($role);
+
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }*/
+
+    /**
+     * Set participant
+     *
+     * @param boolean $participant
+     *
+     * @return Utilisateur
+     */
+    public function setParticipant($participant)
+    {
+        $this->participant = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Get participant
+     *
+     * @return boolean
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
     }
 }
