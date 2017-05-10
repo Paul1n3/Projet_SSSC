@@ -78,6 +78,9 @@ class ProjetController extends Controller
 
             $activite->setUtilisateur($utilisateur);
             $activite->setAdherent(0);
+            $activite->setTemps(0);
+            $activite->setBorg(6);
+            $activite->setSensation(1);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($activite);

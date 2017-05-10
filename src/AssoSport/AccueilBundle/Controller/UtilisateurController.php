@@ -117,7 +117,7 @@ class UtilisateurController extends Controller
 
       $request->getSession()->getFlashBag()->add('notice', 'Utilisateur bien enregistré.');
 
-      return $this->redirectToRoute('asso_sport_accueil_liste');
+      return $this->redirectToRoute('asso_sport_accueil_homepage');
     }
 
     return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
@@ -143,7 +143,7 @@ class UtilisateurController extends Controller
           return $this->redirectToRoute('asso_sport_accueil_homepage');
       }
 
-      return $this->render('AssoSportAccueilBundle:Utilisateur:formulaire.html.twig', array(
+      return $this->render('AssoSportAccueilBundle:Utilisateur:profilInscription.html.twig', array(
           'form' => $form->createView(),
       ));
   }

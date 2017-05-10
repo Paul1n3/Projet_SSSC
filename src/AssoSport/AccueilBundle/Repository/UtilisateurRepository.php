@@ -20,19 +20,35 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
   			;
 	}
 
-    public function myFindOne()
-    {
-      $qb = $this->createQueryBuilder('utilisateur');
+  public function myFindOne()
+  {
+    $qb = $this->createQueryBuilder('utilisateur');
 
-      $qb
-        ->where('utilisateur.prenom = :pre')
-        ->setParameter('pre', 'Marie')
-      ;
+    $qb
+      ->where('utilisateur.prenom = :pre')
+      ->setParameter('pre', 'Marie')
+    ;
 
-      return $qb
-        ->getQuery()
-        ->getSingleResult()
-      ;
-    }
+    return $qb
+      ->getQuery()
+      ->getSingleResult()
+    ;
+  }
+
+  public function findUtilisateurAsso()
+  {
+    $qb = $this->createQueryBuilder('a');
+
+    $qb
+      ->where('a.adherent = :reponse')
+      ->setParameter('reponse', true)
+    ;
+
+    return $qb
+      ->getQuery()
+      ->getResult()
+    ;
+  }
+
 
 }

@@ -1,3 +1,39 @@
 asso_sport_admin_homepage:
     path:     /
-    defaults: { _controller: AssoSportAdminBundle:Default:index }
+    defaults: { _controller: AssoSportAdminBundle:Admin:home }
+
+asso_sport_admin_profil:
+    path:     /profil
+    defaults: { _controller: AssoSportAdminBundle:Admin:profil }
+
+asso_sport_admin_sport:
+    path:     /sport
+    defaults: { _controller: AssoSportAdminBundle:Admin:sport }
+
+asso_sport_admin_projet:
+    path:     /projet
+    defaults: { _controller: AssoSportAdminBundle:Admin:projet }
+
+asso_sport_admin_typesport:
+    path:     /typesport
+    defaults: { _controller: AssoSportAdminBundle:Admin:typesport }
+
+asso_sport_admin_profilprojet:
+    path:     /profilprojet
+    defaults: { _controller: AssoSportAdminBundle:Admin:profilprojet }
+
+asso_sport_admin_listemembres:
+    path:     /membres/asso
+    defaults: { _controller: AssoSportAdminBundle:Admin:assoliste }
+
+asso_sport_admin_listemembresprojet:
+    path:     /membres/projet
+    defaults: { _controller: AssoSportAdminBundle:Admin:projetliste }
+
+asso_sport_admin_listemembres:
+    path:     /membres
+    defaults: { _controller: AssoSportAdminBundle:Admin:liste }
+
+asso_sport_admin_listeactivites:
+    path:     /activites
+    defaults: { _controller: AssoSportAdminBundle:Admin:activites }        

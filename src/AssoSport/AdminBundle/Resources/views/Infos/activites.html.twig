@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liste des activités</title>
+  </head>
+  <body>
+    <h1>Voici la liste des activités rentrées sur le site:</h1>
+    <p>
+
+    <table>
+
+    <thead> <!-- En-tête du tableau -->
+       <tr>
+           <th>Date</th>
+           <th>Temps</th>
+           <th>Borg</th>
+           <th>Sensation</th>
+           <th>DistanceKm</th>
+           <th>Asso?</th>
+       </tr>
+   </thead>
+
+    <tbody>
+    {% for activite in activites %}
+
+    <tr>
+      <td>{{ activite.date|date("m/d/Y") }}</td>
+      <td>{{ activite.temps }}</td>
+      <td>{{ activite.borg }}</td>
+      <td>{{ activite.sensation }}</td>
+      <td>{{ activite.distanceKm }}</td>
+      <td>{{ activite.adherent }}</td>
+    </tr>
+        {% endfor %}
+
+    </tbody>
+
+    </table>
+
+    </p>
+  </body>
+</html>

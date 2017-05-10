@@ -6,10 +6,6 @@ asso_sport_accueil_test:
     path:     /manuel
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
 
-asso_sport_accueil_liste:
-    path:     /liste
-    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:liste }
-
 asso_sport_accueil_recherche:
     path:     /recherche
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:trouve }

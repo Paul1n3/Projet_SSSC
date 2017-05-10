@@ -1,17 +1,17 @@
 <?php
 
-namespace AssoSport\AccueilBundle\Form;
+namespace AssoSport\ProjetBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class ProfilType extends AbstractType
+class ProfilProjetType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,11 +19,17 @@ class ProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nom', TextType::class)
-        ->add('temps', NumberType::class)
+        ->add('nomProfilProjet',        TextType::class)
+        ->add('nomCategorie',       TextType::class)
+        ->add('distance',       NumberType::class)
+        ->add('nbPlaces',       NumberType::class)
+        ->add('projetAssocie', EntityType::class, array(
+              'class'           =>  'AssoSportAccueilBundle:Projet',
+              'choice_label'    =>  'nom',
+              'multiple'        =>   false,
+            ))
         ->add('save',      SubmitType::class)
         ;
-        
     }
     
     /**
@@ -32,7 +38,7 @@ class ProfilType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AssoSport\AccueilBundle\Entity\Profil'
+            'data_class' => 'AssoSport\ProjetBundle\Entity\ProfilProjet'
         ));
     }
 
@@ -41,7 +47,7 @@ class ProfilType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'assosport_accueilbundle_profil';
+        return 'assosport_projetbundle_profilprojet';
     }
 
 
