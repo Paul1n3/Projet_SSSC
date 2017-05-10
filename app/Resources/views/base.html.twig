@@ -16,7 +16,7 @@
           <a class="navbar-brand" href="#">Asso Sport</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Accueil</a></li>
+          <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}">Accueil</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -28,7 +28,6 @@
         <a href="{{ path('fos_user_security_login') }}" class="btn btn-default navbar-btn pull-right" role="button">Connexion</a>
         <a href="{{ path('asso_sport_accueil_formulaire') }}" class="btn btn-default navbar-btn pull-right" role="button">Inscription</a>
         {% endif %}
-
       </div>
     </div>
 
