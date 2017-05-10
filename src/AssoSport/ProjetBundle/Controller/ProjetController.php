@@ -39,7 +39,7 @@ class ProjetController extends Controller
             $distanceSemaine += $activiteSemaine->getDistanceKm();
         }
 
-        // Récupération des activités effectuées depuis le début du projet 
+        // Récupération des activités effectuées depuis le début du projet
         $repositoryActivitesAdherent = $this->getDoctrine()
             ->getManager()
             ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
@@ -62,8 +62,10 @@ class ProjetController extends Controller
         foreach($listActivitesAll as $activite){
             $distanceTotale += $activite->getDistanceKm();
         }
+        $distanceTerreLune = 384400;
+        $distancePourcentage = ($distanceTotale / $distanceTerreLune) * 100;
 
-        return $this->render('AssoSportProjetBundle:Projet:projet.html.twig', array('utilisateur' => $utilisateur, 'listActivites' => $listActivites, 'distanceSemaine' => $distanceSemaine,  'distanceTotale' => $distanceTotale, 'distanceAdherent' => $distanceAdherent, 'monProfilProjet' => $monProfilProjet, 'distanceARealiser' => $distanceARealiser));
+        return $this->render('AssoSportProjetBundle:Projet:projet.html.twig', array('utilisateur' => $utilisateur, 'listActivites' => $listActivites, 'distanceSemaine' => $distanceSemaine,  'distanceTotale' => $distanceTotale, 'distanceAdherent' => $distanceAdherent, 'monProfilProjet' => $monProfilProjet, 'distanceARealiser' => $distanceARealiser, 'distanceTerreLune' => $distanceTerreLune, 'distancePourcentage' => $distancePourcentage));
     }
 
     public function ajoutAction(Request $request)
@@ -91,7 +93,7 @@ class ProjetController extends Controller
             return $this->redirectToRoute('asso_sport_projet_homepage');
         }
 
-        return $this->render('AssoSportAdherentBundle:Default:form.html.twig', array(
+        return $this->render('AssoSportProjetBundle:Projet:form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
