@@ -60,11 +60,6 @@ class UtilisateurType extends AbstractType
               'choice_label'    =>  'nomProfilProjet',
               'multiple'        =>   false,
             ))
-          // ->add('roles', 'choice', [
-          //       'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_ADHERENT_COMPLET' => 'ROLE_ADHERENT_COMPLET', 'ROLE_ADHERENT_ASSO' => 'ROLE_ADHERENT_ASSO', 'ROLE_ADHERENT_PROJET' => 'ROLE_ADHERENT_PROJET'],
-          //       'expanded' => true,
-          //       'multiple' => false,
-          //     ])
           ->add('save',      SubmitType::class)
         ;
     }
