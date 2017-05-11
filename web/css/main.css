@@ -22,18 +22,6 @@ body {
   margin-bottom: 60px;
 }
 
-/*[class*="col-"] {
-  background-color: #E3E3E3;
-  border: 2px solid black;
-  border-radius: 6px;
-  line-height: 40px;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}*/
-
 .footer {
   position: absolute;
   bottom: 0;

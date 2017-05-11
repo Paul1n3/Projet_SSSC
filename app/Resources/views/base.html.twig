@@ -12,16 +12,13 @@
 
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <img class="logo-asso pull-left" src="{{ asset('images/logo.png') }}" alt="image asso">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Asso Sport</a>
-        </div>
+        <img class="logo-asso pull-left" src="{{ asset('images/text.png') }}" alt="image asso">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}">Accueil</a></li>
+          <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}"> Accueil</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <p class="navbar-text">Connecté en tant que {{ app.user.username }}</p>
+        <p class="navbar-text ">Connecté en tant que {{ app.user.username }}</p>
         <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default navbar-btn pull-right" role="button">Déconnexion</a>
         <a href="{{ path('asso_sport_accueil_projet') }}" class="btn btn-default navbar-btn pull-right" role="button">InscriptionProjets</a>
         <a href="{{ path('fos_user_change_password') }}" class="btn btn-default navbar-btn pull-right" role="button">Change Password</a>
