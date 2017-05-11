@@ -36,12 +36,16 @@
 .button-asso-left, .button-asso-right {
   border-color: #E3E3E3;
 }
-.button-asso-left {
-  border-right-style: solid;
+
+@media (min-width: 992px) {
+  .button-asso-left {
+    border-right-style: solid;
+  }
+  .button-asso-right {
+    border-left-style: solid;
+  }
 }
-.button-asso-right {
-  border-left-style: solid;
-}
+
 
 h2 {
   color : #29CFA3;
