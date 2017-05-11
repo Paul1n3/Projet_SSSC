@@ -137,6 +137,7 @@ class UtilisateurController extends Controller
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
           $utilisateur->setDemande(1);
+          $utilisateur->setParticipant(1);
           
           $em = $this->getDoctrine()->getManager();
           $em->persist($utilisateur);

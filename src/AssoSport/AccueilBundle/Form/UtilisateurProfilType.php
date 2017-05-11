@@ -40,6 +40,7 @@ class UtilisateurProfilType extends AbstractType
           ->remove('adherent')
           ->remove('profilActuel')
           ->remove('sports')
+          ->remove('participant')
         ;
     }
     

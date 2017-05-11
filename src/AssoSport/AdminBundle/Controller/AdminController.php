@@ -191,11 +191,15 @@ class AdminController extends Controller
         ->getManager()
         ->getRepository('AssoSportUserBundle:Utilisateur')
       ;
-    
-      $listeUtilisateurs = $repositoryUtilisateur->findUtilisateurProjet($projet);
+      $listeUtilisateurs = $repositoryUtilisateur->findUtilisateursProjet($projet);
 
-      return $this->render('AssoSportAdminBundle:Infos:default.html.twig', array('liste', $listeUtilisateurs, 'projet' => $projet));
-      
+      $logger = $this->get('logger');
+      $logger->info(json_encode($listeUtilisateurs));
+
+      return $this->render('AssoSportAdminBundle:Infos:listeprojet.html.twig', array(
+        'users' => $listeUtilisateurs,
+        'projet' => $projet)
+      );
     }
 
     // Liste de toutes les activités rentrées sur le site

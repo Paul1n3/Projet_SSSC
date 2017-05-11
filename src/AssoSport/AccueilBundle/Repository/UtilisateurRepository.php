@@ -37,10 +37,10 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 
   public function findUtilisateurAsso()
   {
-    $qb = $this->createQueryBuilder('a');
+    $qb = $this->createQueryBuilder('u');
 
     $qb
-      ->where('a.adherent = :reponse')
+      ->where('u.adherent = :reponse')
       ->setParameter('reponse', true)
     ;
 
@@ -50,18 +50,26 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
     ;
   }
 
-  public function findUtilisateurProjet($projet)
+  public function findUtilisateursProjet($projet)
   {
-    $qb = $this->createQueryBuilder('u');
+    $pid = $projet->getId();
+    /*$qb = $this->createQueryBuilder('u');
 
     $qb
       //->where(':projet IN(u.projets)')
       //->setParameter('projet', $projet)
-
-      ->add('where', $qb->expr()->in('u.projets', $projet));
+      ->where("$id IN ('u.projets')")
+      //->add('where', $qb->expr()->in('u.projets', $projet));
       //->add('where', ($projet . ' IN', (array) 'u.projets'))
-    ;
-    
+    ;*/
+
+    $qb = $this->createQueryBuilder('u');
+    $qb->select('u')
+    //->from('AssoSportAccueilBundle:Utilisateur', 'u')
+    ->innerJoin('u.projets', 'up')
+    ->where('up = :pid')
+    ->setParameter('pid', $pid)
+    ->groupBy('u.id');
 
     return $qb
       ->getQuery()

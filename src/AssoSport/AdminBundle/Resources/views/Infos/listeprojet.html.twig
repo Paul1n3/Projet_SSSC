@@ -22,17 +22,18 @@
        </thead>
 
         <tbody>
-        {% for utilisateur in utilisateurs %}
 
-        <tr>
-          <td>{{ utilisateur.nom }}</td>
-          <td>{{ utilisateur.prenom }}</td>
-          <td>{{ utilisateur.taille }}</td>
-          <td>{{ utilisateur.poids }}</td>
-          <td>{{ utilisateur.sexe }}</td>
-          <td>{{ utilisateur.email }}</td>
-        </tr>
-            {% endfor %}
+        {% for utilisateur in users %}
+          <tr>
+            <td>{{ utilisateur.nom }}</td>
+            <td>{{ utilisateur.prenom }}</td>
+            <td>{{ utilisateur.taille }}</td>
+            <td>{{ utilisateur.dateNaissance|date("m/d/Y") }}</td>
+            <td>{{ utilisateur.poids }}</td>
+            <td>{{ utilisateur.sexe }}</td>
+            <td>{{ utilisateur.email }}</td>
+          </tr>
+        {% endfor %}
 
         </tbody>
 
