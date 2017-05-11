@@ -1,12 +1,17 @@
 {% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+{% endblock %}
+
 {% block body %}
 
-<link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+
 
 <div class="container">
   <section class="row">
     <div class="col-lg-12 text-center">
-      <img class="image-asso" src="{{ asset('images/sportsante.png') }}" alt="image asso">
+      <img class="image-asso" src="{{ asset('images/400dpiLogo.png') }}" alt="image asso">
     </div>
   </section>
 </div>

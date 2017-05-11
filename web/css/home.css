@@ -47,3 +47,9 @@ h2 {
   color : #29CFA3;
   font-size: 4em;
 }
+
+.navbar-default {
+  background-color: #798188;
+  border-color: #6E6E6E;
+  color : #E0E0E0;
+}

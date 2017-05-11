@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Liste des adhérent projet</title>
-  </head>
-  <body>
-    <h1>Voici la liste des adhérents au projet {{ projet.nom }}:</h1>
-    <p>
+{% extends "::base.html.twig" %}
+{% block body %}
 
-    <table>
+    <div class="container">
+      <div class="col-sm-10">
+        <h1>Voici la liste des adhérents au projet {{ projet.nom }}:</h1>
+      </div>
+    </div>
 
-    <thead> <!-- En-tête du tableau -->
-       <tr>
-           <th>Nom</th>
-           <th>Prénom</th>
-           <th>Taille</th>
-           <th>Date de naissance</th>
-           <th>Poids</th>
-           <th>Sexe</th>
-           <th>Adresse mail</th>
-       </tr>
-   </thead>
+    <div class="container">
+      <table class="table table-hover">
+        <thead> <!-- En-tête du tableau -->
+           <tr>
+               <th>Nom</th>
+               <th>Prénom</th>
+               <th>Taille</th>
+               <th>Date de naissance</th>
+               <th>Poids</th>
+               <th>Sexe</th>
+               <th>Adresse mail</th>
+           </tr>
+       </thead>
 
-    <tbody>
-    {% for utilisateur in utilisateurs %}
+        <tbody>
+        {% for utilisateur in utilisateurs %}
 
-    <tr>
-      <td>{{ utilisateur.nom }}</td>
-      <td>{{ utilisateur.prenom }}</td>
-      <td>{{ utilisateur.taille }}</td>
-      <td>{{ utilisateur.poids }}</td>
-      <td>{{ utilisateur.sexe }}</td>
-      <td>{{ utilisateur.email }}</td>
-    </tr>
-        {% endfor %}
+        <tr>
+          <td>{{ utilisateur.nom }}</td>
+          <td>{{ utilisateur.prenom }}</td>
+          <td>{{ utilisateur.taille }}</td>
+          <td>{{ utilisateur.poids }}</td>
+          <td>{{ utilisateur.sexe }}</td>
+          <td>{{ utilisateur.email }}</td>
+        </tr>
+            {% endfor %}
 
-    </tbody>
+        </tbody>
 
-    </table>
+      </table>
+    </div>
 
-    </p>
-  </body>
-</html>
+{% endblock %}

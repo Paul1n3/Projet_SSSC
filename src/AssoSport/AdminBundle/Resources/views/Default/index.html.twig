@@ -1,8 +1,13 @@
 {% extends "::base.html.twig" %}
+
+{% block title %}Accueil Administrateur{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
+
+
 {% block body %}
-
-
-<link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 
     <div class="container">
       <div class="col-sm-10">
@@ -11,16 +16,55 @@
     </div>
 
     <div class="container">
-      <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default " role="button">/profil</a>
-      <a href="{{ path('asso_sport_admin_sport') }}" class="btn btn-default " role="button">/sport</a>
-      <a href="{{ path('asso_sport_admin_projet') }}" class="btn btn-default " role="button">/projet</a>
-      <a href="{{ path('asso_sport_admin_typesport') }}" class="btn btn-default " role="button">/typesport</a>
-      <a href="{{ path('asso_sport_admin_profilprojet') }}" class="btn btn-default " role="button">/profilprojet</a>
-      <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default " role="button">/membres/asso</a>
-      <a href="{{ path('asso_sport_admin_listemembresprojet') }}" class="btn btn-default " role="button">/membres/projet</a>
-      <a href="{{ path('asso_sport_admin_listeall') }}" class="btn btn-default " role="button">/membres</a>
-      <a href="{{ path('asso_sport_admin_listeactivites') }}" class="btn btn-default " role="button"> /activites</a>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>ASSO</h2>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+                <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default btn-lg">/profil</a>
+                <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default btn-lg">/membres/asso</a>
+                <a href="{{ path('asso_sport_admin_statAdherent') }}" class="btn btn-default btn-lg"> //adherent/stat</a>
+                <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default btn-lg">/profil</a>
+                <a href="{{ path('asso_sport_admin_sport') }}" class="btn btn-default btn-lg">/sport</a>
+                <a href="{{ path('asso_sport_admin_typesport') }}" class="btn btn-default btn-lg">/typesport</a>
+                <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default btn-lg">/membres/asso</a>
+                <a href="{{ path('asso_sport_admin_listeactivites') }}" class="btn btn-default btn-lg"> /activites</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>PROJET</h2>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+                <a href="{{ path('asso_sport_admin_listemembresprojet') }}" class="btn btn-default btn-lg">/membres/projet</a>
+                <a href="{{ path('asso_sport_admin_projet') }}" class="btn btn-default btn-lg">/projet</a>
+                <a href="{{ path('asso_sport_admin_profilprojet') }}" class="btn btn-default btn-lg">/profilprojet</a>
+                <a href="{{ path('asso_sport_admin_statProjetAction') }}" class="btn btn-default btn-lg">/projet/stat</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>SITE INTERNET</h2>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+                <a href="{{ path('asso_sport_admin_listeall') }}" class="btn btn-default btn-lg">/membres</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 
