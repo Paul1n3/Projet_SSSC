@@ -1,17 +1,32 @@
 {% extends "::base.html.twig" %}
+
+{% block title %}Membres du site{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/form_admin.css') }}" />
+{% endblock %}
+
 {% block body %}
 
     <div class="container">
-      <div class="col-sm-10">
-        <h1>Voici la liste des membres du site:</h1>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Voici la liste des membres du site:</h1>
+        </div>
       </div>
     </div>
 
     <div class="container">
-      <ul>{% for utilisateur in utilisateurs %}
-      <li>{{ utilisateur.nom }} {{ utilisateur.prenom }}</li>
-          {% endfor %}
-      </ul>
+      <div class="row">
+        <div class="col-sm-12 ">
+          <ul>{% for utilisateur in utilisateurs %}
+          <li>{{ utilisateur.nom }} {{ utilisateur.prenom }}</li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+
     </div>
 
 {% endblock %}

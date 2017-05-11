@@ -6,12 +6,13 @@
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
 {% endblock %}
 
-
 {% block body %}
 
     <div class="container">
-      <div class="col-sm-10">
-        <h3>Page d'accueil administrateur </h3>
+      <div class="row">
+        <div class="col-sm-10">
+          <h1>Page d'accueil administrateur </h1>
+        </div>
       </div>
     </div>
 
@@ -23,13 +24,11 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="btn-group">
-                <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default btn-lg">/profil</a>
-                <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default btn-lg">/membres/asso</a>
-                <a href="{{ path('asso_sport_admin_statAdherent') }}" class="btn btn-default btn-lg"> //adherent/stat</a>
-                <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default btn-lg">/profil</a>
-                <a href="{{ path('asso_sport_admin_sport') }}" class="btn btn-default btn-lg">/sport</a>
-                <a href="{{ path('asso_sport_admin_typesport') }}" class="btn btn-default btn-lg">/typesport</a>
-                <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default btn-lg">/membres/asso</a>
+                <a href="{{ path('asso_sport_admin_profil') }}" class="btn btn-default btn-lg">Ajout profil adhérent</a>
+                <a href="{{ path('asso_sport_admin_listemembresasso') }}" class="btn btn-default btn-lg">Liste des membres</a>
+                <a href="{{ path('asso_sport_admin_statAdherent') }}" class="btn btn-default btn-lg">Stats derniers mois</a>
+                <a href="{{ path('asso_sport_admin_sport') }}" class="btn btn-default btn-lg">Ajout sport</a>
+                <a href="{{ path('asso_sport_admin_typesport') }}" class="btn btn-default btn-lg">Ajout type sport</a>
                 <a href="{{ path('asso_sport_admin_listeactivites') }}" class="btn btn-default btn-lg"> /activites</a>
               </div>
             </div>
@@ -44,9 +43,9 @@
             <div class="col-sm-12">
               <div class="btn-group">
                 <a href="{{ path('asso_sport_admin_listemembresprojet') }}" class="btn btn-default btn-lg">/membres/projet</a>
-                <a href="{{ path('asso_sport_admin_projet') }}" class="btn btn-default btn-lg">/projet</a>
-                <a href="{{ path('asso_sport_admin_profilprojet') }}" class="btn btn-default btn-lg">/profilprojet</a>
-                <a href="{{ path('asso_sport_admin_statProjetAction') }}" class="btn btn-default btn-lg">/projet/stat</a>
+                <a href="{{ path('asso_sport_admin_projet') }}" class="btn btn-default btn-lg">Ajout projet</a>
+                <a href="{{ path('asso_sport_admin_profilprojet') }}" class="btn btn-default btn-lg">Ajout profil utilisateur projet</a>
+                <a href="{{ path('asso_sport_admin_statProjetAction') }}" class="btn btn-default btn-lg">Nombre d'utilisateur par catégories</a>
               </div>
             </div>
           </div>
@@ -59,78 +58,82 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="btn-group">
-                <a href="{{ path('asso_sport_admin_listeall') }}" class="btn btn-default btn-lg">/membres</a>
+                <a href="{{ path('asso_sport_admin_listeall') }}" class="btn btn-default btn-lg">Liste membres du site</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Derniers inscrits</h2>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-hover">
+                <thead> <!-- En-tête du tableau -->
+                   <tr>
+                       <th>Nom</th>
+                       <th>Prénom</th>
+                       <th>Taille</th>
+                       <th>Date de naissance</th>
+                       <th>Poids</th>
+                       <th>Sexe</th>
+                       <th>Adresse mail</th>
+                   </tr>
+               </thead>
+                <tbody>
+                {% for utilisateur in utilisateurs %}
+                <tr>
+                  <td>{{ utilisateur.nom }}</td>
+                  <td>{{ utilisateur.prenom }}</td>
+                  <td>{{ utilisateur.taille }}</td>
+                  <td>{{ utilisateur.poids }}</td>
+                  <td>{{ utilisateur.sexe }}</td>
+                  <td>{{ utilisateur.email }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Dernières activités</h2>
+              <table class="table table-hover">
+                <thead> <!-- En-tête du tableau -->
+                   <tr>
+                       <th>Date</th>
+                       <th>Nom</th>
+                       <th>Prénom</th>
+                       <th>Temps(min)</th>
+                       <th>Sport</th>
+                       <th>Borg(de 6 à 20)</th>
+                       <th>Sensation(de 1 à 4)</th>
+                       <th>Distance km</th>
+                   </tr>
+               </thead>
+
+                <tbody>
+                {% for activite in activites %}
+                <tr>
+                  <td>{{ activite.date|date("m/d/Y") }}</td>
+                  <td>{{ activite.utilisateur.nom }}</td>
+                  <td>{{ activite.utilisateur.prenom }}</td>
+                  <td>{{ activite.temps }}</td>
+                  <td>{{ activite.sport.nom }}</td>
+                  <td>{{ activite.borg }}</td>
+                  <td>{{ activite.sensation }}</td>
+                  <td>{{ activite.distanceKm }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <table>
-
-    <thead> <!-- En-tête du tableau -->
-       <tr>
-           <th>Nom</th>
-           <th>Prénom</th>
-           <th>Taille</th>
-           <th>Date de naissance</th>
-           <th>Poids</th>
-           <th>Sexe</th>
-           <th>Adresse mail</th>
-       </tr>
-   </thead>
-
-    <tbody>
-    {% for utilisateur in utilisateurs %}
-
-    <tr>
-      <td>{{ utilisateur.nom }}</td>
-      <td>{{ utilisateur.prenom }}</td>
-      <td>{{ utilisateur.taille }}</td>
-      <td>{{ utilisateur.poids }}</td>
-      <td>{{ utilisateur.sexe }}</td>
-      <td>{{ utilisateur.email }}</td>
-    </tr>
-        {% endfor %}
-
-    </tbody>
-
-    </table>
-
-    <table>
-
-    <thead> <!-- En-tête du tableau -->
-       <tr>
-           <th>Date</th>
-           <th>Nom</th>
-           <th>Prénom</th>
-           <th>Temps(min)</th>
-           <th>Sport</th>
-           <th>Borg(de 6 à 20)</th>
-           <th>Sensation(de 1 à 4)</th>
-           <th>Distance km</th>
-       </tr>
-   </thead>
-
-    <tbody>
-    {% for activite in activites %}
-
-    <tr>
-      <td>{{ activite.date|date("m/d/Y") }}</td>
-      <td>{{ activite.utilisateur.nom }}</td>
-      <td>{{ activite.utilisateur.prenom }}</td>
-      <td>{{ activite.temps }}</td>
-      <td>{{ activite.sport.nom }}</td>
-      <td>{{ activite.borg }}</td>
-      <td>{{ activite.sensation }}</td>
-      <td>{{ activite.distanceKm }}</td>
-    </tr>
-        {% endfor %}
-
-    </tbody>
-
-    </table>
 
 {% endblock %}

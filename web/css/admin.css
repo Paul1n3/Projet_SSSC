@@ -1,9 +1,18 @@
-body {
-  background-color: white;
-}
-
 .navbar-default {
   background-color: #A22215;
   border-color: #6E6E6E;
   color : #E0E0E0;
+}
+
+h2 {
+  color : #29CFA3;
+  margin-top: 1em;
+}
+
+h1 {
+  color : #29CFA3;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }

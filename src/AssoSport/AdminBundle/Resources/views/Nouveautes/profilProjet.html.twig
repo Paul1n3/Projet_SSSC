@@ -1,54 +1,65 @@
 {% extends "::base.html.twig" %}
+
+{% block title %}Ajout profil projet{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/form_admin.css') }}" />
+{% endblock %}
+
 {% block body %}
 
 
 <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 
     <div class="container">
-      <div class="col-sm-10">
-        <h3>Vous pouvez ici ajoutez de nouveaux profils d'utilisateur pour les projets</h3>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Vous pouvez ici ajoutez de nouveaux profils d'utilisateur pour les projets</h3>
+        </div>
       </div>
     </div>
 
     <div class="container">
-      <!-- { % form_theme form ':Form:bootstrap_3_inscription_form_layout.html.twig' %} -->
-      {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+      <div class="row">
+        <div class="col-sm-12">
+        {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 
-      {{ form_start(form) }}
+        {{ form_start(form) }}
 
-      <div class="form-group">
-        {{ form_label(form.nomProfilProjet, 'Nom du profil', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.nomProfilProjet, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.nomProfilProjet) }}
-      </div>
-      <div class="form-group">
-        {{ form_label(form.nomCategorie, 'Nom de la catégorie', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.nomCategorie, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.nomCategorie) }}
-      </div>
-      <div class="form-group">
-        {{ form_label(form.distance, 'Distance à parcourir pour ce profil', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.distance, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.distance) }}
-      </div>
-      <div class="form-group">
-        {{ form_label(form.nbPlaces, 'Nombre de places', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.nbPlaces, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.nbPlaces) }}
-      </div>
-      <div class="form-group">
-        {{ form_label(form.projetAssocie, 'Projet associé', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.projetAssocie, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.projetAssocie) }}
-      </div>
-      <div class="form-group">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</div>
-      </div>
+        <div class="form-group">
+          {{ form_label(form.nomProfilProjet, 'Nom du profil', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.nomProfilProjet, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.nomProfilProjet) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.nomCategorie, 'Nom de la catégorie', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.nomCategorie, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.nomCategorie) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.distance, 'Distance à parcourir pour ce profil', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.distance, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.distance) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.nbPlaces, 'Nombre de places', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.nbPlaces, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.nbPlaces) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.projetAssocie, 'Projet associé', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.projetAssocie, {'label_attr': {'class': 'form-control'}}) }}</div>
+          {{ form_errors(form.projetAssocie) }}
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</div>
+        </div>
 
-      {{ form_end(form) }}
-
+        {{ form_end(form) }}        </div>
+      </div>
     </div>
 
 {% endblock %}
