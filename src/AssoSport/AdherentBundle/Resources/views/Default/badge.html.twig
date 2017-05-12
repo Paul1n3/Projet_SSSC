@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <title>Félicitations !</title>
+  <body>
+	<h1>Objectif réussi !</h1>
+	<p>Félicitations, {{ utilisateur.prenom }} ! Vous avez réussi votre objectif de {{objectif.temps }} minutes d'activités physiques dans la semaine, vous êtes donc {{objectif.nom}}.</p>
+	<p>Vous pouvez garder ce même objectif pour la semaine prochaine, mais vous pouvez aussi en choisir un autre.</p>
+	
+	
+	<a href="{{ path('asso_sport_adherent_carnetbord') }}">Retour au carnet de bord</a>
+  </body>
+</html>
