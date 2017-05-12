@@ -8,3 +8,6 @@ asso_sport_adherent_carnetbord:
 asso_sport_adherent_stats:
     path:    /stats
     defaults: { _controller: AssoSportAdherentBundle:Default:stats }
+asso_sport_adherent_badge:
+    path:    /badge
+    defaults: { _controller: AssoSportAdherentBundle:Default:badge }
