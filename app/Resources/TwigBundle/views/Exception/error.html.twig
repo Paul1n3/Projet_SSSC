@@ -1,29 +1,16 @@
-<!DOCTYPE html>
+{% extends "::base.html.twig" %}
 
-<html>
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+{% endblock %}
 
-  <head>
+{% block body %}
+  <div>
+    <B>Une erreur est survenue : {{ status_text }}</B>
+  </div>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <div>
+    Ne paniquez pas ! Contactez l'administrateur du serveur afin que le problème puisse être résolu :).
+ </div>
 
-    <title>An Error Occurred: {{ status_text }}</title>
-
-  </head>
-
-  <body>
-
-    <h1>Wooops, une erreur est survenue, ne paniquez pas !</h1>
-
-    <h2>L'erreur retournée par le serveur est : "{{ status_code }} {{ status_text }}".</h2>
-
-
-    <div>
-
-      Quelque chose ne fonctionne pas, merci de contactez l'administrateur du site en indiquant ce que vous faisiez
-      lorsque cette erreur est survenue :).
-
-    </div>
-
-  </body>
-
-</html>
+{% endblock %}
