@@ -22,6 +22,8 @@ class DefaultController extends Controller
 		$form = $this->createForm(ActiviteType::class, $activite);
 		if($request->isMethod('POST')){
 			if ($form->handleRequest($request)->isValid()) {
+				$activite->setAdherent(1);
+				$activite->setUtilisateur($utilisateur);
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($activite);
 				$em->flush();
@@ -96,9 +98,9 @@ class DefaultController extends Controller
 			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
 		}
 			
-		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbord.html.twig', array(
+		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbordophelia.html.twig', array(
 			'utilisateur' => $utilisateur,
-			'listActivitesSemaine' => $listActivitesSemaine,
+			'listActivites' => $listActivitesSemaine,
 			'tempsSemaine' => $tempsSemaine,
 			'distanceSemaine' => $distanceSemaine,
 			//'nombreActivitesSemaine' => $nombreActivitesSemaine,

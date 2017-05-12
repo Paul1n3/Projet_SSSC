@@ -43,17 +43,6 @@
         {{ form_errors(form.distanceKm) }}
       </div>
       <div class="form-group">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">{{ form_widget(form.adherent, {'label_attr': {'for': 'assosport_accueilbundle_utilisateur_adherent'}}) }}
-        </div>
-        {{ form_errors(form.adherent) }}
-      </div>
-      <div class="form-group">
-        {{ form_label(form.utilisateur, 'Utilisateur', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.utilisateur, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.utilisateur) }}
-      </div>
-      <div class="form-group">
         {{ form_label(form.sport, 'Sport pratiqué', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
         <div class="col-sm-10">{{ form_widget(form.sport, {'label_attr': {'class': 'form-control'}}) }}</div>
         {{ form_errors(form.sport) }}

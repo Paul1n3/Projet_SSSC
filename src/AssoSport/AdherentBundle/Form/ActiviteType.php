@@ -22,12 +22,6 @@ class ActiviteType extends AbstractType
 			->add('borg',		IntegerType::class)
 			->add('sensation',	IntegerType::class)
 			->add('distanceKm',	IntegerType::class)
-			->add('adherent',	CheckboxType::class)
-      ->add('utilisateur', EntityType::class, array(
-              'class'           =>  'AssoSportUserBundle:Utilisateur',
-              'choice_label'    =>  'nom',
-              'multiple'        =>   false,
-            ))
       ->add('sport', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Sport',
               'choice_label'    =>  'nom',

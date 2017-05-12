@@ -2,13 +2,13 @@ asso_sport_accueil_homepage:
     path:     /
     defaults: { _controller: AssoSportAccueilBundle:Accueil:home }
 
-asso_sport_accueil_test:
-    path:     /manuel
-    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
+#asso_sport_accueil_test:
+    #path:     /manuel
+    #defaults: { _controller: AssoSportAccueilBundle:Utilisateur:print }
 
-asso_sport_accueil_recherche:
-    path:     /recherche
-    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:trouve }
+#asso_sport_accueil_recherche:
+    #path:     /recherche
+    #defaults: { _controller: AssoSportAccueilBundle:Utilisateur:trouve }
     #requirements:
         #id:   \d+
 
@@ -16,9 +16,9 @@ asso_sport_accueil_formulaire:
     path:     /inscription
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:formulaire }
 
-asso_sport_accueil_formulaire:
-    path:     /connect
-    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:connect }
+#asso_sport_accueil_connect:
+    #path:     /connect
+    #defaults: { _controller: AssoSportAccueilBundle:Utilisateur:connect }
 
 asso_sport_accueil_projet:
     path:     /inscription/projet

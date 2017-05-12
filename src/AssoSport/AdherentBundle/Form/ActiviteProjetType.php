@@ -22,6 +22,7 @@ class ActiviteProjetType extends AbstractType
         ->remove('sensation')
         ->remove('utilisateur')
         ->remove('adherent')
+        ->remove('projet')
         ;
   }
  

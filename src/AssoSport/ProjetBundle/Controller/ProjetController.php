@@ -72,6 +72,20 @@ class ProjetController extends Controller
     {
         $utilisateur = $this->getUser();
 
+        $repositoryProjet = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AssoSportAccueilBundle:Projet')
+        ;
+        $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
+
+        $repositoryProjet = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AssoSportAccueilBundle:Projet')
+        ;
+        $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
+
         $activite = new Activite();
 
         $form = $this->createForm(ActiviteProjetType::class, $activite);
@@ -83,6 +97,7 @@ class ProjetController extends Controller
             $activite->setTemps(0);
             $activite->setBorg(6);
             $activite->setSensation(1);
+            $activite->setProjet($projet);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($activite);
