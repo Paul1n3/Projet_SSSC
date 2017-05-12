@@ -30,7 +30,8 @@
                   <th>Poids</th>
                   <th>Sexe</th>
                   <th>Adresse mail</th>
-                  <th>Actions</th>
+                  <th>Voir ses activités</th>
+                  <th>Voir ses statistiques</th>
                 </tr>
               </thead>
             <tbody>
@@ -44,7 +45,10 @@
                 <td>{{ utilisateur.sexe }}</td>
                 <td>{{ utilisateur.email }}</td>
                 <td>
-                <a role="button" class="btn btn-default" href="truc?{{ utilisateur.id }}">Voir ses statistiques</a>
+                <a role="button" class="btn btn-default" href="activites/perso/projet/{{ utilisateur.id }}">Voir toutes ses activites</a>
+                </td>
+                <td>
+                <a role="button" class="btn btn-default" href="adherent/stat/{{ utilisateur.id }}">Voir toutes ses activites</a>
                 </td>
               </tr>
             {% endfor %}

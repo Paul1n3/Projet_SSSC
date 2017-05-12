@@ -39,12 +39,16 @@ asso_sport_admin_listeactivites:
     defaults: { _controller: AssoSportAdminBundle:Admin:activites }
 
 asso_sport_admin_listeactivitesperso:
-    path:     /activites/perso
-    defaults: { _controller: AssoSportAdminBundle:Admin:activitesperso } 
+    path:     /membres/activites/perso/{id}
+    defaults: { _controller: AssoSportAdminBundle:Admin:activitesperso }
+    requirements:
+        id: \d* 
 
 asso_sport_admin_listeactivitespersoprojet:
-    path:     /activites/perso/projet
+    path:     membres/activites/perso/projet/{id}
     defaults: { _controller: AssoSportAdminBundle:Admin:activitespersoprojet }
+    requirements:
+        id: \d* 
 
 asso_sport_admin_distanceprojet:
     path:     /projet/distance
@@ -59,5 +63,7 @@ asso_sport_admin_statProjetAction:
     defaults: { _controller: AssoSportAdminBundle:Admin:statProjet }
 
 asso_sport_admin_statAdherent:
-    path:     /adherent/stat
-    defaults: { _controller: AssoSportAdminBundle:Admin:stats }                    
+    path:     /membres/adherent/stat/{id}
+    defaults: { _controller: AssoSportAdminBundle:Admin:stats } 
+    requirements:
+        id: \d*                    

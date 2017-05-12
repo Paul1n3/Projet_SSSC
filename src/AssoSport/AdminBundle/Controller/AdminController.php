@@ -252,13 +252,14 @@ class AdminController extends Controller
       ));
     }*/
 
-    public function activitespersoAction(Request $request)
+    // Liste des activités de la personne sélectionnée dans la liste des membres adhérents de l'asso
+    public function activitespersoAction($id)
     {
       $repositoryActivites = $this->getDoctrine()
         ->getManager()
         ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
       ;
-      $listActivites = $repositoryActivites->findAllActivitesAdherent(2);
+      $listActivites = $repositoryActivites->findAllActivitesAdherent($id);
     
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesperso.html.twig', array(
         'activites' => $listActivites
@@ -292,7 +293,7 @@ class AdminController extends Controller
       ));
     }
 
-    public function activitespersoprojetAction(Request $request)
+    public function activitespersoprojetAction($id)
     {
       $repositoryActivites = $this->getDoctrine()
         ->getManager()
@@ -306,7 +307,7 @@ class AdminController extends Controller
       ;
       $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
 
-      $listActivites = $repositoryActivites->findActivitesAdherentProjet(2,$projet);
+      $listActivites = $repositoryActivites->findActivitesAdherentProjet($id,$projet);
     
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesprojetperso.html.twig', array(
         'activites' => $listActivites
@@ -427,7 +428,7 @@ class AdminController extends Controller
 
     }
 
-    public function statsAction(Request $request)
+    public function statsAction($id)
     { 
       // On récupère le repository Activite
       $repositoryActivites = $this->getDoctrine()
@@ -438,7 +439,7 @@ class AdminController extends Controller
       // Liste activité du mois
       $dateCeMois = date('M');
       $tempsMois = 0; $sensation = 0; $moyenneSensation = 0;
-      $listActivitesMois = $repositoryActivites->findActivitesTempsAdherent(2,new \DateTime('first day of this month'), new \DateTime('now'));
+      $listActivitesMois = $repositoryActivites->findActivitesTempsAdherent($id,new \DateTime('first day of this month'), new \DateTime('now'));
       foreach($listActivitesMois as $activite){
         $tempsMois += $activite->getTemps();
         $sensation += $activite->getSensation();
@@ -449,7 +450,7 @@ class AdminController extends Controller
       
       // Mois -1
       $dateMois1 = date('M',strtotime('-1 month'));
-      $listActivitesMois1 = $repositoryActivites->findActivitesTempsAdherent(2,new \DateTime('first day of last month'), new \DateTime('first day of this month'));
+      $listActivitesMois1 = $repositoryActivites->findActivitesTempsAdherent($id,new \DateTime('first day of last month'), new \DateTime('first day of this month'));
       $tempsMois1 = 0; $sensation1 = 0; $moyenneSensation1 = 0;
       foreach($listActivitesMois1 as $activite){
         $tempsMois1 += $activite->getTemps();
@@ -461,7 +462,7 @@ class AdminController extends Controller
       
       //Mois -2
       $dateMois2 = date('M',strtotime('-2 month'));
-      $listActivitesMois2 = $repositoryActivites->findActivitesTempsAdherent(2, new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
+      $listActivitesMois2 = $repositoryActivites->findActivitesTempsAdherent($id, new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
       $tempsMois2 = 0; $sensation2 = 0; $moyenneSensation2 = 0;
       foreach($listActivitesMois2 as $activite){
         $tempsMois2 += $activite->getTemps();
@@ -473,7 +474,7 @@ class AdminController extends Controller
       
       //Mois -3
       $dateMois3 = date('M',strtotime('-3 month'));
-      $listActivitesMois3 = $repositoryActivites->findActivitesTempsAdherent(2, new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
+      $listActivitesMois3 = $repositoryActivites->findActivitesTempsAdherent($id, new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
       $tempsMois3 = 0; $sensation3 = 0; $moyenneSensation3 = 0;
       foreach($listActivitesMois3 as $activite){
         $tempsMois3 += $activite->getTemps();

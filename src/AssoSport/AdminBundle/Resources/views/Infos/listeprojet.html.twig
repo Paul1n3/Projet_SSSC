@@ -18,6 +18,7 @@
                <th>Poids</th>
                <th>Sexe</th>
                <th>Adresse mail</th>
+               <th>Voir toutes ses activités</th>
            </tr>
        </thead>
 
@@ -32,6 +33,9 @@
             <td>{{ utilisateur.poids }}</td>
             <td>{{ utilisateur.sexe }}</td>
             <td>{{ utilisateur.email }}</td>
+            <td>
+                <a role="button" class="btn btn-default" href="activites/perso/{{ utilisateur.id }}">Voir toutes ses activites</a>
+                </td>
           </tr>
         {% endfor %}
 
