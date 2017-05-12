@@ -23,7 +23,3 @@ asso_sport_accueil_formulaire:
 asso_sport_accueil_projet:
     path:     /inscription/projet
     defaults: { _controller: AssoSportAccueilBundle:Utilisateur:inscription }
-
-asso_sport_acceuil_accessDenied:
-    path: /error_403
-    defaults: { _controller: AssoSportAccueilBundle:Utilisateur:accessDenied }

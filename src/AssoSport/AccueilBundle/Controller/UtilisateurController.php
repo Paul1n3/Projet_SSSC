@@ -138,7 +138,7 @@ class UtilisateurController extends Controller
 
           $utilisateur->setDemande(1);
           $utilisateur->setParticipant(1);
-          
+
           $em = $this->getDoctrine()->getManager();
           $em->persist($utilisateur);
           $em->flush();
@@ -151,9 +151,6 @@ class UtilisateurController extends Controller
       return $this->render('AssoSportAccueilBundle:Utilisateur:profilInscription.html.twig', array(
           'form' => $form->createView(),
       ));
-  }
-  public function accessDeniedAction(Request $request) {
-      return $this->render('AssoSportAccueilBundle:Error:accessDenied.html.twig');
   }
 
 }

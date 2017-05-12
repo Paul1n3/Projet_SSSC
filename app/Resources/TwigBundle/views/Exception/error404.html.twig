@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <div>
+    <B>Une erreur est survenue : {{ status_text }}</B>
+  </div>
+
+ <div>
+    Ne paniquez pas ! Contactez l'administrateur du serveur afin que le problème puisse être résolu :).
+ </div>
+
+{% endblock %}
