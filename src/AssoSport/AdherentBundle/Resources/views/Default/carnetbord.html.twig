@@ -6,60 +6,91 @@
   <link rel="stylesheet" href="{{ asset('css/adherent.css') }}" />
 {% endblock %}
 
+{% block scriptlink %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
 {% block body %}
 
-<div class="container">
-  <div class="col-sm-10">
-    <h1>Carnet de bord</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1>Carnet de bord de <strong>{{ utilisateur.prenom }} {{ utilisateur.nom }}</strong></h1>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-10">
-    <p>Ici vous trouverez vos statistiques de la semaine, ainsi que les statistiques globales. Vous pourrez également ajouter votre activité de la semaine.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-sm-12 col-md-4">
+        <strong>
+          <h3>Statistiques de la semaine</h3>
+
+          <p>Temps total : {{ tempsSemaine }} minutes</p>
+          <p>Distance parcourue : {{ distanceSemaine }} km</p>
+          <p>Sensation moyenne : {{ moyenneSensation }}
+        </strong>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="col-sm-10">
-    <ul>
-      {% for activite in listActivites %}
-        <li>{{ activite.sport.nom }} : {{ activite.temps }} heures. Type :{{ activite.sport.typeSport.nom }}</li>
-      {% endfor %}
-    </ul>
+
+  <p>
+    ATTENTION SI SENSATION DANS DB (php)
+  </p>
+
+  <script type="text/javascript">
+    var test=[];
+    var ext=[];
+    var eau=[];
+    var salle=[];
+    var temps_ext = 0;
+    var temps_eau = 0;
+    var temps_salle = 0;
+
+    {% for activite in listActivites %}
+       var obj = '{{ activite.sport.typeSport.nom }}';
+       test.push(obj);
+
+       if( '{{ activite.sport.typeSport.nom }}' == 'En salle') {
+         temps_salle += {{ activite.temps  }};
+       } else if( '{{ activite.sport.typeSport.nom }}' == 'Eau') {
+         temps_eau += {{ activite.temps  }};
+       } else {
+         temps_ext += {{ activite.temps }};
+       }
+    {% endfor %}
+    //document.getElementById("demo").innerHTML = test;
+  </script>
+
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-5 text-center">
+        <h2>Activités de la semaine</h2>
+        {{ include("AssoSportAdherentBundle:Chart:act_week_chart.html.twig") }}
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-5 text-center">
+        <h2>Intensité de la semaine</h2>
+        {{ include("AssoSportAdherentBundle:Chart:int_week_chart.html.twig") }}
+      </div>
+    </div>
   </div>
 
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12 text-center">
+        <div class="btn-group">
+          <a href="{{ path('asso_sport_adherent_homepage') }}" class="btn btn-primary">Ajouter une activité</a>
+          <a href="{{ path('asso_sport_adherent_stats') }}" class="btn btn-primary">Statistiques du mois</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <br />
 
-<!-- <h1 id="demo"> hello</h1> -->
-<!--script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script-->
-<script type="text/javascript">
-  var test=[];
-  var ext=[];
-  var eau=[];
-  var salle=[];
-  var temps_ext = 0;
-  var temps_eau = 0;
-  var temps_salle = 0;
 
-  {% for activite in listActivites %}
-     var obj = '{{ activite.sport.typeSport.nom }}';
-     test.push(obj);
 
-     if( '{{ activite.sport.typeSport.nom }}' == 'En salle') {
-       temps_salle += {{ activite.temps  }};
-     } else if( '{{ activite.sport.typeSport.nom }}' == 'Eau') {
-       temps_eau += {{ activite.temps  }};
-     } else {
-       temps_ext += {{ activite.temps  }};
-     }
-  {% endfor %}
-  //document.getElementById("demo").innerHTML = test;
-</script>
-
-<div class="container">
-  {{ include("AssoSportAdherentBundle:Chart:global_chart.html.twig") }}
-</div>
-
-<a href="{{ path('asso_sport_adherent_homepage') }}">Ajouter une activité</a>
-<a href="{{ path('asso_sport_adherent_stats') }}">Statistiques du mois</a>
 
 {% endblock %}

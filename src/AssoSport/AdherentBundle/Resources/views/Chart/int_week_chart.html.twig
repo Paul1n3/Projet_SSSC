@@ -1,0 +1,30 @@
+ <script type="text/javascript">
+   google.charts.load("current", {packages:['corechart']});
+   google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ["Intensité", "Pourcentage", { role: "style" } ],
+       ["Faible", {{sensation1/sensationTotale *100}}, "#0019FB"],
+       ["Modérée", {{sensation2/sensationTotale *100}}, "#00E5F6"],
+       ["Assez difficile", {{sensation3/sensationTotale *100}}, "#FFE333"],
+       ["Difficle", {{sensation4/sensationTotale *100}}, "color: #FF1D0C"]
+     ]);
+
+     var view = new google.visualization.DataView(data);
+     view.setColumns([0, 1,
+                      { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                      2]);
+
+     var options = {
+       bar: {groupWidth: "70%"},
+       legend: { position: "none" },
+       vAxis: {title: 'Pourcentage'}
+     };
+     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+     chart.draw(view, options);
+ }
+ </script>
+<div id="columnchart_values" style="width: 600px; height: 500px;"></div>

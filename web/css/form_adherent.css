@@ -1,0 +1,21 @@
+h1 {
+  color : #29CFA3;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.show {
+  display:block;
+}
+/*#adherentOrNot {
+  display:none;
+}*/
+
+h3, h2 {
+  color : #29CFA3;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 4em;
+  margin-top: 3em;
+}

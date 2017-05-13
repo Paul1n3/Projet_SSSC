@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class DefaultController extends Controller
 {
     public function ajoutAction(Request $request)
-    {	
+    {
 		$utilisateur = $this->getUser();
         $activite = new Activite();
 		$form = $this->createForm(ActiviteType::class, $activite);
@@ -27,7 +27,7 @@ class DefaultController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($activite);
 				$em->flush();
-				
+
 				$repositoryActivites = $this->getDoctrine()
 					->getManager()
 					->getRepository('AssoSport\AccueilBundle\Entity\Activite')
@@ -41,22 +41,22 @@ class DefaultController extends Controller
 				if($tempsSemaine >= $objectif->getTemps()){
 					return $this->redirect($this->generateUrl('asso_sport_adherent_badge'));
 				}
-			
+
 				return $this->redirect($this->generateUrl('asso_sport_adherent_carnetbord'));
 			}
 		}
-		
+
 		return $this->render('AssoSportAdherentBundle:Default:form.html.twig', array('form' => $form->createView()));
     }
-	
+
 	public function carnetbordAction(Request $request)
 	{
-	
+
 		$utilisateur = $this->getUser();
 		if($utilisateur==null){
 			return $this->redirect($this->generateUrl('login'));
 		}
-		
+
 		// On récupère le repository Activite
 		$repositoryActivites = $this->getDoctrine()
 			->getManager()
@@ -97,8 +97,8 @@ class DefaultController extends Controller
 		if(count($listActivitesSemaine) != 0){
 			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
 		}
-			
-		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbordophelia.html.twig', array(
+
+		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbord.html.twig', array(
 			'utilisateur' => $utilisateur,
 			'listActivites' => $listActivitesSemaine,
 			'tempsSemaine' => $tempsSemaine,
@@ -107,15 +107,15 @@ class DefaultController extends Controller
 			'moyenneSensation' => $moyenneSensation,
 			'sensationTotale' => $sensationTotale,
 			'sensation1' => $sensation1,
-			'sensation2' => $sensation2, 
+			'sensation2' => $sensation2,
 			'sensation3' => $sensation3,
 			'sensation4' =>	$sensation4
 		));
 		return new Response($content);
 	}
-	
+
 	public function statsAction(Request $request)
-	{	
+	{
 		$utilisateur = $this->getUser();
 		if($utilisateur==null){
 			return $this->redirect($this->generateUrl('login'));
@@ -125,7 +125,7 @@ class DefaultController extends Controller
 			->getManager()
 			->getRepository('AssoSport\AccueilBundle\Entity\Activite')
 		;
-		
+
 		// Liste activité du mois
 		$dateCeMois = date('M');
 		$tempsMois = 0; $sensation = 0; $moyenneSensation = 0;
@@ -137,7 +137,7 @@ class DefaultController extends Controller
 		if(count($listActivitesMois) != 0){
 			$moyenneSensation = $sensation/count($listActivitesMois);
 		}
-		
+
 		// Mois -1
 		$dateMois1 = date('M',strtotime('-1 month'));
 		$listActivitesMois1 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(),new \DateTime('first day of last month'), new \DateTime('first day of this month'));
@@ -149,7 +149,7 @@ class DefaultController extends Controller
 		if(count($listActivitesMois1) != 0){
 			$moyenneSensation1 = $sensation1/count($listActivitesMois1);
 		}
-		
+
 		//Mois -2
 		$dateMois2 = date('M',strtotime('-2 month'));
 		$listActivitesMois2 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
@@ -161,7 +161,7 @@ class DefaultController extends Controller
 		if(count($listActivitesMois2) != 0){
 			$moyenneSensation2 = $sensation2/count($listActivitesMois2);
 		}
-		
+
 		//Mois -3
 		$dateMois3 = date('M',strtotime('-3 month'));
 		$listActivitesMois3 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
@@ -173,7 +173,7 @@ class DefaultController extends Controller
 		if(count($listActivitesMois3) != 0){
 			$moyenneSensation3 = $sensation3/count($listActivitesMois3);
 		}
-		
+
 		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:stats.html.twig', array(
 			'utilisateur' => $utilisateur,
 			'dateCeMois' => $dateCeMois,
@@ -191,7 +191,7 @@ class DefaultController extends Controller
 		));
 		return new Response($content);
 	}
-	
+
 	public function badgeAction(){
 		$utilisateur = $this->getUser();
 		$objectif = $utilisateur->getProfilActuel();
