@@ -21,7 +21,7 @@
           <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}"> Accueil</a></li>
           <li><a href="#">Contact</a></li>
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <li><p class="navbar-text ">Connecté en tant que {{ app.user.username }}</p></li>
+          <li><p class="navbar-text text-center">Connecté en tant que {{ app.user.username }}</p></li>
           {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
