@@ -260,9 +260,17 @@ class AdminController extends Controller
         ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
       ;
       $listActivites = $repositoryActivites->findAllActivitesAdherent($id);
+
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $utilisateur = $repository->findOneBy(array('id' => $id));
     
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesperso.html.twig', array(
-        'activites' => $listActivites
+        'activites' => $listActivites, 'utilisateur' => $utilisateur
       ));
       return new Response($content);
     }
@@ -308,9 +316,17 @@ class AdminController extends Controller
       $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
 
       $listActivites = $repositoryActivites->findActivitesAdherentProjet($id,$projet);
+
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $utilisateur = $repository->findOneBy(array('id' => $id));
     
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:activitesprojetperso.html.twig', array(
-        'activites' => $listActivites
+        'activites' => $listActivites, 'utilisateur' => $utilisateur
       ));
       return new Response($content);
     }
@@ -483,8 +499,17 @@ class AdminController extends Controller
       if(count($listActivitesMois3) != 0){
         $moyenneSensation3 = $sensation3/count($listActivitesMois3);
       }
+
+      $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('AssoSportUserBundle:Utilisateur')
+      ;
+    
+      $utilisateur = $repository->findOneBy(array('id' => $id));
       
       $content = $this->get('templating')->render('AssoSportAdminBundle:Infos:stats.html.twig', array(
+        'utilisateur' => $utilisateur,
         'dateCeMois' => $dateCeMois,
         'dateMois1' => $dateMois1,
         'dateMois2' => $dateMois2,

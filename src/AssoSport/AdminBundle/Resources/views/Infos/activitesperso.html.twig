@@ -4,7 +4,7 @@
     <title>Liste des activités</title>
   </head>
   <body>
-    <h1>Voici la liste des activités rentrées sur le site:</h1>
+    <h1>Voici la liste des activités rentrées sur le site pour {{ utilisateur.nom }} {{ utilisateur.prenom }}:</h1>
     <p>
 
     <table>
@@ -16,7 +16,6 @@
            <th>Borg</th>
            <th>Sensation</th>
            <th>DistanceKm</th>
-           <th>Asso?</th>
        </tr>
    </thead>
 
@@ -29,7 +28,6 @@
       <td>{{ activite.borg }}</td>
       <td>{{ activite.sensation }}</td>
       <td>{{ activite.distanceKm }}</td>
-      <td>{{ activite.adherent }}</td>
     </tr>
         {% endfor %}
 
