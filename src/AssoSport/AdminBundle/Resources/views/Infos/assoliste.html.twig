@@ -30,8 +30,8 @@
                   <th>Poids</th>
                   <th>Sexe</th>
                   <th>Adresse mail</th>
-                  <th>Voir ses activités</th>
-                  <th>Voir ses statistiques</th>
+                  <th>Statistiques Activités physiques</th>
+                  <th>Activités association</th>
                 </tr>
               </thead>
             <tbody>
@@ -44,12 +44,8 @@
                 <td>{{ utilisateur.poids }}</td>
                 <td>{{ utilisateur.sexe }}</td>
                 <td>{{ utilisateur.email }}</td>
-                <td>
-                <a role="button" class="btn btn-default" href="activites/perso/projet/{{ utilisateur.id }}">Voir toutes ses activites</a>
-                </td>
-                <td>
-                <a role="button" class="btn btn-default" href="adherent/stat/{{ utilisateur.id }}">Voir toutes ses activites</a>
-                </td>
+                <td><a role="button" class="btn btn-default" href="{{ path('asso_sport_admin_listeactivitesperso', {'id': utilisateur.id }) }}">Voir ses activités</a></td>
+                <td><a role="button" class="btn btn-default" href="{{ path('asso_sport_admin_statAdherent', {'id': utilisateur.id }) }}">Voir ses statistiques</a></td>
               </tr>
             {% endfor %}
             </tbody>

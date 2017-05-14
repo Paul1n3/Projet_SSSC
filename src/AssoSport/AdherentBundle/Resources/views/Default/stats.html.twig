@@ -1,29 +1,42 @@
 {% extends "::base.html.twig" %}
 
+{% block title %}Statistiques globales{% endblock %}
+
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/adherent.css') }}" />
+{% endblock %}
+
+{% block scriptlink %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {% endblock %}
 
 {% block body %}
-<!DOCTYPE html>
-<html>
-  <title>Carnet de bord</title>
-  <body>
-    <h1>Statistiques de {{ utilisateur.prenom }} {{ utilisateur.nom }}</h1>
-    <h3>Statistiques du mois</h3>
 
-    <h4>Cumul AP par mois</h4>
-    <p>{{ dateCeMois }} : {{ tempsMois }} minutes</p>
-    <p>{{ dateMois1 }} : {{ tempsMois1 }} minutes</p>
-    <p>{{ dateMois2 }} : {{ tempsMois2 }} minutes</p>
-    <p>{{ dateMois3 }} : {{ tempsMois3 }} minutes</p>
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-5 text-center">
+          <h2>Cumul des activités pysiques par mois</h2>
+            {{ include("AssoSportAdherentBundle:Chart:AP_chart.html.twig") }}
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5 text-center">
+          <h2>Intensités moyennes</h2>
+          {{ include("AssoSportAdherentBundle:Chart:int_chart.html.twig") }}
+        </div>
+      </div>
+    </div>
 
-    <h4>Intensités moyennes</h4>
-    <p>{{ dateCeMois }} : {{ moyenneSensation }}</p>
-    <p>{{ dateMois1 }} : {{ moyenneSensation1 }}</p>
-    <p>{{ dateMois2 }} : {{ moyenneSensation2 }}</p>
-    <p>{{ dateMois3 }} : {{ moyenneSensation3 }}</p>
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-12 text-center">
+          <div class="btn-group">
+            <a href="{{ path('asso_sport_adherent_homepage') }}" class="btn btn-primary">Ajouter une activité</a>
+            <a href="{{ path('asso_sport_adherent_stats') }}" class="btn btn-primary">Statistiques du mois</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <a href="{{ path('asso_sport_adherent_homepage') }}">Ajouter une activité</a>
-    <a href="{{ path('asso_sport_adherent_carnetbord') }}">Retour au carnet de bord</a>
+    <br />
+
 {% endblock %}

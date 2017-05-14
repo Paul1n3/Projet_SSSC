@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/distance_totale.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -16,11 +17,8 @@
 
     <div class="container">
       <div class="col-sm-12 text-center">
-        <p>
-        <strong>
-          La distance parcourue depuis le lancement du projet est de {{ distance }} km / {{ projet.objectif }} km
-        </strong>
-        </p>
+        <h3>La distance parcourue depuis le lancement du projet est de : </h3>
+        <h2>{{ distance }} km / {{ projet.objectif }} km</h2>
      </div>
     </div>
 
