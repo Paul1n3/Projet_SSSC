@@ -18,6 +18,9 @@ class DefaultController extends Controller
     public function ajoutAction(Request $request)
     {
 		$utilisateur = $this->getUser();
+		if($utilisateur==null){
+			return $this->redirect($this->generateUrl('login'));
+		}
         $activite = new Activite();
 		$form = $this->createForm(ActiviteType::class, $activite);
 		if($request->isMethod('POST')){
@@ -97,18 +100,12 @@ class DefaultController extends Controller
 		if(count($listActivitesSemaine) != 0){
 			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
 		}
-    if($sensation1 != 0){
-      $sensation1 = 100;
-    }
-    if($sensation2 != 0){
-      $sensation2 = $sensation2/$sensationTotale *100;
-    }
-    if($sensation3 != 0){
-      $sensation2 = $sensation3/$sensationTotale *100;
-    }
-    if($sensation4 != 0){
-      $sensation4 = $sensation4/$sensationTotale *100;
-    }
+    if($sensationTotale != 0){
+			$sensation1 = $sensation1/$sensationTotale *100;
+			$sensation2 = $sensation2/$sensationTotale *100;
+			$sensation3 = $sensation3/$sensationTotale *100;
+			$sensation4 = $sensation4/$sensationTotale *100;
+		}
 
 		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbord.html.twig', array(
 			'utilisateur' => $utilisateur,
