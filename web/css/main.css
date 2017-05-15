@@ -34,3 +34,16 @@ footer {
   width:4em;
   height:3em;
 }
+
+
+@media (max-width: 768px) {
+  .navbar {
+    position:absolute;
+    max-height: 300px;
+    text-align: center;
+  }
+  body {
+    padding-top: 300px;
+    margin-bottom: 100px;
+  }
+}

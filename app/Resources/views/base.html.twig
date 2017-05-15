@@ -16,9 +16,9 @@
 
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <img class="logo-asso pull-left" src="{{ asset('images/text.png') }}" alt="image asso">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}"> Accueil</a></li>
+          <li><img class="logo-asso" src="{{ asset('images/text.png') }}" alt="image asso"></li>
+          <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}">Accueil</a></li>
           <li><a href="#">Contact</a></li>
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <li><p class="navbar-text text-center">Connecté en tant que {{ app.user.username }}</p></li>

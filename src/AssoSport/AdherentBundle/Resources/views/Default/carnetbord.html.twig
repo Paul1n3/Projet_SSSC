@@ -28,29 +28,18 @@
 
           <p>Temps total : {{ tempsSemaine }} minutes</p>
           <p>Distance parcourue : {{ distanceSemaine }} km</p>
-          <p>Sensation moyenne : {{ moyenneSensation }}
+          <p>Sensation moyenne : {{ moyenneSensation }}</p>
         </strong>
       </div>
     </div>
   </div>
 
-
-  <p>
-    ATTENTION SI SENSATION DANS DB (php)
-  </p>
-
   <script type="text/javascript">
-    var test=[];
-    var ext=[];
-    var eau=[];
-    var salle=[];
     var temps_ext = 0;
     var temps_eau = 0;
     var temps_salle = 0;
 
     {% for activite in listActivites %}
-       var obj = '{{ activite.sport.typeSport.nom }}';
-       test.push(obj);
 
        if( '{{ activite.sport.typeSport.nom }}' == 'En salle') {
          temps_salle += {{ activite.temps  }};

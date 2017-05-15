@@ -340,10 +340,34 @@ class AdminController extends Controller
 
       $listeUtilisateurs = $repository->findDemandes();
 
+
+      $user = $this->$listeUtilisateurs->findOneById($id_user);
+      $form = $this->form_factory->create(DemandeType::class, $user);
+      $form->handleRequest($request);
+      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Role enregistre');
+
+            return $this->redirectToRoute('asso_sport_admin_homepage');
+      }
+
       return $this->render('AssoSportAdminBundle:Infos:demandes.html.twig', array(
-        'demandes' => $listeUtilisateurs
+        'demandes' => $listeUtilisateurs, 'form' => $form->createView()
       ));
 
+    }
+
+    public function editRolesAction(Request $request, $id_user)
+    {
+
+      return [
+          'form' => $form->createView(),
+          'user' => $user
+      ];
     }
 
     public function statProjetAction(Request $request){

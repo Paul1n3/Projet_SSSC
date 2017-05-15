@@ -4,10 +4,10 @@
    function drawChart() {
      var data = google.visualization.arrayToDataTable([
        ["Intensité", "Pourcentage", { role: "style" } ],
-       ["Faible", {{sensation1/sensationTotale *100}}, "#0019FB"],
-       ["Modérée", {{sensation2/sensationTotale *100}}, "#00E5F6"],
-       ["Assez difficile", {{sensation3/sensationTotale *100}}, "#FFE333"],
-       ["Difficle", {{sensation4/sensationTotale *100}}, "#FF1D0C"]
+       ["Faible", {{ sensation1 }}, "#0019FB"],
+       ["Modérée", {{ sensation2 }}, "#00E5F6"],
+       ["Assez difficile", {{ sensation3 }}, "#FFE333"],
+       ["Difficle", {{ sensation4 }}, "#FF1D0C"]
      ]);
 
      var view = new google.visualization.DataView(data);
