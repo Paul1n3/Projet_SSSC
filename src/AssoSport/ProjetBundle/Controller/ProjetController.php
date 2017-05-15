@@ -79,16 +79,10 @@ class ProjetController extends Controller
         ;
         $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
 
-        $repositoryProjet = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AssoSportAccueilBundle:Projet')
-        ;
-        $projet = $repositoryProjet->findOneBy(array('nom' => 'Objectif Lune'));
+        $sports = $projet->getSports();
 
         $activite = new Activite();
-
-        $form = $this->createForm(ActiviteProjetType::class, $activite);
+        $form = $this->createForm(ActiviteProjetType::class, $activite);//, array('sports' => $sports));
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
@@ -109,7 +103,21 @@ class ProjetController extends Controller
         }
 
         return $this->render('AssoSportProjetBundle:Projet:form.html.twig', array(
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

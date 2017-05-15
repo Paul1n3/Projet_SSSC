@@ -1,40 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Liste des activités</title>
-  </head>
-  <body>
-    <h1>Voici la liste des activités rentrées sur le site pour {{ utilisateur.nom }} {{ utilisateur.prenom }}:</h1>
-    <p>
+{% extends "::base.html.twig" %}
 
-    <table>
+{% block title %}Activités utilisateur{% endblock %}
 
-    <thead> <!-- En-tête du tableau -->
-       <tr>
-           <th>Date</th>
-           <th>Temps</th>
-           <th>Borg</th>
-           <th>Sensation</th>
-           <th>DistanceKm</th>
-       </tr>
-   </thead>
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
 
-    <tbody>
-    {% for activite in activites %}
+{% block body %}
 
-    <tr>
-      <td>{{ activite.date|date("m/d/Y") }}</td>
-      <td>{{ activite.temps }}</td>
-      <td>{{ activite.borg }}</td>
-      <td>{{ activite.sensation }}</td>
-      <td>{{ activite.distanceKm }}</td>
-    </tr>
-        {% endfor %}
+    <div class="container">
+      <div class="col-sm-12">
+        <h1>Voici la liste des activités dans le cadre de l'association</h1>
+      </div>
+    </div>
 
-    </tbody>
+    <div class="container">
+      <table class="table table-hover">
+        <thead> <!-- En-tête du tableau -->
+           <tr>
+            <th>Date</th>
+            <th>Temps</th>
+            <th>Borg</th>
+            <th>Sensation</th>
+            <th>DistanceKm</th>
+           </tr>
+       </thead>
 
-    </table>
+        <tbody>
+        {% for activite in activites %}
 
-    </p>
-  </body>
-</html>
+        <tr>
+          <td>{{ activite.date|date("m/d/Y") }}</td>
+          <td>{{ activite.temps }}</td>
+          <td>{{ activite.borg }}</td>
+          <td>{{ activite.sensation }}</td>
+          <td>{{ activite.distanceKm }}</td>
+        </tr>
+            {% endfor %}
+
+        </tbody>
+
+        </table>
+      </table>
+    </div>
+
+{% endblock %}

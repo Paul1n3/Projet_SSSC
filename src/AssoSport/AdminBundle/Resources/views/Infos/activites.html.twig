@@ -1,8 +1,15 @@
 {% extends "::base.html.twig" %}
+
+{% block title %}Activités utilisateur{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
+
 {% block body %}
 
     <div class="container">
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <h1>Voici la liste des activités rentrées sur le site:</h1>
       </div>
     </div>

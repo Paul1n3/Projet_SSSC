@@ -1,19 +1,24 @@
 {% extends "::base.html.twig" %}
+
+{% block title %}Ajout d'activité{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/adherent.css') }}" />
+{% endblock %}
+
 {% block body %}
 
 
 <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 
     <div class="container">
-      <div class="col-sm-10">
-        <h3>Formulaire d'ajout : activité de la semaine</h3>
+      <div class="col-sm-12">
+        <h2>Formulaire d'ajout : activité de la semaine</h2>
       </div>
     </div>
 
-    <div class="container" id="formulaire_inscription">
-      <!-- { % form_theme form ':Form:bootstrap_3_inscription_form_layout.html.twig' %} -->
+    <div class="container">
       {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-
 
       {{ form_start(form) }}
 

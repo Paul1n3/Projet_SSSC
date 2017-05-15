@@ -56,15 +56,14 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 
     $qb = $this->createQueryBuilder('u');
     $qb->select('u')
-    //->from('AssoSportAccueilBundle:Utilisateur', 'u')
-    ->innerJoin('u.projets', 'up')
-    ->where('up = :pid')
-    ->setParameter('pid', $pid)
-    ->groupBy('u.id');
+        ->innerJoin('u.projets', 'up')
+        ->where('up = :pid')
+        ->setParameter('pid', $pid)
+        ->groupBy('u.id');
 
     return $qb
-      ->getQuery()
-      ->getResult()
+        ->getQuery()
+        ->getResult()
     ;
   }
 

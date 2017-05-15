@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Mois", "Moyenne", { role: "style" } ],
+      ["{{ dateMois3 }}", {{ moyenneSensation3 }}*25, "#FF1D0C"],
+      ["{{ dateMois2 }}", {{ moyenneSensation2 }}*25, "#FFE333"],
+      ["{{ dateMois1 }}", {{ moyenneSensation1 }}*25, "#00E5F6"],
+      ["{{ dateCeMois }}", {{ moyenneSensation }}*25, "#0019FB"]
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                    { calc: "stringify",
+                      sourceColumn: 1,
+                      type: "string",
+                      role: "annotation" },
+                    2]);
+
+    var options = {
+      bar: {groupWidth: "70%"},
+      legend: { position: "none" },
+      vAxis: {title: 'Moyenne des intensités (entre 0 et 100)', minValue: 0, maxValue: 100},
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+  }
+</script>
+
+<div id="columnchart_values" style="width: 600px; height: 500px;"></div>

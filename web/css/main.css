@@ -3,16 +3,7 @@ html {
   min-height: 100%;
 }
 
-.navbar-default {
-  background-color: #28CEA2;
-  border-color: #6E6E6E;
-  color : #E0E0E0;
-}
 
-.navbar-default .navbar-nav > .active > a {
-  background-color: #666666;
-  color:#E0E0E0;
-}
 
 body {
   padding-top: 70px;

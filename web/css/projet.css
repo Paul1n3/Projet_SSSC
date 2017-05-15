@@ -2,6 +2,15 @@ body {
   background-color: white;
 }
 
+h1, h2 {
+  color : #1919C6;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+
 .navbar-default {
   background-color: #00118e;
   border-color: #0b134f;
