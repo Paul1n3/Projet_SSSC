@@ -97,13 +97,24 @@ class DefaultController extends Controller
 		if(count($listActivitesSemaine) != 0){
 			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
 		}
+    if($sensation1 != 0){
+      $sensation1 = 100;
+    }
+    if($sensation2 != 0){
+      $sensation2 = $sensation2/$sensationTotale *100;
+    }
+    if($sensation3 != 0){
+      $sensation2 = $sensation3/$sensationTotale *100;
+    }
+    if($sensation4 != 0){
+      $sensation4 = $sensation4/$sensationTotale *100;
+    }
 
 		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:carnetbord.html.twig', array(
 			'utilisateur' => $utilisateur,
 			'listActivites' => $listActivitesSemaine,
 			'tempsSemaine' => $tempsSemaine,
 			'distanceSemaine' => $distanceSemaine,
-			//'nombreActivitesSemaine' => $nombreActivitesSemaine,
 			'moyenneSensation' => $moyenneSensation,
 			'sensationTotale' => $sensationTotale,
 			'sensation1' => $sensation1,
