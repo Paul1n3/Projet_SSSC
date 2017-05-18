@@ -1,6 +1,6 @@
 <?php
 
-namespace AssoSport\AccueilBundle\Form;
+namespace AssoSport\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,21 +11,39 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ProfilType extends AbstractType
+class DemandesType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // $roles = $this->getParent('security.role_hierarchy.roles');
         $builder
-        ->add(
-            'roles', 'choice', [
-                'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => 'ROLE_USER', 'ROLE_CUSTOMER' => 'ROLE_CUSTOMER'],
-                'expanded' => true,
-                'multiple' => true,
-            ]
-        )
+        ->add('roles', ChoiceType::class, array(
+    'attr'  =>  array('class' => 'form-control',
+    'style' => 'margin:5px 0;'),
+    'choices' =>
+    array
+    (
+        'ROLE_ADHERENT_ASSO' => array
+        (
+            'Yes' => 'ROLE_ADHERENT_ASSO'
+        ),
+        'ROLE_ADHERENT_PROJET' => array
+        (
+            'Yes' => 'ROLE_ADHERENT_PROJET'
+        ),
+        'ROLE_ADHERENT_COMPLET' => array
+        (
+            'Yes' => 'ROLE_ADHERENT_COMPLET'
+        ),
+    )
+    ,
+    'multiple' => true,
+    'required' => true,
+    )
+)
         ->add('save', 'submit', ['label' => 'ui.button.save']);
         ;
 
