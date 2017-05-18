@@ -16,8 +16,8 @@ class ActiviteProjetType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    var_dump($options['sports']);
-    $sports = $options['sports'];
+    //var_dump($options['sports']);
+    //$sports = $options['sports'];
 
     $builder
         ->remove('temps')
@@ -26,22 +26,22 @@ class ActiviteProjetType extends AbstractType
         ->remove('utilisateur')
         ->remove('adherent')
         ->remove('projet')
-        ->remove('sport')
-        ->add('sport', EntityType::class, array(
-              'class'           =>  'AssoSportAccueilBundle:Sport',
-              'choice_label'    =>  'nom',
-              'multiple'        =>   false,
-              'choices'         => array(
-                  'Mais voyons...',
-                  'Mais pas du tout !',
-              ),
+        //->remove('sport')
+        //->add('sport', EntityType::class, array(
+              //'class'           =>  'AssoSportAccueilBundle:Sport',
+              //'choice_label'    =>  'nom',
+              //'multiple'        =>   false,
+              //'choices'         => array(
+                  //'Mais voyons...',
+                  //'Mais pas du tout !',
+              //),
               /*'query_builder'   => function ($repository) {
                   return $repository
                       ->createQueryBuilder('s')
                       ->innerJoin('MyBundleName:ChildOne', 'co', 'WITH', 'co.id = c.id')
                       ->orderBy('s.nom', 'ASC');
               },*/
-            ))
+            //))
         ;
   }
  
