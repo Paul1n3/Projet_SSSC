@@ -81,7 +81,6 @@ class DefaultController extends Controller
 		foreach($listActivitesSemaine as $activite){
 			$tempsSemaine += $activite->getTemps();
 			$distanceSemaine += $activite->getDistanceKm();
-			$sensationTotale += $activite->getSensation();
 			switch($activite->getSensation()){
 				case 1:
 					$sensation1++;
@@ -96,6 +95,7 @@ class DefaultController extends Controller
 					$sensation4++;
 					break;
 			}
+			$sensationTotale ++;
 		}
 		if(count($listActivitesSemaine) != 0){
 			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
