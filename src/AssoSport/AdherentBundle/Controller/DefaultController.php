@@ -96,9 +96,10 @@ class DefaultController extends Controller
 					break;
 			}
 			$sensationTotale ++;
+			$sommesensation += $activite->getSensation();
 		}
 		if(count($listActivitesSemaine) != 0){
-			$moyenneSensation = $sensationTotale/count($listActivitesSemaine);
+			$moyenneSensation = $sommesensation/count($listActivitesSemaine);
 		}
     if($sensationTotale != 0){
 			$sensation1 = $sensation1/$sensationTotale *100;
