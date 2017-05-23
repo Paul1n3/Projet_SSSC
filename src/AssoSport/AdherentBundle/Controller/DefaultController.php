@@ -76,7 +76,7 @@ class DefaultController extends Controller
 		// Moyenne de la sensation
 		$sensationTotale = 0;
 		$moyenneSensation = 0;
-		$sensation1=0; $sensation2=0; $sensation3=0; $sensation4=0;
+		$sensation1=0; $sensation2=0; $sensation3=0; $sensation4=0; $sommesensation=0;
 		//Boucle
 		foreach($listActivitesSemaine as $activite){
 			$tempsSemaine += $activite->getTemps();
