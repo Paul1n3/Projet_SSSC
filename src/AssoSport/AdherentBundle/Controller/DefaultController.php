@@ -35,7 +35,7 @@ class DefaultController extends Controller
 					->getManager()
 					->getRepository('AssoSport\AccueilBundle\Entity\Activite')
 				;
-				$listActivitesSemaine = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime("last Monday"), new \DateTime('now'));
+				$listActivitesSemaine = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(), new \DateTime("last Monday"), new \DateTime('now'));
 				$tempsSemaine=0;
 				foreach($listActivitesSemaine as $activite){
 					$tempsSemaine += $activite->getTemps();
@@ -66,7 +66,7 @@ class DefaultController extends Controller
 			->getRepository('AssoSport\AccueilBundle\Entity\Activite')
 		;
 		// Liste activité de la semaine
-		$listActivitesSemaine = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime("last Monday"), new \DateTime('now'));
+		$listActivitesSemaine = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(), new \DateTime("last Monday"), new \DateTime('now'));
 		// Temps total de la semaine
 		$tempsSemaine = 0;
 		// Distance totale de la semaine
@@ -137,7 +137,7 @@ class DefaultController extends Controller
 		// Liste activité du mois
 		$dateCeMois = date('M');
 		$tempsMois = 0; $sensation = 0; $moyenneSensation = 0;
-		$listActivitesMois = $repositoryActivites->findActivitesAdherent($utilisateur->getId(),new \DateTime('first day of this month'), new \DateTime('now'));
+		$listActivitesMois = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(),new \DateTime('first day of this month'), new \DateTime('now'));
 		foreach($listActivitesMois as $activite){
 			$tempsMois += $activite->getTemps();
 			$sensation += $activite->getSensation();
@@ -148,7 +148,7 @@ class DefaultController extends Controller
 
 		// Mois -1
 		$dateMois1 = date('M',strtotime('-1 month'));
-		$listActivitesMois1 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(),new \DateTime('first day of last month'), new \DateTime('first day of this month'));
+		$listActivitesMois1 = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(),new \DateTime('first day of last month'), new \DateTime('first day of this month'));
 		$tempsMois1 = 0; $sensation1 = 0; $moyenneSensation1 = 0;
 		foreach($listActivitesMois1 as $activite){
 			$tempsMois1 += $activite->getTemps();
@@ -160,7 +160,7 @@ class DefaultController extends Controller
 
 		//Mois -2
 		$dateMois2 = date('M',strtotime('-2 month'));
-		$listActivitesMois2 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
+		$listActivitesMois2 = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(), new \DateTime('last day of 3 months ago'), new \DateTime('last day of 2 months ago'));
 		$tempsMois2 = 0; $sensation2 = 0; $moyenneSensation2 = 0;
 		foreach($listActivitesMois2 as $activite){
 			$tempsMois2 += $activite->getTemps();
@@ -172,7 +172,7 @@ class DefaultController extends Controller
 
 		//Mois -3
 		$dateMois3 = date('M',strtotime('-3 month'));
-		$listActivitesMois3 = $repositoryActivites->findActivitesAdherent($utilisateur->getId(), new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
+		$listActivitesMois3 = $repositoryActivites->findActivitesTempsAdherent($utilisateur->getId(), new \DateTime('last day of 4 months ago'), new \DateTime('last day of 3 months ago'));
 		$tempsMois3 = 0; $sensation3 = 0; $moyenneSensation3 = 0;
 		foreach($listActivitesMois3 as $activite){
 			$tempsMois3 += $activite->getTemps();
