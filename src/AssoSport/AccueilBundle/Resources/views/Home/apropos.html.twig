@@ -90,22 +90,51 @@
             Le système de type d’utilisateur de symfony fonctionne selon une hiérarchie. Nous retrouvons donc à la base les membres du projet ainsi que les membres de l’association. Ces types sont englobés par le type “complet” qui combine les deux autres. Et enfin le type admin qui englobe le type complet permettant ainsi un accès total au site.
 
             La structure du site se découpe donc ainsi :
-
           </p>
           <img src="{{ asset('images/plan_site.png') }}" alt="plan du site">
+        </div>
+      </div>
 
-          <h3>Détails de la conception</h3>
+      <h2>Détail des fonctionnalités proposées </h2>
+      <div class="row">
+        <div class="col-md-12 text-left">
           <p>
-            La table Utilisateur contient l’ensemble des profils de tous les utilisateurs du site. Si l’utilisateur est un adhérent de l’association, son champ adhérent est à 1 et il choisit un profil qui correspond à son temps de pratique d’activité sportive. Il en existe 4 types (Sédentaire, Moyennement actif, Actif, Très actif) stockés dans la table Profil. Cette relation implique la création d’une table intermédiaire pour stocker les couples Utilisateur-Profil. Au fil de ses entraînements, l’utilisateur peut changer son profil si il a réussi l’objectif de temps de son profil actuel.
-            Si il participe seulement à un projet, le champ adhérent est à 0. La liste des projets existant se trouve dans la table Projet. Une table intermédiaire est créée pour contenir les couples Utilisateur-Projet. Le seul projet actuel est Objectif Terre-Lune. Il existe aussi des profils pour ce projet, stockés dans ProfilProjet (Le 1er quartier, Le croissant, La gibeuse, La pleine lune). Etant donné que les projets peuvent concerner plusieurs sports, cette relation implique la table intermédiaire contenant les couples Projet-Sport.
-            La liste des sports disponibles est stockée dans la table Sport. Chaque sport correspond à un type : il en existe 3 (Sports d’eau, Sports d’extérieur, Sports de salle) stockés dans TypeSport. A chaque type correspond une couleur qui est utile pour l’affichage.
-            L’utilisateur renseigne à son inscription les sports qu’il pratique habituellement. Ceci est stocké dans la table intermédiaire des couples Utilisateur-Sport.
-            Les activités sportives des utilisateurs sont stockés dans la table Activité.
+            Lors de l’arrivée sur la page d’accueil, il est possible de créer un compte personnel ainsi que de se connecter si le compte est déjà existant. Ceci correspond respectivement aux pages /inscription et /login.
+            Pour être accepté sur le site, la demande d’inscription doit être validée par un membre administrateur sur la page /admin/demandes. L’utilisateur acquiert alors un statu qui lui permet d’accéder aux pages sur lesquelles il est autorisé à naviguer.
+            <br /><br />
+            Les utilisateurs ayant accès aux pages réservées au carnet de bord de l’association peuvent voir leurs statistiques sur la semaine sur la page /adherent/carnetbord ainsi que les statistiques sur les mois précédents sur la page /adherent/stats. Il est possible d’ajouter des activités réalisées sur la page /adherent/activite/ajout. Les utilisateurs peuvent obtenir des badges si ils remplissent leurs objectifs sur la semaine. Ils en sont informés par l’ouverture d’une page /adherent/badge.
+            <br /><br />
+            Les utilisateurs ayant accès aux pages réservées au projet peuvent voir leurs objectifs et réalisations ainsi que l’état d’avancement du projet sur la page /projet. Il est possible d’ajouter des activités pour cet utilisateur sur la page /projet/ajout.
+            <br />
           </p>
 
-          <h3>Création de la base</h3>
           <p>
-            Concernant la base de données, la technologie est MySQL car elle est adaptée à notre application. Les adhérents ne rentrent que quelques fois par semaine leur activité donc SQL est suffisant (il peut gérer des bases bien plus lourdes que la notre). Elle est stockée dans l’application phpMyAdmin, qui propose une interface très simple à appréhender, et qui est incluse dans les plateformes Wamp/Mamp. Cependant, la base a été construite par le biais de l’ORM Doctrine, qui permet de gérer des données simplement en se chargeant d’écrire les requêtes SQL à partir des paramètres donnés par l’utilisateur. La création de la base, des tables ainsi que toutes les interactions (ajout et récupération de données) passe donc par Doctrine, qui possède ses propres commandes.
+            En ce qui concerne la partie association, les personnes ayant les droits d’administrateur peuvent :
+          </p>
+          <ul>
+            <li>Ajouter un nouveau type de profil destiné à l’association via la page /admin/profil</li>
+            <li>Ajouter un nouveau sport proposé via la page /admin/sport</li>
+            <li>Ajouter un nouveau type de sport via la page /admin/typesport</li>
+            <li>Avoir accès à la liste des membres de l’association via la page /admin/membres/asso</li>
+            <li>Avoir accès à la liste des activités renseignées par les membres de l’association via la page /admin/activites</li>
+          </ul>
+
+          <p>
+            En ce qui concerne la partie projet, les personnes ayant les droits d’administrateur peuvent :
+          </p>
+          <ul>
+            <li>Ajouter un nouveau projet via la page /admin/projet</li>
+            <li>Ajouter un nouveau type de profil projet via la page /admin/profilprojet</li>
+            <li>Avoir accès à la liste des participants aux projets via la page /admin/membres/projet</li>
+            <li>Avoir accès au nombre de personnes inscrites pour chaque catégorie dans le projet via la page /admin/projet/stat</li>
+            <li>Avoir accès à la distance totale parcourue par les participants sur le projet via la page /admin/projet/distance</li>
+          </ul>
+
+          <p>
+            <br />
+            En plus, l’administrateur peut avoir accès à la liste des membres du site sur la page /admin/membres et gérer les demandes d’inscription sur la page /admin/demandes.
+            <br /><br />
+            Sur la page d’accueil admin, soit /admin, l’administrateur peut voir les dernières personnes inscrites sur le site ainsi que les dernières activités rentrées.
           </p>
         </div>
       </div>

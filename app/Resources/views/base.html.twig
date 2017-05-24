@@ -19,6 +19,9 @@
         <ul class="nav navbar-nav">
           <li><img class="logo-asso" src="{{ asset('images/text.png') }}" alt="image asso"></li>
           <li class="active"><a href="{{ path('asso_sport_accueil_homepage') }}">Accueil</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('asso_sport_admin_homepage') }}">Espace Admin</a></li>
+          {% endif %}
           <li><a href="#">Contact</a></li>
           <li><a href="{{ path('asso_sport_accueil_a_propos') }}">A propos</a></li>
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
