@@ -1,0 +1,118 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/apropos.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+  <section class="row">
+    <div class="col-lg-12 text-center">
+      <h1>A propos</h1>
+      <img class="image-asso" src="{{ asset('images/400dpiLogo.png') }}" alt="image asso">
+    </div>
+  </section>
+</div>
+
+
+<div class="container button-asso">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h2>Technologies utilisées</h2>
+      <div class="row">
+        <div class="col-md-12 text-left">
+          <h3>Plateforme de développement web</h3>
+          <p>
+            La première chose a été de choisir une plateforme de développement web. En fonction de nos systèmes d’exploitation, nous avons utilisé Wamp, Mamp et Xampp, qui proposent tous les trois des fonctionnalités communes. Ces plateformes nous ont permis l’installation du serveur Apache, de MySQL pour les bases de données, et du langage PHP.
+          </p>
+
+          <h3>Langages de programmation</h3>
+          <p>
+            Côté serveur, nous avons donc utilisé le classique PHP qui est un langage très utilisé pour cela. Les vues ont été réalisées en HTML.
+          </p>
+
+          <h3>Symfony</h3>
+          <p>
+            Pour développer notre site web nous avons utilisé le framework PHP Symfony, ce dernier proposant un environnement de travail pratique pour le travail en groupe puisqu’il est découpé en beaucoup de sous parties permettant à chacun de travailler sur sa partie du projet sans entraver les avancées des autres.
+            Concernant son fonctionnement lors de l’accès à une page, celui-ci se déroule en plusieurs temps. Premièrement l’url envoyé au serveur passe par un fichier de routing qui en fonction de l’url demande au “contrôleur” d’effectuer telle ou telle action (une action est une fonction). C’est ensuite cette action qui retourne une page html ou un formulaire ou qui effectue un autre type d’action.
+          </p>
+
+          <h3>Bootstrap</h3>
+          <p>
+            Concernant les vues, nous avons utilisé Bootstrap, un framework CSS fait par Twitter. Il permet de mettre en forme des pages web en insérant des classes faites par Bootstrap à l’intérieur du code HTML. La principale utilité de ce framework est la division des pages web en colonnes, ce qui permet de placer les éléments précisément, facilement et de façon à s’adapter aux tailles d’écrans utilisées. De plus il contient de nombreuses mises en page pour chaque élément classique d’une page HTML (tableaux, listes, formulaire, barres de navigations, etc..).
+            Son utilisation permet donc de se concentrer plus sur le “code” à proprement parler et moins sur le design des pages.
+          </p>
+
+          <h3>Google charts </h3>
+          <p>
+            Pour afficher les graphiques de notre site nous avons utilisés la bibliothèque JavaScript Google Charts. Nous avons utilisés seulement quelques types de graphes parmis ceux proposés, ainsi que quelques options, les possibilités étant très grandes. Nous appelons ces graphiques avec les données de la base de donnée, à partir des vues.
+          </p>
+        </div>
+      </div>
+
+      <h2>Base de données</h2>
+      <div class="row">
+        <div class="col-md-12 text-left">
+          <p>
+            Nous avons commencé par concevoir la base de données sous forme d’un diagramme UML.
+          </p>
+          <img src="{{ asset('images/DB.png') }}" alt="base de données">
+
+          <h3>Détails de la conception</h3>
+          <p>
+            La table <strong>Utilisateur</strong> contient l’ensemble des profils de tous les utilisateurs du site. Si l’utilisateur est un adhérent de l’association, son champ adhérent est à 1 et il choisit un profil qui correspond à son temps de pratique d’activité sportive. Il en existe 4 types (Sédentaire, Moyennement actif, Actif, Très actif) stockés dans la table <strong>Profil</strong>. Cette relation implique la création d’une table intermédiaire pour stocker les couples <strong>Utilisateur-Profil</strong>. Au fil de ses entraînements, l’utilisateur peut changer son profil si il a réussi l’objectif de temps de son profil actuel.
+            Si il participe seulement à un projet, le champ adhérent est à 0. La liste des projets existant se trouve dans la table <strong>Projet</strong>. Une table intermédiaire est créée pour contenir les couples <strong>Utilisateur-Projet</strong>. Le seul projet actuel est Objectif Terre-Lune. Il existe aussi des profils pour ce projet, stockés dans <strong>ProfilProjet</strong> (Le 1er quartier, Le croissant, La gibeuse, La pleine lune). Etant donné que les projets peuvent concerner plusieurs sports, cette relation implique la table intermédiaire contenant les couples <strong>Projet-Sport</strong>.
+            La liste des sports disponibles est stockée dans la table <strong>Sport</strong>. Chaque sport correspond à un type : il en existe 3 (Sports d’eau, Sports d’extérieur, Sports de salle) stockés dans <strong>TypeSport</strong>. A chaque type correspond une couleur qui est utile pour l’affichage.
+            L’utilisateur renseigne à son inscription les sports qu’il pratique habituellement. Ceci est stocké dans la table intermédiaire des couples <strong>Utilisateur-Sport</strong>.
+            Les activités sportives des utilisateurs sont stockés dans la table <strong>Activité</strong>.
+          </p>
+
+          <h3>Création de la base</h3>
+          <p>
+            Concernant la base de données, la technologie est MySQL car elle est adaptée à notre application. Les adhérents ne rentrent que quelques fois par semaine leur activité donc SQL est suffisant (il peut gérer des bases bien plus lourdes que la notre). Elle est stockée dans l’application phpMyAdmin, qui propose une interface très simple à appréhender, et qui est incluse dans les plateformes Wamp/Mamp. Cependant, la base a été construite par le biais de l’ORM Doctrine, qui permet de gérer des données simplement en se chargeant d’écrire les requêtes SQL à partir des paramètres donnés par l’utilisateur. La création de la base, des tables ainsi que toutes les interactions (ajout et récupération de données) passe donc par Doctrine, qui possède ses propres commandes.
+          </p>
+        </div>
+      </div>
+
+      <h2>Découpage et architecture du site </h2>
+      <div class="row">
+        <div class="col-md-12 text-left">
+          <p>
+            Notre site web est découpé en plusieurs environnements (en “bundle” en langage symfony).
+            Chaque environnement est accessible en fonction de l’utilisateur essayant d’y accéder.
+            Pour ce faire nous avons défini plusieurs types d’utilisateurs : les administrateurs ayant un accès complet au site ainsi qu’à des pages de modération du site, les membres de l’association, les membres d’un projet organisé par l’association ainsi que les membres appartenant à ces deux dernières catégories. Les pages de chaque environnement sont placées derrière un pare-feu restreignant l’accès aux pages concernées aux bons utilisateurs.
+
+            Le système de type d’utilisateur de symfony fonctionne selon une hiérarchie. Nous retrouvons donc à la base les membres du projet ainsi que les membres de l’association. Ces types sont englobés par le type “complet” qui combine les deux autres. Et enfin le type admin qui englobe le type complet permettant ainsi un accès total au site.
+
+            La structure du site se découpe donc ainsi :
+
+          </p>
+          <img src="{{ asset('images/plan_site.png') }}" alt="plan du site">
+
+          <h3>Détails de la conception</h3>
+          <p>
+            La table Utilisateur contient l’ensemble des profils de tous les utilisateurs du site. Si l’utilisateur est un adhérent de l’association, son champ adhérent est à 1 et il choisit un profil qui correspond à son temps de pratique d’activité sportive. Il en existe 4 types (Sédentaire, Moyennement actif, Actif, Très actif) stockés dans la table Profil. Cette relation implique la création d’une table intermédiaire pour stocker les couples Utilisateur-Profil. Au fil de ses entraînements, l’utilisateur peut changer son profil si il a réussi l’objectif de temps de son profil actuel.
+            Si il participe seulement à un projet, le champ adhérent est à 0. La liste des projets existant se trouve dans la table Projet. Une table intermédiaire est créée pour contenir les couples Utilisateur-Projet. Le seul projet actuel est Objectif Terre-Lune. Il existe aussi des profils pour ce projet, stockés dans ProfilProjet (Le 1er quartier, Le croissant, La gibeuse, La pleine lune). Etant donné que les projets peuvent concerner plusieurs sports, cette relation implique la table intermédiaire contenant les couples Projet-Sport.
+            La liste des sports disponibles est stockée dans la table Sport. Chaque sport correspond à un type : il en existe 3 (Sports d’eau, Sports d’extérieur, Sports de salle) stockés dans TypeSport. A chaque type correspond une couleur qui est utile pour l’affichage.
+            L’utilisateur renseigne à son inscription les sports qu’il pratique habituellement. Ceci est stocké dans la table intermédiaire des couples Utilisateur-Sport.
+            Les activités sportives des utilisateurs sont stockés dans la table Activité.
+          </p>
+
+          <h3>Création de la base</h3>
+          <p>
+            Concernant la base de données, la technologie est MySQL car elle est adaptée à notre application. Les adhérents ne rentrent que quelques fois par semaine leur activité donc SQL est suffisant (il peut gérer des bases bien plus lourdes que la notre). Elle est stockée dans l’application phpMyAdmin, qui propose une interface très simple à appréhender, et qui est incluse dans les plateformes Wamp/Mamp. Cependant, la base a été construite par le biais de l’ORM Doctrine, qui permet de gérer des données simplement en se chargeant d’écrire les requêtes SQL à partir des paramètres donnés par l’utilisateur. La création de la base, des tables ainsi que toutes les interactions (ajout et récupération de données) passe donc par Doctrine, qui possède ses propres commandes.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

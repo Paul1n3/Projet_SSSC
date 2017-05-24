@@ -344,7 +344,7 @@ class AdminController extends Controller
         $count = 1;
         foreach ($listeUtilisateurs as $user) {
           if(isset($_POST['test_'.$count])) {
-            $user->addRole('ROLE_ADMIN');
+            $user->addRole('ROLE_ADHERENT_COMPLET');
             $user->setDemande(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
