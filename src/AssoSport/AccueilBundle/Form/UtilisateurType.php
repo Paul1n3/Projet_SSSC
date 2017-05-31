@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UtilisateurType extends AbstractType
 {
@@ -37,7 +38,15 @@ class UtilisateurType extends AbstractType
           ->add('poids',     NumberType::class)
           ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
           ->add('email',    EmailType::class)
-          ->add('plainPassword',  PasswordType::class)
+          //->add('plainPassword',  PasswordType::class)
+          ->add('password', RepeatedType::class, array(
+            'type' => PasswordType::class,
+            'invalid_message' => 'The password fields must match.',
+            'options' => array('attr' => array('class' => 'password-field')),
+            'required' => true,
+            'first_options'  => array('label' => 'Password'),
+            'second_options' => array('label' => 'RepeatPassword'),
+          ))
           ->add('adherent',  CheckboxType::class, array('required' => false))
           ->add('participant',  CheckboxType::class, array('required' => false))
           //->add('profilActuel', ProfilType::class)
