@@ -92,6 +92,13 @@ class Activite
     */
     private $projet;
 
+    /**
+    * Ctor
+    */
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+    }
 
     /**
      * Get id
