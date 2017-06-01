@@ -21,27 +21,64 @@
       <div class="col-sm-12 text-center">
         <p>
           <strong>{{ utilisateur.nom }} {{ utilisateur.prenom }}</strong> vous êtes inscrit pour contribuer à ce projet! <br /><br />
-          Vous devez parcourir <strong>{{ monProfilProjet.distance }} km par semaine</strong>, soit un total de <strong>{{ distanceARealiser }} km</strong> pendant la durée totale du projet. <br /> <br />
-
-          Depuis le début du projet, vous avez parcouru <strong>{{ distanceAdherent }} km</strong>. <br />  <br />
-
-
-          Cette semaine vous avez parcouru <strong>{{ distanceSemaine }} km</strong>. <br /><br /> <br /><br />
-
-          En cumulant tous les adhérents, vous avez fait la distance suivante:
+          Vous devez parcourir un total de <strong>{{ distanceARealiser }} km</strong> pendant la durée totale du projet. <br /> <br />
         </p>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-sm-12 text-center">
-        <h2>{{ distanceTotale }} km / {{ distanceTerreLune }} km</h2> <br /><br />
+      <div class="col-sm-2 text-right">
+        <p>
+          Depuis le début du projet:
+        </p>
+      </div>
+      <div class="col-sm-8">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow= {{ distanceTotale }} aria-valuemin="0" aria-valuemax= {{ distanceTerreLune }}  style="width:{{ distancePourcentage }}%">
-            Progression
+          <span class="progress-value">{{ distanceAdherent }} km sur {{ distanceARealiser }} km</span>
+          <div class="progress-bar" role="progressbar" aria-valuenow= {{ distanceAdherent }} aria-valuemin="0" aria-valuemax= {{ distanceARealiser }}  style="width:{{ distanceAdherent / distanceARealiser * 100}}%">
           </div>
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <p>
+          Cette semaine:
+        </p>
+      </div>
+      <div class="col-sm-8">
+        <div class="progress">
+          <span class="progress-value">{{ distanceSemaine }} km sur {{ monProfilProjet.distance }} km</span>
+          <div class="progress-bar" role="progressbar" aria-valuenow= {{ distanceSemaine }} aria-valuemin="0" aria-valuemax= {{ monProfilProjet.distance }}  style="width:{{ distanceSemaine / monProfilProjet.distance * 100}}%">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <br /><br /><p>En cumulant tous les adhérents, vous avez fait la distance suivante:</p>
+        <h2>{{ distanceTotale }} km / {{ distanceTerreLune }} km</h2> <br /><br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-center">
+        <img class="image-earth" src="{{ asset('images/earth.gif') }}" alt="image asso">
+      </div>
+      <div class="col-sm-8 text-center">
+        <div class="progress">
+          <span class="progress-value">Progression totale</span>
+          <div class="progress-bar " role="progressbar" aria-valuenow= {{ distanceTotale }} aria-valuemin="0" aria-valuemax= {{ distanceTerreLune }}  style="width:{{ distancePourcentage }}%">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 text-center">
+        <img class="image-moon" src="{{ asset('images/moon.gif') }}" alt="image asso">
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-12">
         <br /><br />
@@ -49,5 +86,6 @@
       </div>
     </div>
   </div>
+
 
 {% endblock %}
