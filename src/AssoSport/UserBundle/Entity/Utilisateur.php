@@ -41,6 +41,22 @@ class Utilisateur extends BaseUser
     private $prenom;
 
     /**
+     * Encrypted password. Must be persisted.
+     *
+     * @var string
+     *
+     * @Assert\Length(min=6, minMessage="Le mot de passe doit faire au moins {{ limit }} caractères.")
+     */
+    protected $password;
+
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $plainPassword;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="Taille", type="integer")
