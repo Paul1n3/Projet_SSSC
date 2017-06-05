@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProfilType extends AbstractType
@@ -20,7 +20,7 @@ class ProfilType extends AbstractType
     {
         $builder
         ->add('nom', TextType::class)
-        ->add('temps', NumberType::class)
+        ->add('temps', IntegerType::class)
         ->add('save',      SubmitType::class)
         ;
         

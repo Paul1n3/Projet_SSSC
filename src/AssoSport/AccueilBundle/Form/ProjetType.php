@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -22,7 +22,7 @@ class ProjetType extends AbstractType
     {
         $builder
         ->add('nom',        TextType::class)
-        ->add('objectif',       NumberType::class)
+        ->add('objectif',       IntegerType::class)
         ->add('objectifDistance',  CheckboxType::class, array('required' => false))
         ->add('dateDebut',      DateType::class)
         ->add('dateFin',        DateType::class)

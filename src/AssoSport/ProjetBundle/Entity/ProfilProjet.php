@@ -4,6 +4,8 @@ namespace AssoSport\ProjetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * ProfilProjet
  *
@@ -39,6 +41,7 @@ class ProfilProjet
      * @var int
      *
      * @ORM\Column(name="Distance", type="integer")
+     * @Assert\Range(min=0, minMessage="Veuillez entrer une distance positive.")
      */
     private $distance;
 
@@ -46,6 +49,7 @@ class ProfilProjet
      * @var int
      *
      * @ORM\Column(name="NbPlaces", type="integer")
+     * @Assert\Range(min=0, minMessage="Veuillez entrer une distance positive.")
      */
     private $nbPlaces;
 

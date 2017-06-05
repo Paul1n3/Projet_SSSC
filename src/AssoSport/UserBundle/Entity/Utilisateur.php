@@ -45,12 +45,13 @@ class Utilisateur extends BaseUser
      *
      * @var string
      *
-     * @Assert\Length(min=6, minMessage="Le mot de passe doit faire au moins {{ limit }} caractères.")
      */
     protected $password;
 
     /**
      * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @Assert\Length(min=6, minMessage="Le mot de passe doit faire au moins {{ limit }} caractères.")
      *
      * @var string
      */
@@ -60,7 +61,7 @@ class Utilisateur extends BaseUser
      * @var int
      *
      * @ORM\Column(name="Taille", type="integer")
-     * @Assert\Range(min=100, max =270)
+     * @Assert\Range(min=100, max=270, minMessage="Veuillez entrer une taille supérieure à 100 cm.", maxMessage="Veuillez entrer une taille inférieure à 270 cm.")
      */
     private $taille;
 
@@ -75,7 +76,7 @@ class Utilisateur extends BaseUser
      * @var int
      *
      * @ORM\Column(name="Poids", type="integer")
-     * @Assert\Range(min=30, max=130)
+     * @Assert\Range(min=30, max=300, minMessage="Veuillez entrer un poids supérieur à 30 kg.", maxMessage="Veuillez entrer un poids inférieur à 300 kg.")
      */
     private $poids;
 
