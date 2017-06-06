@@ -124,31 +124,34 @@
     </div>
 
     <script>
-      $(document).ready(function(){
-         $("#assosport_accueilbundle_utilisateur_adherent").click(function(){
-           if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
-             $("#adherentOrNot").show("fast");
-           } else {
-             $("#adherentOrNot").hide("fast");
-           }
-         });
-      });
-      $(document).ready(function(){
-         $("#assosport_accueilbundle_utilisateur_participant").click(function(){
-           if( $("#assosport_accueilbundle_utilisateur_participant").is( ":checked" ) ) {
-             $("#participantOrNot").show("fast");
-           } else {
-             $("#participantOrNot").hide("fast");
-           }
-         });
-      });
-      // $(document).ready(function(){
-      //    $("#assosport_accueilbundle_utilisateur_save").click(function() {
-      //       if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
-      //         alert();
-      //       }
-      //    });
-      // });
+      if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
+        $("#adherentOrNot").show("fast");
+      } else {
+        $("#adherentOrNot").hide("fast");
+      }
+
+      if( $("#assosport_accueilbundle_utilisateur_participant").is( ":checked" ) ) {
+        $("#participantOrNot").show("fast");
+      } else {
+        $("#participantOrNot").hide("fast");
+      }
+
+       $("#assosport_accueilbundle_utilisateur_adherent").click(function(){
+         if( $("#assosport_accueilbundle_utilisateur_adherent").is( ":checked" ) ) {
+           $("#adherentOrNot").show("fast");
+         } else {
+           $("#adherentOrNot").hide("fast");
+         }
+       });
+
+       $("#assosport_accueilbundle_utilisateur_participant").click(function(){
+         if( $("#assosport_accueilbundle_utilisateur_participant").is( ":checked" ) ) {
+           $("#participantOrNot").show("fast");
+         } else {
+           $("#participantOrNot").hide("fast");
+         }
+       });
+
     </script>
 
 

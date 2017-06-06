@@ -22,8 +22,6 @@
           {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('asso_sport_admin_homepage') }}">Espace Admin</a></li>
           {% endif %}
-          <li><a href="#">Contact</a></li>
-          <li><a href="{{ path('asso_sport_accueil_a_propos') }}">A propos</a></li>
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <li><p class="navbar-text text-center">Connecté en tant que {{ app.user.username }}</p></li>
           {% endif %}
@@ -33,7 +31,7 @@
             <a  class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span> MENU <span class="caret"></span></a>
             <ul class="dropdown-menu">
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <li><a href="{{ path('asso_sport_accueil_projet') }}">InscriptionProjets</a></li>
+              <li><a href="{{ path('asso_sport_accueil_projet') }}">Inscription Projets</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('fos_user_change_password') }}">Change Password</a></li>
               <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>

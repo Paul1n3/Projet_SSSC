@@ -23,10 +23,8 @@
         <th>Prénom</th>
         <th>Date de naissance</th>
         <th>Adresse mail</th>
-        <th>Asso</th>
-        <th>Participant</th>
-        <th>Validation ?</th>
-        <th>Roles utilisateur (pour la présentation)</th>
+        <th>Inscrit à l'association ?</th>
+        <th>Participant au projet ?</th>
       </tr>
     </thead>
     <tbody>
@@ -37,10 +35,22 @@
         <td>{{ demande.prenom }}</td>
         <td>{{ demande.dateNaissance|date("m/d/Y") }}</td>
         <td>{{ demande.email }}</td>
-        <td>{{ demande.adherent }}</td>
-        <td>{{ demande.participant }}</td>
-        <td> <input type="checkbox" name="{{ ('test_' ~ count) | trans }}"></td>
-        <td>{{ demande.roles|join(', ') }}</td>
+        {% if  demande.adherent %}
+          <td><input type="checkbox" name="{{ ('demande_adherent_' ~ count) | trans }}"></td>
+        {% else %}
+          <td></td>
+        {% endif %}
+        {% if  demande.participant  %}
+          <td><input type="checkbox" name="{{ ('demande_projet_' ~ count) | trans }}"></td>
+        {% else %}
+          <td></td>
+        {% endif %}
+        <td>
+          <label class="btn btn-primary">
+            <input type="checkbox" name="{{ ('validation_' ~ count) | trans }}" >
+            Validation
+          </label>
+        </td>
       </tr>
       {% set count = count + 1 %}
     {% endfor %}
@@ -49,9 +59,7 @@
   <input type="submit" value="Submit">
     </div>
 
-
-
-
 </form>
+
 
 {% endblock %}

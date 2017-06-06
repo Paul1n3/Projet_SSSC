@@ -343,13 +343,19 @@ class AdminController extends Controller
       if ($request->isMethod('POST')) {
         $count = 1;
         foreach ($listeUtilisateurs as $user) {
-          if(isset($_POST['test_'.$count])) {
+          if(isset($_POST['demande_adherent_'.$count]) && isset($_POST['demande_projet_'.$count])) {
             $user->addRole('ROLE_ADHERENT_COMPLET');
-            $user->setDemande(0);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+          } else if(isset($_POST['demande_adherent_'.$count])) {
+            $user->addRole('ROLE_ADHERENT_ASSO');
+          } else if(isset($_POST['demande_projet_'.$count])) {
+            $user->addRole('ROLE_ADHERENT_PROJET');
           }
+          if(isset($_POST['validation_'.$count])){
+            $user->setDemande(0);
+          }
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($user);
+          $em->flush();
           $count +=1;
         }
         return $this->redirectToRoute('asso_sport_admin_homepage');
