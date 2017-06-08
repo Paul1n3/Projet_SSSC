@@ -16,10 +16,19 @@
     </div>
 
     <div class="container">
-      <div class="col-sm-12 text-center">
-        <h3>La distance parcourue depuis le lancement du projet est de : </h3>
-        <h2>{{ distance }} km / {{ projet.objectif }} km</h2>
-     </div>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h3>La distance parcourue depuis le lancement du projet est de : </h3>
+          <h2>{{ distance }} km / {{ projet.objectif }} km</h2>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="progress">
+            <span class="progress-value">Progression totale</span>
+            <div class="progress-bar" role="progressbar" aria-valuenow= {{ distance }} aria-valuemin="0" aria-valuemax= {{ projet.objectif }}  style="width:{{ distance / projet.objectif * 100}}%">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 {% endblock %}

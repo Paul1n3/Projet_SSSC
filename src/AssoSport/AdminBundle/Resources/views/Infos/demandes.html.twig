@@ -25,6 +25,7 @@
         <th>Adresse mail</th>
         <th>Inscrit à l'association ?</th>
         <th>Participant au projet ?</th>
+        <th>Catégorie projet demandée</th>
       </tr>
     </thead>
     <tbody>
@@ -42,9 +43,12 @@
         {% endif %}
         {% if  demande.participant  %}
           <td><input type="checkbox" name="{{ ('demande_projet_' ~ count) | trans }}"></td>
+          <td>{{ demande.getProfilProjet.nomProfilProjet }}</td>
         {% else %}
           <td></td>
+          <td></td>
         {% endif %}
+
         <td>
           <label class="btn btn-primary">
             <input type="checkbox" name="{{ ('validation_' ~ count) | trans }}" >

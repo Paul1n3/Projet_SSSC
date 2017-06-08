@@ -11,6 +11,15 @@ h1 {
   margin-top: 1em;
 }
 
+.progress {
+    text-align:center;
+}
+.progress-value {
+    position:absolute;
+    right:0;
+    left:0;
+}
+
 .navbar-default {
   background-color: #bf2717;
   border-color: #8e0600;

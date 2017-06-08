@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{{ asset('css/form_admin.css') }}" />
 {% endblock %}
 
+{% block scriptlink %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
 {% block body %}
 
   <div class="container">
@@ -19,40 +23,14 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Mois</th>
-              <th>Cumul des activités physiques</th>
-              <th>Intensités moyennes</th>
-            </tr>
-            </thead>
-          <tbody>
-            <tr>
-              <td>{{ dateCeMois }}</td>
-              <td>{{ tempsMois }}</td>
-              <td>{{ moyenneSensation }}</td>
-            </tr>
-            <tr>
-              <td>{{ dateMois1 }}</td>
-              <td>{{ tempsMois1 }}</td>
-              <td>{{ moyenneSensation1 }}</td>
-            </tr>
-            <tr>
-              <td>{{ dateMois2 }}</td>
-              <td>{{ tempsMois2 }}</td>
-              <td>{{ moyenneSensation2 }}</td>
-            </tr>
-            <tr>
-              <td>{{ dateMois3 }}</td>
-              <td>{{ tempsMois3 }}</td>
-              <td>{{ moyenneSensation3 }}</td>
-            </tr>
-          </tbody>
-        </table>
-
+      <div class=" col-md-5 text-center">
+        <h3>Cumul des activités physiques par mois</h3>
+          {{ include("AssoSportAdherentBundle:Chart:AP_chart.html.twig") }}
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-5 text-center">
+        <h3>Intensités moyennes</h3>
+        {{ include("AssoSportAdherentBundle:Chart:int_chart.html.twig") }}
       </div>
     </div>
   </div>

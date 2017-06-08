@@ -22,6 +22,9 @@
           {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('asso_sport_admin_homepage') }}">Espace Admin</a></li>
           {% endif %}
+          {% if is_granted('ROLE_ADHERENT_ASSO') %}
+            <li><a href="{{ path('asso_sport_adherent_stats') }}">Mes statistiques</a></li>
+          {% endif %}
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <li><p class="navbar-text text-center">Connecté en tant que {{ app.user.username }}</p></li>
           {% endif %}
