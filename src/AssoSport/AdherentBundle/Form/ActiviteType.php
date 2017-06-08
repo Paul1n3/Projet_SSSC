@@ -27,13 +27,8 @@ class ActiviteType extends AbstractType
               'choice_label'    =>  'nom',
               'multiple'        =>   false,
             ))
-      ->add('projet', EntityType::class, array(
-              'class'           =>  'AssoSportAccueilBundle:Projet',
-              'choice_label'    =>  'nom',
-              'multiple'        =>   false,
-            ))
-			->add('save',      	SubmitType::class)
-		;
+		->add('save',      SubmitType::class)
+    ;
   }
  
   public function setDefaultOptions(OptionsResolverInterface $resolver)
