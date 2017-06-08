@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
-    public function ajoutAction(Request $request)
+   public function ajoutAction(Request $request)
     {
 		$utilisateur = $this->getUser();
 		if($utilisateur==null){
@@ -40,15 +40,34 @@ class DefaultController extends Controller
 				foreach($listActivitesSemaine as $activite){
 					$tempsSemaine += $activite->getTemps();
 				}
+				
 				$objectif = $utilisateur->getProfilActuel();
+				//si on a atteint l'objectif de la semaine
 				if($tempsSemaine >= $objectif->getTemps()){
+					
+					//on récupère la liste des objectifs réussis
+					$profils = $utilisateur->getProfils();
+					$already = false;
+					//on vérifie que l'objectif n'est pas déjà validé
+					foreach($profils as $p){
+						if($objectif->getId() == $p->getId()){
+							$already=true;
+							break;
+						}
+					}
+					if($already==false){
+						//on ajoute cet objectif à la liste des objectifs réussis
+						$utilisateur = $utilisateur->addProfil($objectif);
+						$em = $this->getDoctrine()->getManager();
+						$em->persist($activite);
+						$em->flush();
+					}
 					return $this->redirect($this->generateUrl('asso_sport_adherent_badge'));
 				}
 
 				return $this->redirect($this->generateUrl('asso_sport_adherent_carnetbord'));
 			}
 		}
-
 		return $this->render('AssoSportAdherentBundle:Default:form.html.twig', array('form' => $form->createView()));
     }
 
