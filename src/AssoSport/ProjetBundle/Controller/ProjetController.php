@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use AssoSport\AccueilBundle\Entity\Activite;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Log\LoggerInterface;
+
 
 use AssoSport\AdherentBundle\Form\ActiviteProjetType;
 use \DateTime;
@@ -71,6 +73,19 @@ class ProjetController extends Controller
     public function ajoutAction(Request $request)
     {
         $utilisateur = $this->getUser();
+
+
+
+
+        $logger = $this->get('logger');
+        $projets = $utilisateur->getProjets();
+        $logger->info('Nb Projects: '.count($projets));
+        foreach ($projets as $projet) {
+            $logger->info('Projet: '.$projet);
+        }
+
+
+
 
         $repositoryProjet = $this
             ->getDoctrine()

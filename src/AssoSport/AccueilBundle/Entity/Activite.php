@@ -35,7 +35,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Temps", type="integer")
-     * @Assert\Range(min=0)
+     * @Assert\Range(min=0, minMessage="Veuillez entrer une distance positive.")
      */
     private $temps;
 
@@ -43,7 +43,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Borg", type="integer")
-     * @Assert\Range(min=6, max=20)
+     * @Assert\Range(min=6, max=20, minMessage="Veuillez entrer une valeur supérieure à 5.", maxMessage="Veuillez entrer une valeur inférieure à 21.")
      */
     private $borg;
 
@@ -51,7 +51,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="Sensation", type="integer")
-     * @Assert\Range(min=1, max=4)
+     * @Assert\Range(min=1, max=4, minMessage="Veuillez entrer une valeur supérieure à 0.", maxMessage="Veuillez entrer une valeur inférieure à 5.")
      */
     private $sensation;
 
@@ -59,7 +59,7 @@ class Activite
      * @var int
      *
      * @ORM\Column(name="DistanceKm", type="integer")
-     * @Assert\Range(min=0)
+     * @Assert\Range(min=0, minMessage="Veuillez entrer une distance positive.")
      */
     private $distanceKm;
 

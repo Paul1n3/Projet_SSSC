@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -32,14 +32,13 @@ class UtilisateurType extends AbstractType
         $builder
           ->add('nom',       TextType::class)
           ->add('prenom',    TextType::class)
-          ->add('taille',    NumberType::class)
+          ->add('taille',    IntegerType::class)
           ->add('dateNaissance', DateType::class, array(
             'years' => range(1920, date('Y'))))
-          ->add('poids',     NumberType::class)
+          ->add('poids',     IntegerType::class)
           ->add('sexe',      ChoiceType::class, array('choices' => array('Masculin' => 'M', 'Feminin' => 'F')))
           ->add('email',    EmailType::class)
-          //->add('plainPassword',  PasswordType::class)
-          ->add('password', RepeatedType::class, array(
+          ->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'The password fields must match.',
             'options' => array('attr' => array('class' => 'password-field')),

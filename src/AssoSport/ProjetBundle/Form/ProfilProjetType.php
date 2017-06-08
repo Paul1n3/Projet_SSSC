@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -21,8 +21,8 @@ class ProfilProjetType extends AbstractType
         $builder
         ->add('nomProfilProjet',        TextType::class)
         ->add('nomCategorie',       TextType::class)
-        ->add('distance',       NumberType::class)
-        ->add('nbPlaces',       NumberType::class)
+        ->add('distance',       IntegerType::class)
+        ->add('nbPlaces',       IntegerType::class)
         ->add('projetAssocie', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Projet',
               'choice_label'    =>  'nom',
