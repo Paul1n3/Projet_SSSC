@@ -10,12 +10,13 @@ use AssoSport\AccueilBundle\Entity\Projet;
 use AssoSport\AccueilBundle\Entity\TypeSport;
 use AssoSport\AccueilBundle\Entity\Profil;
 use AssoSport\AdherentBundle\Form\ActiviteType;
+use AssoSport\AdherentBundle\Form\ModifProfilType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
-   public function ajoutAction(Request $request)
+    public function ajoutAction(Request $request)
     {
 		$utilisateur = $this->getUser();
 		if($utilisateur==null){
@@ -220,13 +221,26 @@ class DefaultController extends Controller
 		return new Response($content);
 	}
 
-	public function badgeAction(){
+	public function badgeAction(Request $request){
 		$utilisateur = $this->getUser();
+		if($utilisateur==null){
+			return $this->redirect($this->generateUrl('login'));
+		}
 		$objectif = $utilisateur->getProfilActuel();
+		
+		$form = $this->createForm(ModifProfilType::class, $utilisateur);
+		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($utilisateur);
+			$em->flush();
+			return $this->redirect($this->generateUrl('asso_sport_adherent_carnetbord'));
+		}
 		$content = $this->get('templating')->render('AssoSportAdherentBundle:Default:badge.html.twig', array(
 			'utilisateur' => $utilisateur,
-			'objectif' => $objectif
+			'objectif' => $objectif,
+			'form' => $form->createView(),
 		));
 		return new Response($content);
 	}
+	
 }

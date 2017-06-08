@@ -1,12 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <title>Félicitations !</title>
-  <body>
-	<h1>Objectif réussi !</h1>
-	<p>Félicitations, {{ utilisateur.prenom }} ! Vous avez réussi votre objectif de {{objectif.temps }} minutes d'activités physiques dans la semaine, vous êtes donc {{objectif.nom}}.</p>
-	<p>Vous pouvez garder ce même objectif pour la semaine prochaine, mais vous pouvez aussi en choisir un autre.</p>
+{% extends "::base.html.twig" %}
+
+{% block title %}Objectif réussi{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/adherent.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1>Objectif réussi</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+        <div class="col-sm-12 col-md-4">
+			<strong><h3>Félicitations <strong>{{ utilisateur.prenom }}</strong> !</h3></strong>
+			<p>Vous avez choisi le profil <strong>{{ objectif.nom }}</strong>, et vous avez réalisé l'objectif de <strong>{{ objectif.temps }}</strong> minutes d'activité.
+			Félicitations ! Désormais, vous avez la possibilité de choisir le profil qui vous convient le mieux pour la semaine à venir.</p> 
+		</div>
+      </div>
+	</div>
+	<br />
 	
 	
-	<a href="{{ path('asso_sport_adherent_carnetbord') }}">Retour au carnet de bord</a>
-  </body>
-</html>
+	<div class="container">
+      {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+      {{ form_start(form) }}
+
+      <div class="form-group" >
+          {{ form_label(form.profilActuel, 'Profil Actuel', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
+          <div class="col-sm-10">{{ form_widget(form.profilActuel, {'attr': {'class': 'selectpicker'}}) }}</div>
+          {{ form_errors(form.profilActuel) }}
+        </div>
+	  
+	  {{ form_end(form) }}
+	</div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12 text-center">
+        <div class="btn-group">
+          <a href="{{ path('asso_sport_adherent_carnetbord') }}" class="btn btn-primary">Retourner au carnet de bord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+
+
+
+{% endblock %}

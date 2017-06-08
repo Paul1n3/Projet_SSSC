@@ -87,7 +87,7 @@ class Activite
     
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\AccueilBundle\Entity\Projet")
-    * @ORM\JoinColumn(nullable=false)
+    * @ORM\JoinColumn(nullable=true)
     * @Assert\Valid()
     */
     private $projet;
