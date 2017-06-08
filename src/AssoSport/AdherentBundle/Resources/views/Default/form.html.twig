@@ -55,12 +55,7 @@
         {{ form_errors(form.sensation) }}
       </div>
       <p>1 = Faible, 2 = Modérée, 3 = Assez difficile, 4 = Difficile</p>
-      
-      <div class="form-group" >
-        {{ form_label(form.projet, 'Ajouter aussi à un projet ?', {'label_attr': {'class': 'col-sm-2 control-label required'}}) }}
-        <div class="col-sm-10">{{ form_widget(form.projet, {'label_attr': {'class': 'form-control'}}) }}</div>
-        {{ form_errors(form.projet) }}
-      </div>
+   
       <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</div>
