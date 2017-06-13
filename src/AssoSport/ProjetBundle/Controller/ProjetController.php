@@ -77,12 +77,15 @@ class ProjetController extends Controller
 
 
 
-        $logger = $this->get('logger');
+        /*$logger = $this->get('logger');
         $projets = $utilisateur->getProjets();
         $logger->info('Nb Projects: '.count($projets));
+        $compteur = 0;
         foreach ($projets as $projet) {
             $logger->info('Projet: '.$projet);
+            $compteur++;
         }
+        $logger->info('Nb Projects: '.$compteur);*/
 
 
 

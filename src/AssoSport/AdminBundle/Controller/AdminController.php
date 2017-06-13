@@ -219,39 +219,6 @@ class AdminController extends Controller
       return new Response($content);
     }
 
-    /*public function activitespersoAction(Request $request)
-    {
-      $defaultData = array('message' => 'Type your message here');
-      $form = $this->createFormBuilder($defaultData)
-        ->add('Nom de l\'adhérent', TextType::class)
-
-      $form->handleRequest($request);
-
-      if ($form->isSubmitted() && $form->isValid()) {
-        $nom = $request->request->get('Nom de l\'adhérent');
-
-        $repositoryUser = $this
-          ->getDoctrine()
-          ->getManager()
-          ->getRepository('AssoSportUserBundle:Utilisateur')
-        ;
-        $utilisateur = $repositoryUser->findOneBy(array('nom' => $nom));
-
-        $repositoryActivites = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('AssoSport\AccueilBundle\Entity\Activite')
-        ;
-        $listActivites = $repositoryActivites->findAllActivitesAdherent($utilisateur->getId());
-
-        return $this->render('AssoSportAdminBundle:Infos:activitesperso.html.twig', array(
-        'activites' => $listActivites
-        ));
-      }
-      return $this->render('AssoSportAdminBundle:Default:form.html.twig', array(
-          'form' => $form->createView(),
-      ));
-    }*/
-
     // Liste des activités de la personne sélectionnée dans la liste des membres adhérents de l'asso
     public function activitespersoAction($id)
     {
