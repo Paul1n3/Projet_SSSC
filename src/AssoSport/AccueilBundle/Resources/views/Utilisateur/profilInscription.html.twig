@@ -2,7 +2,10 @@
 {% block body %}
 
 
-<link rel="stylesheet" href="{{ asset('css/form.css') }}" />
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/adherent.css') }}" />
+{% endblock %}
 
     <div class="container">
       <div class="col-sm-10">
@@ -11,7 +14,7 @@
     </div>
 
     <div class="container">
-      <!-- { % form_theme form ':Form:bootstrap_3_inscription_form_layout.html.twig' %} -->
+
       {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 

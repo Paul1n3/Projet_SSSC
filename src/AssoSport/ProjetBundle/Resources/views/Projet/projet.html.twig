@@ -65,17 +65,17 @@
 
     <div class="row">
       <div class="col-sm-2 text-center">
-        <img class="image-earth" src="{{ asset('images/earth.gif') }}" alt="image asso">
+        <img class="image-earth" src="{{ asset('images/earth.jpg') }}" alt="image terre">
       </div>
-      <div class="col-sm-8 text-center">
-        <div class="progress">
+      <div class="col-sm-8">
+        <div class="progress" style="margin-top:3em">
           <span class="progress-value">Progression totale</span>
-          <div class="progress-bar " role="progressbar" aria-valuenow= {{ distanceTotale }} aria-valuemin="0" aria-valuemax= {{ distanceTerreLune }}  style="width:{{ distancePourcentage }}%">
+          <div class="progress-bar" role="progressbar" aria-valuenow= {{ distanceTotale }} aria-valuemin="0" aria-valuemax= {{ distanceTerreLune }}  style="width:{{ distancePourcentage }}%">
           </div>
         </div>
       </div>
       <div class="col-sm-2 text-center">
-        <img class="image-moon" src="{{ asset('images/moon.gif') }}" alt="image asso">
+        <img class="image-moon" src="{{ asset('images/moon.jpg') }}" alt="image lune">
       </div>
     </div>
 
