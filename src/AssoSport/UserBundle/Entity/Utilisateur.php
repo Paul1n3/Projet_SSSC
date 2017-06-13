@@ -135,7 +135,7 @@ class Utilisateur extends BaseUser
    	 * @ORM\ManyToMany(targetEntity="AssoSport\AccueilBundle\Entity\Projet", cascade={"persist"})
      * @Assert\Valid()
      */
-    private $projets = null;
+    private $projets;
 
     /**
     * @ORM\ManyToOne(targetEntity="AssoSport\ProjetBundle\Entity\ProfilProjet", cascade={"persist"})
