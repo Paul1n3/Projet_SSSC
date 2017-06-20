@@ -25,6 +25,10 @@
   color: white;
   font-size: 5em;
 }
+
+.button-project span, .button-perso span {
+  vertical-align:middle;
+}
 .button-perso {
   background-color: #00B0AD;
 }
