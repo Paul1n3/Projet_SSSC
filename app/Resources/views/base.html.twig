@@ -26,7 +26,7 @@
             <li><a href="{{ path('asso_sport_adherent_stats') }}">Mes statistiques</a></li>
           {% endif %}
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <li><p class="navbar-text text-center">Connecté en tant que {{ app.user.username }}</p></li>
+            <li><a href="#">Connecté en tant que {{ app.user.username }}</a></li>
           {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">

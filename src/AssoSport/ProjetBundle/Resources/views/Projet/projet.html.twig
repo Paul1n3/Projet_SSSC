@@ -20,11 +20,21 @@
     <div class="row">
       <div class="col-sm-12 text-center">
         <p>
-          <strong>{{ utilisateur.nom }} {{ utilisateur.prenom }}</strong> vous êtes inscrit pour contribuer à ce projet! <br /><br />
-          Vous devez parcourir un total de <strong>{{ distanceARealiser }} km</strong> pendant la durée totale du projet. <br /> <br />
+          <strong>{{ utilisateur.nom }} {{ utilisateur.prenom }}</strong> êtes vous prêt(e) à relever le défi ? <br /><br />
+          <strong>{{ distanceARealiser }} km</strong> à pied vous attendent ! <br /> <br />
         </p>
       </div>
     </div>
+
+      <div class="row">
+        <div class=" col-md-12 text-center">
+          <div class="btn-group">
+            <a href="{{ path('asso_sport_projet_ajout') }}" class="btn btn-lg btn-primary" role="button">Ajouter une activité</a>
+          </div>
+        </div>
+      </div>
+
+      <br /><br /><br />
 
     <div class="row">
       <div class="col-sm-2 text-right">
@@ -56,12 +66,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <br /><br /><p>En cumulant tous les adhérents, vous avez fait la distance suivante:</p>
-        <h2>{{ distanceTotale }} km / {{ distanceTerreLune }} km</h2> <br /><br />
-      </div>
-    </div>
+    <br /><br /><br /><br /><br /><br />
+
 
     <div class="row">
       <div class="col-sm-2 text-center">
@@ -80,9 +86,8 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
-        <br /><br />
-        <a href="{{ path('asso_sport_projet_ajout') }}" class="btn btn-default " role="button">Ajouter une activité</a>
+      <div class="col-sm-12 text-center">
+        <h2>{{ distanceTotale }} km / {{ distanceTerreLune }} km</h2> <br /><br />
       </div>
     </div>
   </div>

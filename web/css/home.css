@@ -1,6 +1,7 @@
 .image-asso {
-  width:50%;
-  height:50%;
+  margin-top: 5em;
+  width:40%;
+  height:40%;
   border-radius:50%;
   border: 2px solid black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -53,7 +54,7 @@
 
 h2 {
   color : #29CFA3;
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .navbar-default {

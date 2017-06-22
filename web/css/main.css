@@ -3,10 +3,16 @@ html {
   min-height: 100%;
 }
 
-
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 4.5em;
+    height: 4.5em;
+    padding-top: 0;
+    font-size : 120%;
+}
 
 body {
-  padding-top: 70px;
+  padding-top: 90px;
   background-color: white;
 
   /* Margin bottom by footer height */
@@ -31,10 +37,11 @@ footer {
 }
 
 .logo-asso {
-  width: 4em;
-  height: 3em;
+  width: 5em;
+  height: 4em;
   margin-right: 20px;
   margin-left: 20px;
+  margin-top: 5px;
 }
 
 
