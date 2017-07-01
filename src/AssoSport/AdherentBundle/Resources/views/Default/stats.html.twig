@@ -14,6 +14,24 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1>Statistiques du mois</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-12 text-center">
+          <div class="btn-group">
+            <a href="{{ path('asso_sport_adherent_homepage') }}" class="btn btn-lg btn-danger">Ajouter une activité</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
         <div class=" col-md-5 text-center">
           <h2>Cumul des activités physiques par mois</h2>
             {{ include("AssoSportAdherentBundle:Chart:AP_chart.html.twig") }}
@@ -30,8 +48,7 @@
       <div class="row">
         <div class=" col-md-12 text-center">
           <div class="btn-group">
-            <a href="{{ path('asso_sport_adherent_homepage') }}" class="btn btn-primary">Ajouter une activité</a>
-            <a href="{{ path('asso_sport_adherent_carnetbord') }}" class="btn btn-primary">Carnet de bord</a>
+            <a href="{{ path('asso_sport_adherent_carnetbord') }}" class="btn btn-lg btn-primary">Carnet de bord</a>
           </div>
         </div>
       </div>

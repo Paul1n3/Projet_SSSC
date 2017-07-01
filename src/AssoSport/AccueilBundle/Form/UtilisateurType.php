@@ -46,8 +46,10 @@ class UtilisateurType extends AbstractType
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'RepeatPassword'),
           ))
-          ->add('adherent',  CheckboxType::class, array('required' => false))
-          ->add('participant',  CheckboxType::class, array('required' => false))
+          ->add('adherent',  CheckboxType::class, array('required' => false,
+          'label' => 'Suivi carnet de bord'))
+          ->add('participant',  CheckboxType::class, array('required' => false,
+          'label' => 'Participe au défi'))
           //->add('profilActuel', ProfilType::class)
           ->add('profilActuel', EntityType::class, array(
               'class'           =>  'AssoSportAccueilBundle:Profil',

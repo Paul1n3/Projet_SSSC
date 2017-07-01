@@ -125,17 +125,3 @@ class ProjetController extends Controller
         ));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

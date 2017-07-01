@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="{{ asset('css/projet.css') }}" />
 {% endblock %}
 
+{% block scriptlink %}
+  <script src="{{ asset('js/jquery.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 
 
@@ -50,5 +54,17 @@
         </div>
       </div>
     </div>
+
+    <script>
+
+    $('#activite_projet_sport > option').each(function() {
+      if( (this.value != '1') && (this.value != '2') && (this.value != '4') && (this.value != '10')){ //1, 2, 4, et 10 sont les ID des sport choisis dans la base
+        this.style.display = 'none'
+      };
+    });
+    </script>
+
+
+
 
 {% endblock %}
